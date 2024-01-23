@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('admin.partials.head')
+@include('partials.head')
 {{-- @include('noty::message')
 @notifyCss --}}
 {{-- @include('notify::messages') --}}
 <body class="g-sidenav-show  bg-gray-100">
-    @include('admin.partials.sidebar')
+    @include('partials.sidebar')
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        @include('admin.partials.navbar')
+        @include('partials.navbar')
         <!-- End Navbar -->
 
         <div class="container-fluid py-4">
-            @include('admin.partials.flash-message')
+            @include('partials.flash-message')
             {{ $slot }}
 
             {{-- @include('admin.partials.footer') --}}
 
         </div>
     </main>
-    @include('admin.partials.scripts')
+    @include('partials.scripts')
 
 </body>
 
