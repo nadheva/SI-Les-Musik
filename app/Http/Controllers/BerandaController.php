@@ -11,9 +11,7 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role == 'Admin') {
-            return view ('admin.beranda.index');
-        }
+        return view('dashboard');
     }
 
     /**
