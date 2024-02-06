@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -11,7 +11,9 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->role == 'Admin') {
+            return view ('admin.beranda.index');
+        }
     }
 
     /**
