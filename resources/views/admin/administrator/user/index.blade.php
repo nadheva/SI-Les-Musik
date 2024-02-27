@@ -20,7 +20,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Datatables</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
-
+                  <div class="col-12 text-end">
+                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahUser"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah User</a>
+                  </div>
                   <!-- Table with stripped rows -->
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
@@ -54,7 +56,7 @@
                               @method("DELETE")
                               <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="bi bi-trash"></i></button>
                             </form>
-                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editPerangkat-{{$u->id}}"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editUser-{{$u->id}}"><i class="bi bi-pencil-square"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -69,6 +71,84 @@
             </div>
           </div>
         </section>
+
+
+            <!-- Modal Tambah User -->
+        <div class="modal fade" id="tambahUser" tabindex="-1" role="dialog" aria-labelledby="tambahUserLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title card-title" id="tambahPerangkatLabel">Tambah User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="row g-3">
+                            <div class="col-12">
+                              <label for="inputNanme4" class="form-label">Your Name</label>
+                              <input type="text" class="form-control" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputEmail4" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputPassword4" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn btn-success">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+            <!-- Modal Edit User -->
+    @foreach($user as $i)
+    <div class="modal fade" id="editUser-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editUserLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" action="" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tambahPerangkatLabel">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" name="nama" value="{{$i->name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Email:</label>
+                            <input type="text" class="form-control" name="email" value="{{$i->email}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" name="password" value="{{$i->password}}" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn bg-gradient-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
       </main><!-- End #main -->
 
