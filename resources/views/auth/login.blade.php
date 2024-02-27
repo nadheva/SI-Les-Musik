@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Masuk - Sincere Yamaha Music </title>
+  <title>Masuk - Sincere Music </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -49,8 +49,8 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">Sincere Yamaha Music</span>
+                  <img src="{{asset('template/NiceAdmin/assets/img/LOGO-SINCERE.png')}}" alt="">
+                  <span class="d-none d-lg-block">Sincere Music</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -89,7 +89,7 @@
                       <button type="submit" class="btn btn-primary w-100">Masuk</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Belum punya akun? <a href="pages-register.html">Daftar akun</a></p>
+                      <p class="small mb-0">Belum punya akun? <a href="{{route('register')}}">Daftar akun</a></p>
                     </div>
                   </form>
 
