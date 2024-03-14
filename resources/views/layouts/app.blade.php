@@ -14,7 +14,7 @@
 
         <div class="container-fluid py-4">
             @include('sweetalert::alert')
-            {{ $slot }}
+            {{ $slot}}
 
             {{-- @include('admin.partials.footer') --}}
 

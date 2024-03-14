@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use RealRashid\SweetAlert\Facades\Alert;
+use PHPUnit\Event\Code\Throwable;
 
 class RoleController extends Controller
 {
@@ -29,17 +31,24 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'role' => 'required',
-            'fungsi' => 'required'
-        ]);
 
-        Role::create([
-            'role' => $request->role,
-            'fungsi' => $request->fungsi
-        ]);
+        try {
+            $request->validate([
+                'role' => 'required|unique:role',
+                'fungsi' => 'required'
+            ]);
 
-        return redirect()->with('Success', 'Data role berhasil ditambahkan');
+            Role::create([
+                'role' => $request->role,
+                'fungsi' => $request->fungsi
+            ]);
+
+            Alert::success('Success', 'Role berhasil ditambahakan!');
+            return redirect()->route('role.index');
+        } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('role.index');
+          }
     }
 
     /**
@@ -63,13 +72,26 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $role = Role::findOrfail($id);
 
-        $role->role = $request->role;
-        $role->fungsi = $request->fungsi;
-        $role->save;
+        try {
+            $request->validate([
+                'role' => 'required|unique:role',
+                'fungsi' => 'required'
+            ]);
 
-        return redirect()->with('Success', 'Role berhasil diperbarui!');
+            $role = Role::findOrfail($id);
+
+            $role->role = $request->role;
+            $role->fungsi = $request->fungsi;
+            $role->save;
+
+            Alert::info('Success', 'Role berhasil diperbarui!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('role.index');
+          }
 
     }
 
@@ -78,7 +100,14 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        Role::find($id)->delete();
-        return redirect()->with('Success', 'Role Berhasil dihapus!');
+        try {
+            Role::find($id)->delete();
+            Alert::warning('Success', 'Role berhasil dihapus!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('role.index');
+          }
     }
 }

@@ -2,7 +2,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-          <h1>Data User</h1>
+          <h1>Data Role</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -21,7 +21,7 @@
                   <h5 class="card-title">Datatables</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
                   <div class="col-12 text-end">
-                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahUser"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah User</a>
+                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Role</a>
                   </div>
                   <!-- Table with stripped rows -->
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
@@ -29,32 +29,28 @@
                       <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                          <b>U</b>sername
+                          <b>R</b>ole
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-type="date" data-format="YYYY/DD/MM">Join</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fungsi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($user as $u)
+                        @foreach($role as $u)
                       <tr>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                         </td>
-                        <td class="align-middle text-center">{{$u->name}}</td>
-                        <td class="align-middle text-center">{{$u->email}}</td>
-                        <td class="align-middle text-center">{{$u->role->role}}</td>
-                        <td>{{date('d-m-Y', strtotime($u->created_at))}}</td>
+                        <td class="align-middle text-center">{{$u->role}}</td>
+                        <td class="align-middle text-center">{{$u->fungsi}}</td>
                         <td class="align-middle text-center">
                             <div>
-                            <form id="form-delete" action="{{route('user.destroy', $u->id)}}" method="POST" style="display: inline">
+                            <form id="form-delete" action="{{route('role.destroy', $u->id)}}" method="POST" style="display: inline">
                               @csrf
                               @method("DELETE")
                               <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="bi bi-trash"></i></button>
                             </form>
-                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editUser-{{$u->id}}"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editRole-{{$u->id}}"><i class="bi bi-pencil-square"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -71,15 +67,15 @@
         </section>
 
 
-            <!-- Modal Tambah User -->
-        <div class="modal fade" id="tambahUser" tabindex="-1" role="dialog" aria-labelledby="tambahUserLabel"
+            <!-- Modal Tambah Role -->
+        <div class="modal fade" id="tambahRole" tabindex="-1" role="dialog" aria-labelledby="tambahRoleLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('role.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title card-title" id="tambahPerangkatLabel">Tambah User</h5>
+                        <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Role</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -88,27 +84,14 @@
 
                         <form class="row g-3">
                             <div class="form-group">
-                              <label class="col-form-label">Username</label>
-                              <input type="text" class="form-control"  name="name" placeholder="Masukkan username" value="{{old('name')}}" required>
+                              <label class="col-form-label">Role</label>
+                              <input type="text" class="form-control"  name="role" placeholder="Masukkan Role" value="{{old('role')}}" required>
                             </div>
                             <div class="form-group">
-                              <label class="col-form-label">Email</label>
-                              <input type="email" class="form-control"  name="email" placeholder="Masukkan email" value="{{old('email')}}" required>
+                              <label class="col-form-label">Fungsi</label>
+                              <textarea type="text" class="form-control" id="mytextarea"  name="fungsi" value="{{old('fungsi')}}" required></textarea>
                             </div>
-                            <div class="form-group">
-                              <label class="col-form-label">Password</label>
-                              <input type="password" class="form-control" name="password" placeholder="Masukkan password" value="{{old('password')}}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1" class="col-form-label">Role</label>
-                                <select class="form-control" name="role_id" id="exampleFormControlSelect1" required>
-                                    <option value="">Pilih Role</option @disabled(true)>
-                                  @foreach ($role as $item)
-                                  <option value="{{$item->id}}">{{$item->role}}</option>
-                                  @endforeach
-                                </select>
-                              </div>
-                    </div>
+                        </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn btn-success">Simpan</button>
@@ -117,17 +100,17 @@
             </div>
         </div>
     </div>
-            <!-- Modal Edit User -->
-    @foreach($user as $i)
-    <div class="modal fade" id="editUser-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editUserLabel"
+            <!-- Modal Edit Role -->
+    @foreach($role as $i)
+    <div class="modal fade" id="editRole-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editRoleLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="POST" action="{{ url('user-update', $i->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('role-update', $i->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="tambahPerangkatLabel">Edit User</h5>
+                        <h5 class="modal-title" id="tambahPerangkatLabel">Edit Role</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -136,27 +119,14 @@
 
                         <form class="row g-3">
                             <div class="form-group">
-                              <label class="col-form-label">Username</label>
-                              <input type="text" class="form-control"  name="name" placeholder="Masukkan username" value="{{$i->name}}" required>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label">Email</label>
-                              <input type="email" class="form-control"  name="email" placeholder="Masukkan email" value="{{$i->email}}" required>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label">Password</label>
-                              <input type="password" class="form-control" name="password" placeholder="Masukkan password" value="{{$i->password}}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1" class="col-form-label">Role</label>
-                                <select class="form-control" name="role_id" id="exampleFormControlSelect1" required>
-                                    <option value="{{$i->role_id}}">{{$i->role->role}}</option @disabled(true)>
-                                  @foreach ($role as $item)
-                                  <option value="{{$item->id}}">{{$item->role}}</option>
-                                  @endforeach
-                                </select>
+                                <label class="col-form-label">Role</label>
+                                <input type="text" class="form-control"  name="role" placeholder="Masukkan Role" value="{{$i->role}}" required>
                               </div>
-                    </div>
+                              <div class="form-group">
+                                <label class="col-form-label">Fungsi</label>
+                                <textarea type="text" class="form-control" id="mytextarea"  name="fungsi" value="{{$i->fungsi}}" required>{{$i->fungsi}}</textarea>
+                              </div>
+                            </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn btn-success">Simpan</button>

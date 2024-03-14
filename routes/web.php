@@ -5,6 +5,12 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\AlatMusikController;
+use App\Http\Controllers\ResepsionisController;
+use App\Http\Controllers\StudioController;
+use App\Models\AlatMusik;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,7 +41,28 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
 
     //User
-    Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class)->except('update');
+    Route::put('user-update/{id}', [UserController::class, 'update']);
+
+    //Role
+    Route::resource('role', RoleController::class)->except('update');
+    Route::put('role-update/{id}', [RoleController::class, 'update']);
+
+    //Guru
+    Route::resource('guru', GuruController::class)->except('update');
+    Route::put('guru-update/{id}', [GuruController::class, 'update']);
+
+    //Alat Musik
+    Route::resource('alat-musik', AlatMusikController::class)->except('update');
+    Route::put('alat-musik-update/{id}', [AlatMusikController::class, 'update']);
+
+    //Studio
+    Route::resource('studio', StudioController::class)->except('update');
+    Route::put('studio-update/{id}', [StudioController::class, 'update']);
+
+
+    //
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

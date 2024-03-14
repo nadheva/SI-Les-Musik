@@ -7,6 +7,10 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use PHPUnit\Event\Code\Throwable;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ViewErrorBag;
+use App\Services\PayUService\Exception;
 
 class UserController extends Controller
 {
@@ -33,21 +37,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|unique:users',
+                'password' => 'required'
+            ]);
 
-        User::create([
-            'name' => $request->name,
-            'role_id' => $request->role_id,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
+            User::create([
+                'name' => $request->name,
+                'role_id' => $request->role_id,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+                Alert::success('Success', 'User berhasil ditambahakan!');
+                return redirect()->route('user.index');
 
-        Alert::success('Success', 'User berhasil ditambahakan!');
-        return redirect()->route('user.index');
+          } catch (\Exception $e) {
+              Alert::info('Error', $e->getMessage());
+              return redirect()->route('user.index');
+          }
     }
 
     /**
@@ -71,16 +80,30 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
 
-        $user->name = $request->name;
-        $user->role_id = $request->role_id;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-        Alert::info('Success', 'User berhasil diperbarui!');
-        return redirect()->back();
+        try {
+            $request->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|unique:users',
+                'password' => 'required'
+            ]);
 
+            $user = User::findOrFail($id);
+
+            $user->name = $request->name;
+            $user->role_id = $request->role_id;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->save();
+            Alert::info('Success', 'User berhasil diperbarui!');
+            return redirect()->back();
+
+
+          } catch (\Exception $e) {
+
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('user.index');
+          }
     }
 
     /**
@@ -88,8 +111,15 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        User::find($id)->delete();
-        Alert::warning('Success', 'User berhasil dihapus!');
-        return redirect()->back();
+        try {
+
+            User::find($id)->delete();
+            Alert::warning('Success', 'User berhasil dihapus!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('user.index');
+          }
     }
 }
