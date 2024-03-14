@@ -11,5 +11,4 @@
 
   <!-- Template Main JS File -->
 <script src="{{asset('template/NiceAdmin/assets/js/main.js')}}"></script>
-
 @stack('scripts')

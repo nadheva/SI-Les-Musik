@@ -25,7 +25,6 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('template/NiceAdmin/assets/css/style.css')}}" rel="stylesheet">
-
     <!-- =======================================================
     * Template Name: NiceAdmin
     * Updated: Nov 17 2023 with Bootstrap v5.3.2
@@ -33,4 +32,5 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
   </head>

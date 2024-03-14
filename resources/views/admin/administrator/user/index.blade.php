@@ -33,7 +33,6 @@
                         </th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-type="date" data-format="YYYY/DD/MM">Join</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
@@ -46,8 +45,7 @@
                         </td>
                         <td class="align-middle text-center">{{$u->name}}</td>
                         <td class="align-middle text-center">{{$u->email}}</td>
-                        <td class="align-middle text-center">{{$u->role}}</td>
-                        <td class="align-middle text-center">Aktif</td>
+                        <td class="align-middle text-center">{{$u->role->role}}</td>
                         <td>{{date('d-m-Y', strtotime($u->created_at))}}</td>
                         <td class="align-middle text-center">
                             <div>
@@ -83,24 +81,33 @@
                     <div class="modal-header">
                         <h5 class="modal-title card-title" id="tambahPerangkatLabel">Tambah User</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <form class="row g-3">
-                            <div class="col-12">
-                              <label for="inputNanme4" class="form-label">Your Name</label>
-                              <input type="text" class="form-control" id="inputNanme4">
+                            <div class="form-group">
+                              <label class="col-form-label">Username</label>
+                              <input type="text" class="form-control"  name="name" placeholder="Masukkan username" value="{{old('name')}}">
                             </div>
-                            <div class="col-12">
-                              <label for="inputEmail4" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="inputEmail4">
+                            <div class="form-group">
+                              <label class="col-form-label">Email</label>
+                              <input type="email" class="form-control"  name="email" placeholder="Masukkan email" value="{{old('email')}}">
                             </div>
-                            <div class="col-12">
-                              <label for="inputPassword4" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="inputPassword4">
+                            <div class="form-group">
+                              <label class="col-form-label">Password</label>
+                              <input type="password" class="form-control" name="password" placeholder="Masukkan password" value="{{old('password')}}">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1" class="col-form-label">Role</label>
+                                <select class="form-control" name="role_id" id="exampleFormControlSelect1" required>
+                                    <option value="">Pilih Role</option @disabled(true)>
+                                  @foreach ($role as $item)
+                                  <option value="{{$item->id}}">{{$item->role}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
