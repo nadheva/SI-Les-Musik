@@ -61,22 +61,22 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-general.html">
+            <a class="nav-link {{ Route::is('guru.*') ? 'active' : ''}}" href="{{route('guru.index')}}">
               <i class="bi bi-circle"></i><span>Guru</span>
             </a>
           </li>
           <li>
-            <a href="tables-data.html">
+            <a class="nav-link {{ Route::is('alat-musik.*') ? 'active' : ''}}" href="{{route('alat-musik.index')}}">
               <i class="bi bi-circle"></i><span>Alat Musik</span>
             </a>
           </li>
           <li>
-            <a href="tables-data.html">
+            <a class="nav-link {{ Route::is('resepsionis.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
               <i class="bi bi-circle"></i><span>Resepsionis</span>
             </a>
           </li>
           <li>
-            <a href="tables-data.html">
+            <a class="nav-link {{ Route::is('studio.*') ? 'active' : ''}}" href="{{route('studio.index')}}">
               <i class="bi bi-circle"></i><span>Studio</span>
             </a>
           </li>

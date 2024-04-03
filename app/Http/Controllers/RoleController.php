@@ -74,10 +74,10 @@ class RoleController extends Controller
     {
 
         try {
-            $request->validate([
-                'role' => 'required|unique:role',
-                'fungsi' => 'required'
-            ]);
+            // $request->validate([
+            //     'role' => 'required|unique:role',
+            //     'fungsi' => 'required'
+            // ]);
 
             $role = Role::findOrfail($id);
 

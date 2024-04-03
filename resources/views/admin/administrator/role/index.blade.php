@@ -89,7 +89,7 @@
                             </div>
                             <div class="form-group">
                               <label class="col-form-label">Fungsi</label>
-                              <textarea type="text" class="form-control" id="mytextarea"  name="fungsi" value="{{old('fungsi')}}" required></textarea>
+                              <textarea type="text" class="form-control"  name="fungsi" value="{{old('fungsi')}}" required></textarea>
                             </div>
                         </div>
                     <div class="modal-footer">
@@ -110,7 +110,7 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="tambahPerangkatLabel">Edit Role</h5>
+                        <h5 class="modal-title" id="editRoleLabel">Edit Role</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -124,7 +124,7 @@
                               </div>
                               <div class="form-group">
                                 <label class="col-form-label">Fungsi</label>
-                                <textarea type="text" class="form-control" id="mytextarea"  name="fungsi" value="{{$i->fungsi}}" required>{{$i->fungsi}}</textarea>
+                                <textarea type="text" class="form-control" name="fungsi"> {{$i->fungsi}} </textarea>
                               </div>
                             </div>
                     <div class="modal-footer">

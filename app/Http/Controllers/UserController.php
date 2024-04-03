@@ -82,11 +82,11 @@ class UserController extends Controller
     {
 
         try {
-            $request->validate([
-                'name' => 'required|max:255',
-                'email' => 'required|unique:users',
-                'password' => 'required'
-            ]);
+            // $request->validate([
+            //     'name' => 'required|max:255',
+            //     'email' => 'required|unique:users',
+            //     'password' => 'required'
+            // ]);
 
             $user = User::findOrFail($id);
 
