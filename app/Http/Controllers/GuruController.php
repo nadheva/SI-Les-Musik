@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Guru;
+use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -11,15 +15,34 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Guru::latest()->get();
+        return view('admin.master.guru.index', compact('guru'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'nama' => 'required',
+                'email' => 'required',
+                'no_telp' => 'required',
+                'deskripsi' => 'required'
+            ]);
+
+            Guru::create([
+                'nama' => $request->role,
+                'fungsi' => $request->fungsi
+            ]);
+
+            Alert::success('Success', 'Role berhasil ditambahakan!');
+            return redirect()->route('role.index');
+        } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('role.index');
+          }
     }
 
     /**

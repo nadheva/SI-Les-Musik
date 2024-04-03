@@ -80,7 +80,6 @@ class RoleController extends Controller
             // ]);
 
             $role = Role::findOrfail($id);
-
             $role->role = $request->role;
             $role->fungsi = $request->fungsi;
             $role->save;

@@ -124,7 +124,7 @@
                               </div>
                               <div class="form-group">
                                 <label class="col-form-label">Fungsi</label>
-                                <textarea type="text" class="form-control" name="fungsi"> {{$i->fungsi}} </textarea>
+                                <textarea type="text" class="form-control" name="fungsi">{{$i->fungsi}}</textarea>
                               </div>
                             </div>
                     <div class="modal-footer">
