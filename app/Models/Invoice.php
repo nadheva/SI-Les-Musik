@@ -19,6 +19,6 @@ class Invoice extends Model
     ];
 
     public function reservasi(){
-        return $table->belongsTo(Reservasi::class);
+        return $this->belongsTo(Reservasi::class);
     }
 }
