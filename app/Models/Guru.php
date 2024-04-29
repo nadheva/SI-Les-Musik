@@ -11,10 +11,15 @@ class Guru extends Model
     protected $table = 'guru';
     protected $fillable = [
         'nama',
-        'foto',
         'email',
         'no_telp',
+        'lulusan',
+        'tahun_lulus',
+        'kursus_id',
+        'grade',
+        'lama_mengajar',
         'deskripsi',
+        'foto',
         'user_id'
     ];
 

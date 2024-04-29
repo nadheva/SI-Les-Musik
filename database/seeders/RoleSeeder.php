@@ -15,8 +15,26 @@ class RoleSeeder extends Seeder
     {
         Role::create([
             'id' => '1',
-            'role' => 'admin',
+            'role' => 'Admin',
             'fungsi' => 'Sebagai admin'
         ]);
+        Role::create([
+            'id' => '2',
+            'role' => 'User',
+            'fungsi' => 'Sebagai user'
+        ]);
+
+        Role::create([
+            'id' => '3',
+            'role' => 'Guru',
+            'fungsi' => 'Sebagai guru'
+        ]);
+
+        Role::create([
+            'id' => '4',
+            'role' => 'Resepsionis',
+            'fungsi' => 'Sebagai resepsionis'
+        ]);
+
     }
 }
