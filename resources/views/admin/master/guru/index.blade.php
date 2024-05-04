@@ -21,7 +21,7 @@
                   <h5 class="card-title">Datatables</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
                   <div class="col-12 text-end">
-                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Role</a>
+                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Data Guru</a>
                   </div>
                   <!-- Table with stripped rows -->
                   {{-- <table class="table datatable align-items-center mb-0" id="datatable-search">
@@ -75,7 +75,7 @@
                 <form method="post" action="{{ route('guru.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Role</h5>
+                        <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Data Guru</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -87,21 +87,51 @@
 
                                 <div class="card">
                                   <div class="card-body">
-                                    <h5 class="card-title">Horizontal Form</h5>
+                                    <h5 class="card-title">Data Guru</h5>
 
                                     <!-- Horizontal Form -->
                                     <form>
                                       <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Your Name</label>
+                                        <label for="inputNanme4" class="form-label">Nama :</label>
                                         <input type="text" class="form-control" id="inputNanme4">
                                       </div>
                                       <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Your Name</label>
+                                        <label for="inputNanme4" class="form-label">No. Telepon : </label>
+                                        <input type="number" class="form-control" id="inputNanme4">
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Lulusan :</label>
                                         <input type="text" class="form-control" id="inputNanme4">
                                       </div>
                                       <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Your Name</label>
-                                        <input type="text" class="form-control" id="inputNanme4">
+                                        <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
+                                        <input type="number" class="form-control" id="inputNanme4">
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Kursus :</label>
+                                        <select id="inputState" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                          </select>
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Grade :</label>
+                                        <select id="inputState" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                          </select>
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
+                                        <input type="number" class="form-control" id="inputNanme4">
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Foto :</label>
+                                        <input type="file" class="form-control" id="inputNanme4">
+                                      </div>
+                                      <div class="row mb-3">
+                                        <label for="inputNanme4" class="form-label">Deskripsi :</label>
+                                        <textarea type="text" class="form-control" id="inputNanme4"></textarea>
                                       </div>
                                     </form><!-- End Horizontal Form -->
 
@@ -114,34 +144,19 @@
 
                                 <div class="card">
                                   <div class="card-body">
-                                    <h5 class="card-title">Vertical Form</h5>
+                                    <h5 class="card-title">Data Akun</h5>
 
                                     <!-- Vertical Form -->
                                     <form class="row g-3">
-                                        <div class="col-md-12">
-                                          <input type="text" class="form-control" placeholder="Your Name">
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="row mb-3">
                                           <input type="email" class="form-control" placeholder="Email">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="row mb-3">
                                           <input type="password" class="form-control" placeholder="Password">
                                         </div>
-                                        <div class="col-12">
-                                          <input type="text" class="form-control" placeholder="Address">
-                                        </div>
-                                        <div class="col-md-6">
-                                          <input type="text" class="form-control" placeholder="City">
-                                        </div>
-                                        <div class="col-md-4">
-                                          <select id="inputState" class="form-select">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
-                                          </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                          <input type="text" class="form-control" placeholder="Zip">
-                                        </div>
+                                        <div class="row mb-3">
+                                            <input type="password" class="form-control" placeholder="Password">
+                                          </div>
                                         <div class="text-center">
                                           <button type="submit" class="btn btn-primary">Submit</button>
                                           <button type="reset" class="btn btn-secondary">Reset</button>
