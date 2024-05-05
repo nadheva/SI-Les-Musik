@@ -32,7 +32,7 @@ class AlatMusikController extends Controller
     {
         try {
             $request->validate([
-                'alat_musik' => 'required',
+                'nama' => 'required',
                 'deskripsi' => 'required',
             ]);
 
@@ -46,7 +46,7 @@ class AlatMusikController extends Controller
             }
 
             AlatMusik::create([
-                'alat_musik' => $request->alat_musik,
+                'nama' => $request->nama,
                 'foto' => $txt,
                 'deskripsi' => $request->deskripsi,
             ]);
@@ -84,7 +84,7 @@ class AlatMusikController extends Controller
         try {
 
             $alatmusik = AlatMusik::findOrfail($id);
-            $alatmusik->alat_musik = $request->alat_musik;
+            $alatmusik->nama = $request->nama;
             $alatmusik->deskripsi = $request->deskripsi;
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
