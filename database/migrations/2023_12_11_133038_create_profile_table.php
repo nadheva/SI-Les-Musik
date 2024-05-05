@@ -16,10 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama_depan');
             $table->string('nama_belakang');
+            $table->string('tgl_lahir');
             $table->string('nik');
             $table->string('no_telp');
-            $table->string('facebook')->nullable();
-            $table->string('instagram')->nullable();
             $table->string('foto');
             $table->text('alamat');
             $table->string('kota');
@@ -36,4 +35,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('profile');
     }
+
 };
