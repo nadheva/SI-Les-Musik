@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('tahun_lulus');
             $table->string('kursus');
             $table->string('grade');
-            $table->string('lama_mengajar');
+            // $table->string('lama_mengajar');
             $table->text('deskripsi');
             $table->string('foto');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');

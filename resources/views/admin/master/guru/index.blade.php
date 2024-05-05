@@ -93,47 +93,44 @@
                                     <form>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Nama :</label>
-                                        <input type="text" class="form-control" id="inputNanme4">
+                                        <input type="text" class="form-control" name="nama">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">No. Telepon : </label>
-                                        <input type="number" class="form-control" id="inputNanme4">
+                                        <input type="number" class="form-control" name="no_telp">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Lulusan :</label>
-                                        <input type="text" class="form-control" id="inputNanme4">
+                                        <input type="text" class="form-control" name="lulusan">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
-                                        <input type="number" class="form-control" id="inputNanme4">
+                                        <input type="number" class="form-control" name="tahun_lulus">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Kursus :</label>
-                                        <select id="inputState" class="form-select">
+                                        <select id="inputState" class="form-select" name="kursus_id">
                                             <option selected>Choose...</option>
                                             <option>...</option>
                                           </select>
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Grade :</label>
-                                        <select id="inputState" class="form-select">
+                                        <select id="inputState" class="form-select" name="grade">
                                             <option selected>Choose...</option>
                                             <option>...</option>
                                           </select>
                                       </div>
                                       <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
-                                        <input type="number" class="form-control" id="inputNanme4">
-                                      </div>
-                                      <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Foto :</label>
-                                        <input type="file" class="form-control" id="inputNanme4">
+                                        <input type="file" class="form-control" name="foto">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Deskripsi :</label>
-                                        <textarea type="text" class="form-control" id="inputNanme4"></textarea>
+                                        <textarea type="text" class="form-control" name="deskripsi"></textarea>
                                       </div>
-                                    </form><!-- End Horizontal Form -->
+                                    {{-- </div> --}}
+                                    <!-- End Horizontal Form -->
 
                                   </div>
                                 </div>
@@ -147,15 +144,15 @@
                                     <h5 class="card-title">Data Akun</h5>
 
                                     <!-- Vertical Form -->
-                                    <form class="row g-3">
+                                    <div class="row g-3">
                                         <div class="row mb-3">
-                                          <input type="email" class="form-control" placeholder="Email">
+                                          <input type="email" class="form-control" placeholder="Email" name="email">
                                         </div>
                                         <div class="row mb-3">
-                                          <input type="password" class="form-control" placeholder="Password">
+                                          <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>
                                         <div class="row mb-3">
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" class="form-control" placeholder="Konfirmasi Password">
                                           </div>
                                         <div class="text-center">
                                           <button type="submit" class="btn btn-primary">Submit</button>

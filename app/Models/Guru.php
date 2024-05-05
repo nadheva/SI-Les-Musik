@@ -17,7 +17,6 @@ class Guru extends Model
         'tahun_lulus',
         'kursus_id',
         'grade',
-        'lama_mengajar',
         'deskripsi',
         'foto',
         'user_id'

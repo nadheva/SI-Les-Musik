@@ -25,6 +25,14 @@ class GuruController extends Controller
      */
     public function create(Request $request)
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
         try {
             $request->validate([
                 'nama' => 'required',
@@ -32,10 +40,9 @@ class GuruController extends Controller
                 'no_telp' => 'required',
                 'lulusan' => 'required',
                 'tahun_lulus' => 'required',
-                'kursus' => 'required',
                 'grade' => 'required',
-                'lama_mengajar' => 'required',
-                'deskripsi' => 'required'
+                'deskripsi' => 'required',
+                'password' => 'required',
             ]);
 
             if (isset($request->foto)) {
@@ -46,18 +53,25 @@ class GuruController extends Controller
             } else {
                 $file_name = null;
             }
-
-            Guru::create([
-                'nama' => $request->role,
-                'fungsi' => $request->fungsi
-            ]);
-
             $user = User::create([
-                'name' => $request->name,
+                'name' => $request->nama,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role_id' => '3'
             ]);
+
+            $guru = Guru::create([
+                        'nama' => $request->nama,
+                        'email' => $request->email,
+                        'no_telp' => $request->no_telp,
+                        'lulusan' => $request->lulusan,
+                        'tahun_lulus' => $request->tahun_lulus,
+                        'kursus_id' => $request->kursus_id,
+                        'grade' => $request->grade,
+                        'deskripsi' => $request->deskripsi,
+                        'foto' => $txt,
+                        'user_id' => $user->id,
+                    ]);
 
             Alert::success('Success', 'Guru berhasil ditambahakan!');
             return redirect()->route('guru.index');
@@ -68,19 +82,12 @@ class GuruController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $guru = Guru::where('id', $id)->first();
+        return view('admin.master.guru.view', compact('guru'));
     }
 
     /**
@@ -105,7 +112,6 @@ class GuruController extends Controller
             $guru->tahun_lulus = $request->tahun_lulus;
             $guru->kursus_id = $request->kursus_id;
             $guru->grade = $request->grade;
-            $guru->lama_mengajar = $request->lama_mengajar;
             $guru->deskripsi = $request->deskripsi;
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
