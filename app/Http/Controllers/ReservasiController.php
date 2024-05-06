@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservasi;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ReservasiController extends Controller
@@ -59,7 +60,8 @@ class ReservasiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reservasi = Reservasi::where('id', $id)->first();
+        return view('admin.reservasi.view', compact('reservasi'));
     }
 
     /**
@@ -84,5 +86,43 @@ class ReservasiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function approve(Request $request, string $id)
+    {
+        try {
+
+            $reservasi = Reservasi::findOrfail($id);
+            $reservasi->nama_approver = Auth::user()->name;
+            $reservasi->tgl_approve = new DateTime('now');
+            $reservasi->proses = 'Disetujui';
+            $reservasi->save;
+
+            Alert::info('Success', 'Reservasi berhasil disetujui!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('reservasi.index');
+          }
+    }
+
+    public function reject(Request $request, string $id)
+    {
+        try {
+
+            $reservasi = Reservasi::findOrfail($id);
+            $reservasi->nama_approver = Auth::user()->name;
+            $reservasi->tgl_approve = new DateTime('now');
+            $reservasi->proses = 'Ditolak';
+            $reservasi->save;
+
+            Alert::info('Success', 'Reservasi berhasil ditolak!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('reservasi.index');
+          }
     }
 }
