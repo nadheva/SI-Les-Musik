@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('modul');
             $table->string('header');
             $table->enum('status',['0','1']);
+            $table->string('expired_date');
             $table->string('created_by');
             $table->timestamps();
         });

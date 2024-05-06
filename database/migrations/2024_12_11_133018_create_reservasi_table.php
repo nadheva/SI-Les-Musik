@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('reservasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guru_id')->constrained('guru')->nullable()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('course_id')->constrained('course')->nullable()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('resepsionis_id')->constrained('resepsionis')->nullable()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('invoice');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_berakhir');
+            $table->string('nama_approver')->nullable(true);
+            $table->string('tgl_approve')->nullable(true);
             $table->text('catatan');
-            $table->enum('proses', ['Ditolak', 'Dalam Proses', 'Disetujui', 'Selesai'])->default('Dalam Proses');
+            $table->enum('proses', ['Ditolak', 'Dalam Proses', 'Disetujui'])->default('Dalam Proses');
             $table->bigInteger('grand_total');
             $table->timestamps();
         });

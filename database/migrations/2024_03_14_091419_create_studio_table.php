@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('foto');
             $table->longText('foto_detail');
             $table->text('deskripsi');
-            $table->foreignId('alat_musik_id')->constrained('alat_musik')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('alat_musik_id')->constrained('alatmusik')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
