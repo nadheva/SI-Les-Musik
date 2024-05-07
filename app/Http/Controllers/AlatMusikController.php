@@ -40,7 +40,7 @@ class AlatMusikController extends Controller
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
                 $txt = "storage/alat_musik/". $file_name;
-                $request->foto->storeAs('public/foto', $file_name);
+                $request->foto->storeAs('public/alat_musik', $file_name);
             } else {
                 $file_name = null;
             }
@@ -82,15 +82,14 @@ class AlatMusikController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-
             $alatmusik = AlatMusik::findOrfail($id);
             $alatmusik->nama = $request->nama;
             $alatmusik->deskripsi = $request->deskripsi;
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
-                $txt = "storage/alat-musik/". $file_name;
-                $request->foto->storeAs('public/alat-musik', $file_name);
+                $txt = "storage/alat_musik/". $file_name;
+                $request->foto->storeAs('public/alat_musik', $file_name);
                 $alatmusik->foto = $txt;
             } else {
                 $file_name = null;

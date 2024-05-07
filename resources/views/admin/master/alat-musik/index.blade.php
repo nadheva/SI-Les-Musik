@@ -43,7 +43,7 @@
                             <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                         </td>
                         <td class="align-middle text-center">{{$a->nama}}</td>
-                        <td class="align-middle text-center">{{$a->foto}}</td>
+                        <td class="align-middle text-center"><img src="{{asset($a->foto)}}" style="max-width: 70px" class="img-fluid shadow border-radius-xl"></td>
                         <td class="align-middle text-center">{{$a->deskripsi}}</td>
                         <td class="align-middle text-center">
                             <div>
@@ -107,7 +107,7 @@
     </div>
             <!-- Modal Edit Role -->
     @foreach($alatmusik as $i)
-    <div class="modal fade" id="editAlatMusik-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editRoleLabel"
+    <div class="modal fade" id="editAlatMusik-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editAlatMusikLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -115,7 +115,7 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editRoleLabel">Edit Role</h5>
+                        <h5 class="modal-title" id="editRoleLabel">Edit Alat Musik</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
