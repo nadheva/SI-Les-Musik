@@ -24,14 +24,18 @@
                     <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Data Guru</a>
                   </div>
                   <!-- Table with stripped rows -->
-                  {{-- <table class="table datatable align-items-center mb-0" id="datatable-search">
+                  <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
                       <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                          <b>R</b>ole
+                          <b>N</b>ama
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fungsi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Telepon</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
                     </thead>
@@ -56,7 +60,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                  </table> --}}
+                  </table>
                   <!-- End Table with stripped rows -->
 
                 </div>
@@ -93,41 +97,47 @@
                                     <form>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Nama :</label>
-                                        <input type="text" class="form-control" name="nama">
+                                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">No. Telepon : </label>
-                                        <input type="number" class="form-control" name="no_telp">
+                                        <input type="number" class="form-control" name="no_telp" placeholder="Masukkan Nomor Telepon">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Lulusan :</label>
-                                        <input type="text" class="form-control" name="lulusan">
+                                        <input type="text" class="form-control" name="lulusan" placeholder="Masukkan Lulusan">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
-                                        <input type="number" class="form-control" name="tahun_lulus">
+                                        <input type="number" class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Kursus :</label>
-                                        <select id="inputState" class="form-select" name="kursus_id">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
+                                        <select id="inputState" class="form-select" name="alat_musik_id">
+                                            <option selected>Silahkan Pilih Kursus</option>
+                                            @foreach($alatmusik as $item)
+                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                            @endforeach
                                           </select>
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Grade :</label>
                                         <select id="inputState" class="form-select" name="grade">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
+                                            <option selected>Silahakan Pilih Grade</option>
+                                            <option value="A">A</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
                                           </select>
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Foto :</label>
-                                        <input type="file" class="form-control" name="foto">
+                                        <input type="file" class="form-control" name="foto" placeholder="Upload Foto">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Deskripsi :</label>
-                                        <textarea type="text" class="form-control" name="deskripsi"></textarea>
+                                        <textarea type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
                                       </div>
                                     {{-- </div> --}}
                                     <!-- End Horizontal Form -->
@@ -146,17 +156,16 @@
                                     <!-- Vertical Form -->
                                     <div class="row g-3">
                                         <div class="row mb-3">
-                                          <input type="email" class="form-control" placeholder="Email" name="email">
-                                        </div>
-                                        <div class="row mb-3">
-                                          <input type="password" class="form-control" placeholder="Password" name="password">
-                                        </div>
-                                        <div class="row mb-3">
-                                            <input type="password" class="form-control" placeholder="Konfirmasi Password">
+                                            <label for="inputNanme4" class="form-label">Email :</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Masukkan Email">
+                                          </div>
+                                          <div class="row mb-3">
+                                            <label for="inputNanme4" class="form-label">Password :</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Masukkan Password">
                                           </div>
                                         <div class="text-center">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
-                                          <button type="reset" class="btn btn-secondary">Reset</button>
+                                          <button type="submit" class="btn btn-primary">Simpan</button>
+                                          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                         </div>
                                       </form><!-- End No Labels Form -->
 

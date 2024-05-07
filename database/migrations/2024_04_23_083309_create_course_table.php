@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->foreignId('level_id')->constrained('level')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('alat_musik_id')->constrained('alatmusik')->onDelete('cascade')->onUpdate('cascade');
             $table->text('deskripsi');
             $table->string('modul');
             $table->string('header');

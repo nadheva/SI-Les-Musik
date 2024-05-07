@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\AlatMusik;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,7 +18,8 @@ class GuruController extends Controller
     public function index()
     {
         $guru = Guru::latest()->get();
-        return view('admin.master.guru.index', compact('guru'));
+        $alatmusik = AlatMusik::latest()->get();
+        return view('admin.master.guru.index', compact('guru', 'alatmusik'));
     }
 
     /**

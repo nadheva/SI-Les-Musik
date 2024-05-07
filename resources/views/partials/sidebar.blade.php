@@ -79,6 +79,11 @@
             </a>
           </li>
           <li>
+            <a class="nav-link {{ Route::is('level.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
+              <i class="bi bi-circle"></i><span>Level</span>
+            </a>
+          </li>
+          <li>
             <a class="nav-link {{ Route::is('resepsionis.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
               <i class="bi bi-circle"></i><span>Resepsionis</span>
             </a>

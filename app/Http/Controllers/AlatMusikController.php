@@ -14,7 +14,7 @@ class AlatMusikController extends Controller
     public function index()
     {
         $alatmusik = AlatMusik::latest()->paginate(10);
-        return view('admin.master.alatmusik', compact('alatmusik'));
+        return view('admin.master.alat-musik.index', compact('alatmusik'));
     }
 
     /**
