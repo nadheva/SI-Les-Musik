@@ -46,15 +46,6 @@ class GuruController extends Controller
                 'deskripsi' => 'required',
                 'password' => 'required',
             ]);
-
-            if (isset($request->foto)) {
-                $extention = $request->foto->extension();
-                $file_name = time() . '.' . $extention;
-                $txt = "storage/guru/". $file_name;
-                $request->foto->storeAs('public/foto', $file_name);
-            } else {
-                $file_name = null;
-            }
             $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->email,
@@ -62,13 +53,22 @@ class GuruController extends Controller
                 'role_id' => '3'
             ]);
 
+            if (isset($request->foto)) {
+                $extention = $request->foto->extension();
+                $file_name = time() . '.' . $extention;
+                $txt = "storage/guru/". $file_name;
+                $request->foto->storeAs('public/guru', $file_name);
+            } else {
+                $file_name = null;
+            }
+
             $guru = Guru::create([
                         'nama' => $request->nama,
                         'email' => $request->email,
                         'no_telp' => $request->no_telp,
                         'lulusan' => $request->lulusan,
                         'tahun_lulus' => $request->tahun_lulus,
-                        'kursus_id' => $request->kursus_id,
+                        'alat_musik_id' => $request->alat_musik_id,
                         'grade' => $request->grade,
                         'deskripsi' => $request->deskripsi,
                         'foto' => $txt,
@@ -78,6 +78,7 @@ class GuruController extends Controller
             Alert::success('Success', 'Guru berhasil ditambahakan!');
             return redirect()->route('guru.index');
         } catch (\Exception $e) {
+            DB::rollBack();
             Alert::info('Error', $e->getMessage());
             return redirect()->route('guru.index');
           }
@@ -112,7 +113,7 @@ class GuruController extends Controller
             $guru->no_telp = $request->no_telp;
             $guru->lulusan = $request->lulusan;
             $guru->tahun_lulus = $request->tahun_lulus;
-            $guru->kursus_id = $request->kursus_id;
+            $guru->alat_musik_id = $request->alat_musik_id;
             $guru->grade = $request->grade;
             $guru->deskripsi = $request->deskripsi;
             if (isset($request->foto)) {

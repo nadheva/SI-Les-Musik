@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_telp');
             $table->string('lulusan');
             $table->string('tahun_lulus');
-            $table->string('kursus');
+            $table->foreignId('alat_musik_id')->constrained('alatmusik')->onDelete('cascade')->onUpdate('cascade');
             $table->string('grade');
             // $table->string('lama_mengajar');
             $table->text('deskripsi');

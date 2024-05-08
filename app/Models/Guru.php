@@ -15,7 +15,7 @@ class Guru extends Model
         'no_telp',
         'lulusan',
         'tahun_lulus',
-        'kursus_id',
+        'alat_musik_id',
         'grade',
         'deskripsi',
         'foto',
