@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use Midtrans\Snap;
 use App\Models\Reservasi;
 use App\Models\Invoice;
+use App\Models\Profile;
+use App\Models\Course;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +28,8 @@ class PaymentController extends Controller
      */
     public function __construct(Request $request)
     {
+        $this->middleware('auth')->except('notificationHandler');
+
         $this->request = $request;
         // Set midtrans configuration
         \Midtrans\Config::$serverKey    = config('services.midtrans.serverKey');
@@ -33,73 +38,106 @@ class PaymentController extends Controller
         \Midtrans\Config::$is3ds        = config('services.midtrans.is3ds');
     }
 
+    public function index()
+    {
+        $user = Auth::user()->id;
+        $profil = Profile::where('user_id', $user)->first();
+        if(is_null($profil)){
+            return redirect()->route('profil.create')
+            ->with('danger', 'Anda belum menambahkan data profil!');
+        } else {
+        $reservasi = Reservasi::where('user_id', $user)->get();
+        $total = $reservasi->sum('grand_total');
+        return view('user.cart.checkout', compact('reservasi', 'profil', 'total'));
+        }
+    }
+
     public function store()
     {
         DB::transaction(function() {
-
-            /**
-             * algorithm create no invoice
-             */
             $length = 10;
             $random = '';
             for ($i = 0; $i < $length; $i++) {
                 $random .= rand(0, 1) ? rand(0, 9) : chr(rand(ord('a'), ord('z')));
             }
 
-            $no_invoice = 'INV-'.Str::upper($random);
+            $invoice =  'INV-'.Str::upper($random);
+            $user = Auth::user()->id;
+            $course = Course::get();
+            $reservasi = Reservasi::where('user_id', $user)->get();
+            $total = $reservasi->sum('grand_total');
 
-            $invoice = Invoice::create([
-                'invoice'       => $no_invoice,
-                'customer_id'   => auth()->guard('api')->user()->id,
-                'courier'       => $this->request->courier,
-                'service'       => $this->request->service,
-                'cost_courier'  => $this->request->cost,
-                'weight'        => $this->request->weight,
-                'name'          => $this->request->name,
-                'phone'         => $this->request->phone,
-                'province'      => $this->request->province,
-                'city'          => $this->request->city,
-                'address'       => $this->request->address,
-                'grand_total'   => $this->request->grand_total,
-                'status'        => 'pending',
+            $this->request->validate([
+                'tanggal_mulai' => 'required|date|before:tanggal_berakhir',
+                'tanggal_berakhir' => 'required|date|after:tanggal_mulai'
+            ],
+            [
+                'tanggal_mulai.required' => 'Tanggal mulai wajib diisi!',
+                'tanggal_mulai.date' => 'Tanggal mulai tidak valid',
+                'tanggal_mulai.before' => 'Tanggal mulai harus sebelum tanggal berakhir',
+
+                'tanggal_berakhir.required' => 'Tanggal berakhir wajib diisi!',
+                'tanggal_berakhir.date' => 'Tanggal berakhir tidak valid',
+                'tanggal_berakhir.after' => 'Tanggal berakhir harus setelah tanggal mulai!'
             ]);
 
-            foreach (Reservasi::where('customer_id', auth()->guard('api')->user()->id)->get() as $cart) {
+            $sewa_perangkat = SewaPerangkat::create([
+                'user_id' => $user,
+                'invoice' => $invoice,
+                'tanggal_mulai' => $mulai = \Carbon\Carbon::createFromFormat('Y-m-d', $this->request->tanggal_mulai),
+                'tanggal_berakhir' =>  $sampai= \Carbon\Carbon::createFromFormat('Y-m-d', $this->request->tanggal_berakhir),
+                'keperluan' => $this->request->keperluan,
+                'proses' => 'Disewa',
+                'grand_total' => ($mulai->diffInDays($sampai)) * $total
+            ]);
 
-                //insert product ke table order
-                $invoice->orders()->create([
-                    'invoice_id'    => $invoice->id,
-                    'invoice'       => $no_invoice,
-                    'product_id'    => $cart->product_id,
-                    'product_name'  => $cart->product->title,
-                    'image'         => $cart->product->image,
-                    'qty'           => $cart->quantity,
-                    'price'         => $cart->price,
+          $payment =  $sewa_perangkat->payment()->create([
+                'invoice' => $sewa_perangkat->invoice,
+                'status' => 'pending',
+                'grand_total' => $sewa_perangkat->grand_total,
+                'user_id' => $sewa_perangkat->user_id
+            ]);
+
+            foreach(Cart::where('user_id', Auth::user()->id)->get() as $cart) {
+                $perangkat->where('id', $cart->perangkat->id);
+                foreach (Perangkat::where('id', $cart->perangkat->id)->get() as $i)
+                $i->stok = $i->stok - $cart->jumlah;
+                $i->save();
+
+                $sewa_perangkat->order()->create([
+                'sewa_perangkat_id' => $sewa_perangkat->id,
+                'perangkat_id'      => $cart->perangkat_id,
+                'jumlah'            => $cart->jumlah,
+                'harga'             => $cart->harga,
                 ]);
 
             }
 
-            // Buat transaksi ke midtrans kemudian save snap tokennya.
             $payload = [
                 'transaction_details' => [
-                    'order_id'      => $invoice->invoice,
-                    'gross_amount'  => $invoice->grand_total,
+                    'order_id' => $payment->invoice,
+                    'gross_amount' => $payment->grand_total,
                 ],
                 'customer_details' => [
-                    'first_name'       => $invoice->name,
-                    'email'            => auth()->guard('api')->user()->email,
-                    'phone'            => $invoice->phone,
-                    'shipping_address' => $invoice->address
+                    'first_name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
                 ]
             ];
 
-            //create snap token
+            //snap token
             $snapToken = Snap::getSnapToken($payload);
-            $invoice->snap_token = $snapToken;
-            $invoice->save();
+            $payment->snap_token = $snapToken;
+            $payment->save();
 
+            // $this->response['id'] = $sewa_perangkat;
 
-        });
+            });
+            Cart::with('perangkat')
+            ->where('user_id', Auth::user()->id)
+            ->delete();
+            Alert::success('Success', 'Sewa Perangkat VR berhasil ditambahkan!');
+            return redirect()->route('user-transaksi-perangkat.index');
+
 
     }
 
@@ -126,7 +164,9 @@ class PaymentController extends Controller
         $fraud        = $notification->fraud_status;
 
         //data tranaction
-        $data_transaction = Invoice::where('invoice', $orderId)->first();
+        $data_transaction = Payment::where('invoice', $orderId)->first();
+        // $data_transaction1 = SewaStudio::where('invoice', $orderId)->first();
+        // $data_transaction2 = Denda::where('invoice', $orderId)->first();
 
         if ($transaction == 'capture') {
 
@@ -142,6 +182,7 @@ class PaymentController extends Controller
                     'status' => 'pending'
                 ]);
 
+
               } else {
 
                 /**
@@ -150,6 +191,7 @@ class PaymentController extends Controller
                 $data_transaction->update([
                     'status' => 'success'
                 ]);
+
 
               }
 
@@ -165,6 +207,7 @@ class PaymentController extends Controller
             ]);
 
 
+
         } elseif($transaction == 'pending'){
 
 
@@ -176,7 +219,8 @@ class PaymentController extends Controller
             ]);
 
 
-        } elseif ($transaction == 'deny') {
+
+        } elseif ($transaction == ('failure')) {
 
 
             /**
