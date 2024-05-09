@@ -10,6 +10,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AlatMusikController;
 use App\Http\Controllers\ResepsionisController;
 use App\Http\Controllers\StudioController;
+use App\Http\Controllers\LevelController;
 use App\Models\AlatMusik;
 use App\Models\Resepsionis;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,10 @@ Route::middleware('auth')->group(function () {
     //Resepsionis
     Route::resource('resepsionis', ResepsionisController::class)->except('update');
     Route::put('resepsionis-update/{id}', [ResepsionisController::class, 'update']);
+
+    //Level
+    Route::resource('level', LevelController::class)->except('update');
+    Route::put('level-update/{id}', [LevelController::class, 'update']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

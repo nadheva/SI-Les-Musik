@@ -143,9 +143,9 @@ class GuruController extends Controller
     public function destroy(string $id)
     {
         try {
-            $user_id = Guru::select('user_id')->where('id', $id)->get();
+            $user_id = Guru::where('id', $id)->first()->user_id;
             User::where('id', $user_id)->delete();
-            Guru::find($id)->delete();
+            Guru::where('id', $id)->delete();
             Alert::warning('Success', 'Guru berhasil dihapus!');
             return redirect()->back();
 

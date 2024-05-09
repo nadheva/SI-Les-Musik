@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('level', function (Blueprint $table) {
             $table->id();
-            $table->string('level');
+            $table->string('nama');
             $table->string('deskripsi');
             $table->timestamps();
         });

@@ -35,7 +35,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Telepon</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th>
+                        {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th> --}}
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
                     </thead>
@@ -45,16 +45,21 @@
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                         </td>
-                        <td class="align-middle text-center">{{$g->role}}</td>
-                        <td class="align-middle text-center">{{$u->fungsi}}</td>
+                        <td class="align-middle text-center">{{$g->nama}}</td>
+                        <td class="align-middle text-center">Guru {{$g->alat_musik->nama}}</td>
+                        <td class="align-middle text-center">{{$g->grade}}</td>
+                        <td class="align-middle text-center">{{$g->no_telp}}</td>
+                        {{-- <td class="align-middle text-center">{{$g->alat_musik->nama}}</td> --}}
+                        <td class="align-middle text-center">{{$g->email}}</td>
                         <td class="align-middle text-center">
                             <div>
-                            <form id="form-delete" action="{{route('role.destroy', $u->id)}}" method="POST" style="display: inline">
+                            <form id="form-delete" action="{{route('guru.destroy', $g->id)}}" method="POST" style="display: inline">
                               @csrf
                               @method("DELETE")
                               <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="bi bi-trash"></i></button>
                             </form>
-                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editRole-{{$u->id}}"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editGuru-{{$g->id}}"><i class="bi bi-pencil-square"></i></a>
+                            {{-- <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editRole-{{$g->id}}"><i class="bi bi-eye"></i></a> --}}
                           </div>
                         </td>
                       </tr>
@@ -168,54 +173,85 @@
                                           <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                         </div>
                                       </form><!-- End No Labels Form -->
-
                                   </div>
                                 </div>
-
-
                               </div>
                             </div>
-                          </section>
+                        </div>
+                    </div>
+                </div>
 
+
+        @foreach($guru as $i)
+        <div class="modal fade" id="editGuru-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editGuruLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ url('guru-update', $i->id) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editRoleLabel">Edit Data Guru</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3">
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Nama :</label>
+                                    <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama" value="{{$i->nama}}">
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">No. Telepon : </label>
+                                    <input type="number" class="form-control" name="no_telp" placeholder="Masukkan Nomor Telepon" value="{{$i->no_telp}}">
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Lulusan :</label>
+                                    <input type="text" class="form-control" name="lulusan" placeholder="Masukkan Lulusan" value="{{$i->lulusan}}">
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
+                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" value="{{$i->tahun_lulus}}">
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Kursus :</label>
+                                    <select id="inputState" class="form-select" name="alat_musik_id">
+                                        <option selected value="{{$i->alat_musik_id}}">{{$i->alat_musik->nama}}</option>
+                                        @foreach($alatmusik as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Grade :</label>
+                                    <select id="inputState" class="form-select" name="grade">
+                                        <option selected value="{{$i->grade}}">{{$i->grade}}</option>
+                                        <option value="A">A</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Foto :</label>
+                                    <input type="file" class="form-control" name="foto" placeholder="Upload Foto" value="{{$i->foto}}">
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputNanme4" class="form-label">Deskripsi :</label>
+                                    <textarea type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi" value="{{$i->deskripisi}}">{{$i->deskripsi}}</textarea>
+                                </div>
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn btn-success">Simpan</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-            <!-- Modal Edit Role -->
-    {{-- @foreach($role as $i)
-    <div class="modal fade" id="editRole-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editRoleLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form method="POST" action="{{ url('role-update', $i->id) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editRoleLabel">Edit Role</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form class="row g-3">
-                            <div class="form-group">
-                                <label class="col-form-label">Role</label>
-                                <input type="text" class="form-control"  name="role" placeholder="Masukkan Role" value="{{$i->role}}" required>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-form-label">Fungsi</label>
-                                <textarea type="text" class="form-control" name="fungsi">{{$i->fungsi}}</textarea>
-                              </div>
-                            </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn btn-success">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    @endforeach --}}
+        @endforeach
 
       </main><!-- End #main -->
 
