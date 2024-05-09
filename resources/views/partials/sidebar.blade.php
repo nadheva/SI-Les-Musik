@@ -27,7 +27,7 @@
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link {{ Route::is('course.*') ? 'active' : '' }}" href="{{ route('course.index') }}">
           <i class="bi bi-book"></i>
           <span>Course</span>
         </a>
@@ -79,7 +79,7 @@
             </a>
           </li>
           <li>
-            <a class="nav-link {{ Route::is('level.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
+            <a class="nav-link {{ Route::is('level.*') ? 'active' : ''}}" href="{{route('level.index')}}">
               <i class="bi bi-circle"></i><span>Level</span>
             </a>
           </li>
@@ -127,7 +127,7 @@
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link {{ Route::is('course.*') ? 'active' : '' }}" href="{{ route('course.index') }}">
           <i class="bi bi-book"></i>
           <span>Course</span>
         </a>

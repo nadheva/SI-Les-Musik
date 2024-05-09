@@ -11,8 +11,7 @@ use App\Http\Controllers\AlatMusikController;
 use App\Http\Controllers\ResepsionisController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\LevelController;
-use App\Models\AlatMusik;
-use App\Models\Resepsionis;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -69,6 +68,10 @@ Route::middleware('auth')->group(function () {
     //Level
     Route::resource('level', LevelController::class)->except('update');
     Route::put('level-update/{id}', [LevelController::class, 'update']);
+
+    //Course
+    Route::resource('course', CourseController::class)->except('update');
+    Route::put('course-update/{id}', [CourseController::class, 'update']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
