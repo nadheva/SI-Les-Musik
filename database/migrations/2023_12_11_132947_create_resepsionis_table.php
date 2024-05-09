@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('foto');
             $table->string('email');
             $table->string('no_telp');
-            $table->text('deskripsi');
+            $table->longText('deskripsi');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

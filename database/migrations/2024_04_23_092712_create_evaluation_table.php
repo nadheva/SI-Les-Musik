@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('grade')->nullable();
             $table->enum('status', ['0','1', '2'])->nullable(); //0 : tidak lulus, 1 : lulus, 2 : lulus dengan syarat
-            $table->text('catatan')->nullable();
+            $table->longText('catatan')->nullable();
             $table->enum('attendance',['0','1']); //0 : tidak hadir, 1 : hadir
             $table->string('created_by');
             $table->string('waktu_pelaksanaan');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('report', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservasi_id')->constrained('reservasi')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('catatan');
+            $table->longText('catatan');
             $table->timestamps();
         });
     }

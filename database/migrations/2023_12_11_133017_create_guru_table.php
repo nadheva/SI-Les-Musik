@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('alat_musik_id')->constrained('alatmusik')->onDelete('cascade')->onUpdate('cascade');
             $table->string('grade');
             // $table->string('lama_mengajar');
-            $table->text('deskripsi');
+            $table->longText('deskripsi');
             $table->string('foto');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

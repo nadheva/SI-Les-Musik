@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                               <label class="col-form-label">Deskripsi : </label>
-                              <textarea type="text" class="form-control"  name="deskripsi" value="{{old('deskripsi')}}" placeholder="Masukkan Deskripsi" required></textarea>
+                              <textarea type="text" class="form-control quill-editor-default"  name="deskripsi" value="{{old('deskripsi')}}" placeholder="Masukkan Deskripsi" required></textarea>
                             </div>
                         </div>
                     <div class="modal-footer">
@@ -123,7 +123,7 @@
                               </div>
                               <div class="form-group">
                                 <label class="col-form-label">Deskripsi : </label>
-                                <textarea type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi">{{$i->deskripsi}}</textarea>
+                                <textarea type="text" class="form-control quill-editor-default" name="deskripsi" placeholder="Masukkan Deskripsi">{{$i->deskripsi}}</textarea>
                               </div>
                             </div>
                     <div class="modal-footer">

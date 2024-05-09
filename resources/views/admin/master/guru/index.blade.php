@@ -142,7 +142,7 @@
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Deskripsi :</label>
-                                        <textarea type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
+                                        <textarea type="text" class="form-control quill-editor-default" name="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
                                       </div>
                                     {{-- </div> --}}
                                     <!-- End Horizontal Form -->
@@ -240,7 +240,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputNanme4" class="form-label">Deskripsi :</label>
-                                    <textarea type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi" value="{{$i->deskripisi}}">{{$i->deskripsi}}</textarea>
+                                    <textarea type="text" class="form-control quill-editor-default" name="deskripsi" placeholder="Masukkan Deskripsi" value="{{$i->deskripisi}}">{{$i->deskripsi}}</textarea>
                                 </div>
                                 </div>
                         <div class="modal-footer">

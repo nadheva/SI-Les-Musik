@@ -89,7 +89,7 @@
                             </div>
                             <div class="form-group">
                               <label class="col-form-label">Fungsi</label>
-                              <textarea type="text" class="form-control"  name="fungsi" value="{{old('fungsi')}}" required></textarea>
+                              <textarea type="text" class="form-control quill-editor-default"  name="fungsi" value="{{old('fungsi')}}" required></textarea>
                             </div>
                         </div>
                     <div class="modal-footer">
@@ -124,7 +124,7 @@
                               </div>
                               <div class="form-group">
                                 <label class="col-form-label">Fungsi</label>
-                                <textarea type="text" class="form-control" name="fungsi">{{$i->fungsi}}</textarea>
+                                <textarea type="text" class="form-control quill-editor-default" name="fungsi">{{$i->fungsi}}</textarea>
                               </div>
                             </div>
                     <div class="modal-footer">
