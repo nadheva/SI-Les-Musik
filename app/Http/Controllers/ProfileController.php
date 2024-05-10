@@ -102,13 +102,15 @@ class ProfileController extends Controller
             $profile = Profile::findOrfail($id);
             $profile->nama_depan = $request->nama_depan;
             $profile->nama_belakang = $request->nama_belakang;
-            $profile->tgl_lahir = $request->tgl_lahir;
-            $profile->nik = $request->nik;
-            $profile->no_telp = $request->no_telp;
+            $profile->tempat_lahir = $request->tempat_lahir;
+            $profile->tanggal_lahir = $request->tanggal_lahir;
             $profile->alamat = $request->alamat;
-            $profile->kota = $request->kota;
-            $profile->provinsi = $request->provinsi;
-            $profile->kode_pos = $request->kode_pos;
+            $profile->no_telp = $request->no_telp;
+            $profile->email = Auth::user()->email;
+            $profile->instagram = $request->instagram;
+            $profile->nama_ortu = $request->nama_ortu;
+            $profile->pekerjaan_ortu = $request->pekerjaan_ortu;
+            $profile->alat_musik_dimiliki = $request->alat_musik_dimiliki;
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
