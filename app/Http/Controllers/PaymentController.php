@@ -52,7 +52,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function store()
+    public function payment($reservasi_id)
     {
         DB::transaction(function() {
             $length = 10;

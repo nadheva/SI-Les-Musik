@@ -10,6 +10,7 @@ use App\Models\Resepsionis;
 use App\Models\Course;
 use DateTime;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PaymentController;
 
 class ReservasiController extends Controller
 {
@@ -109,12 +110,11 @@ class ReservasiController extends Controller
             $reservasi->proses = 'Disetujui';
             $reservasi->save;
 
+            // return route('payment.store', $reservasi->id)
             Alert::info('Success', 'Reservasi berhasil disetujui!');
-            return redirect()->back();
-
           } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
-            return redirect()->route('reservasi.index');
+            return route('reservasi.store', $reservasi->id);
           }
     }
 
