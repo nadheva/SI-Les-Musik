@@ -8,6 +8,7 @@ use App\Models\AlatMusik;
 use App\Models\Level;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller

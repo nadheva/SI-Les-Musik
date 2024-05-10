@@ -36,6 +36,12 @@ class ReservasiController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $profil = Profile::where('user_id', $user->id)->first();
+        if(is_null($profil) && $user->role_id == '2'){
+            return redirect()->route('profil.create')
+            ->with('danger', 'Anda belum menambahkan data profil!');
+        } else {
         try {
             $request->validate([
                 'catatan' => 'required',
@@ -57,6 +63,7 @@ class ReservasiController extends Controller
             Alert::info('Error', $e->getMessage());
             return redirect()->route('reservasi.index');
           }
+        }
     }
 
     /**

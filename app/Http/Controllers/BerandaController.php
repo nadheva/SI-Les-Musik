@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -11,7 +14,21 @@ class BerandaController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role_id == '1') {
+            Alert::success('Welcome', 'Selamat datang di dashboard admin!');
         return view('dashboard');
+        }
+        else if(Auth::user()->role_id == '2') {
+            $user = Auth::user();
+            if(!empty($user->profile->alamat)){
+            Alert::success('Welcome', 'Selamat datang di dashboard user!');
+            return view('dashboard');
+            }
+            elseif(empty($user->profile->alamat)){
+                Alert::warning('Warning', 'Anda belum mengisi profil, silahkan isi profil anda terlebih dahulu!');
+                return redirect()->route('profil.create');
+            }
+        }
     }
 
     /**
