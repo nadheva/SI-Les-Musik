@@ -30,14 +30,13 @@ class ProfileController extends Controller
             $request->validate([
                 'nama_depan' => 'required',
                 'nama_belakang' => 'required',
-                'tgl_lahir' => 'required',
-                'nik' => 'required',
-                'no_telp' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
                 'alamat' => 'required',
-                'kota' => 'required',
-                'grade' => 'required',
-                'provinsi' => 'required',
-                'kode_pos' => 'required',
+                'no_telp' => 'required',
+                'email' => 'required',
+                'nama_ortu' => 'required',
+                'pekerjaan_ortu' => 'required',
             ]);
             $user = Auth::user();
             if (isset($request->foto)) {
@@ -53,14 +52,16 @@ class ProfileController extends Controller
                         'user_id'=> $user->id,
                         'nama_depan' => $request->nama_depan,
                         'nama_belakang' => $request->nama_belakang,
-                        'tgl_lahir' => $request->tgl_lahir,
-                        'nik' => $request->nik,
-                        'no_telp' => $request->no_telp,
-                        'foto' => $txt,
+                        'tempat_lahir' => $request->tempat_lahir,
+                        'tanggal_lahir' => $request->tanggal_lahir,
                         'alamat' => $request->alamat,
-                        'kota' => $request->kota,
-                        'provinsi' => $request->provinsi,
-                        'kode_pos' => $request->kode_pos,
+                        'no_telp' => $request->no_telp,
+                        'email' => $user->email,
+                        'instagram' => $request->instagram,
+                        'nama_ortu' => $request->nama_ortu,
+                        'pekerjaan_ortu' => $request->pekerjaan_ortu,
+                        'alat_musik_dimiliki' => $request->alat_musik_dimiliki,
+                        'foto' => $txt,
                     ]);
 
             Alert::success('Success', 'Profile berhasil ditambahakan!');

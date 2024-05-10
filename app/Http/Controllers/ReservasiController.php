@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Reservasi;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Profile;
+use App\Models\Resepsionis;
+use App\Models\Course;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -16,7 +19,8 @@ class ReservasiController extends Controller
     public function index()
     {
         $reservasi = Reservasi::latest()->paginate(10);
-        return view('user.reservasi.index', compact('reservasi'));
+        $profile = Profile::where('user_id', $reservasi->user_id)->first();
+        return view('user.reservasi.index', compact('reservasi', 'profile'));
     }
 
     /**
@@ -41,7 +45,7 @@ class ReservasiController extends Controller
             Reservasi::create([
                 'course_id' => $request->course_id,
                 'user_id' => Auth::user()->id,
-                'resepsionis_id' => $request->resepsionis_id,
+                'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
                 'proses' => 'Dalam Proses',
                 'catatan' => $request->catatan,
                 'grand_total' => $request->grand_total

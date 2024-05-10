@@ -13,14 +13,16 @@ class Profile extends Model
         'user_id',
         'nama_depan',
         'nama_belakang',
-        'tgl_lahir',
-        'nik',
-        'no_telp',
-        'foto',
+        'tempat_lahir',
+        'tanggal_lahir',
         'alamat',
-        'kota',
-        'provinsi',
-        'kode_pos'
+        'no_telp',
+        'email',
+        'instagram',
+        'nama_ortu',
+        'pekerjaan_ortu',
+        'alat_musik_dimiliki',
+        'foto'
     ];
 
     public function user(){

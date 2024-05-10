@@ -12,6 +12,8 @@ use App\Http\Controllers\ResepsionisController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\Api\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -73,6 +75,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('course', CourseController::class)->except('update');
     Route::put('course-update/{id}', [CourseController::class, 'update']);
 
+    //Reservasi
+    Route::resource('reservasi', ReservasiController::class)->except('update', 'approve', 'reject');
+    Route::put('reservasi-update/{id}', [ReservasiController::class, 'update']);
+    Route::put('reservasi-approve/{id}', [ReservasiController::class, 'approve']);
+    Route::put('reservasi-reject/{id}', [ReservasiController::class, 'reject']);
+
+    //Payment
+    Route::resource('payment', PaymentController::class);
+
+    //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
