@@ -21,7 +21,7 @@
         </div>
     </main>
     @include('partials.scripts')
-
+@include('partials.footer')
 </body>
 
 </html>

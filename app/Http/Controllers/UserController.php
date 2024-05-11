@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Event\Code\Throwable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ViewErrorBag;
@@ -48,7 +49,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'role_id' => $request->role_id,
                 'email' => $request->email,
-                'password' => $request->password
+                'password' => bcrypt($request->password)
             ]);
                 Alert::success('Success', 'User berhasil ditambahakan!');
                 return redirect()->route('user.index');
@@ -93,7 +94,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->role_id = $request->role_id;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
             $user->save();
             Alert::info('Success', 'User berhasil diperbarui!');
             return redirect()->back();
@@ -121,5 +122,24 @@ class UserController extends Controller
             Alert::info('Error', $e->getMessage());
             return redirect()->route('user.index');
           }
+    }
+
+    public function change_password(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            Alert::info('Warning', 'Password tidak cocok!');
+            return redirect()->back();
+        } else {
+            User::whereId(auth()->user()->id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+            Alert::info('Success', 'Password berhasil diperbarui!');
+            return redirect()->back();
+        }
     }
 }

@@ -44,8 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
 
     //User
-    Route::resource('user', UserController::class)->except('update');
+    Route::resource('user', UserController::class)->except('update', 'change_password');
     Route::put('user-update/{id}', [UserController::class, 'update']);
+    Route::post('change-password', [UserController::class, 'change_password']);
 
     //Role
     Route::resource('role', RoleController::class)->except('update');
