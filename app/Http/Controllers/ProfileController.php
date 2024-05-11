@@ -20,8 +20,13 @@ class ProfileController extends Controller
      public function index()
      {
         $user = Auth::user();
-        $profil = Profile::where('user_id', $user->id)->first();
-        return view('user.profile.index', compact('profil'));
+        $profile = Profile::where('user_id', $user->id)->first();
+        if(is_null($profile) && $user->role_id == '2'){
+            return redirect()->route('profile.create')
+            ->with('danger', 'Anda belum menambahkan data profil!');
+        } else {
+        return view('user.profile.index', compact('profile'));
+        }
      }
 
     public function store(Request $request)
