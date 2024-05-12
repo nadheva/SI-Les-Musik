@@ -1,4 +1,5 @@
 <x-app-layout>
+    @vite(['resources/css/app.css','resources/js/app.js'])
     <main id="main" class="main">
 
         <div class="pagetitle">
