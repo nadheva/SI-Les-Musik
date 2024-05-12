@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('studio_id')->constrained('studio')->onDelete('cascade')->onUpdate('cascade');
             $table->text('deskripsi');
             $table->enum('attendance',['0','1']);
-            $table->string('waktu_mulai');
-            $table->string('waktu_selesai');
+            $table->dateTime('waktu_mulai');
+            $table->dateTime('waktu_selesai');
             $table->string('created_by');
             $table->timestamps();
         });

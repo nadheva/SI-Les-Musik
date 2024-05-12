@@ -17,16 +17,21 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-     public function index()
+     public function index($user_id)
      {
-        $user = Auth::user();
-        $profile = Profile::where('user_id', $user->id)->first();
-        if(is_null($profile) && $user->role_id == '2'){
+        $user_id = Auth::user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        if(is_null($profile) && Auth::user()->role_id == '2'){
             return redirect()->route('profile.create')
             ->with('danger', 'Anda belum menambahkan data profil!');
         } else {
         return view('user.profile.index', compact('profile'));
         }
+     }
+
+     public function create()
+     {
+        return view('user.profile.create');
      }
 
     public function store(Request $request)
@@ -70,7 +75,7 @@ class ProfileController extends Controller
                     ]);
 
             Alert::success('Success', 'Profile berhasil ditambahakan!');
-            return redirect()->back();
+            return redirect()->route('profile.show');
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->back();
@@ -98,6 +103,18 @@ class ProfileController extends Controller
 
     //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
     // }
+
+    public function show($user_id)
+    {
+       $user_id = Auth::user()->id;
+       $profile = Profile::where('user_id', $user_id)->first();
+       if(is_null($profile) && Auth::user()->role_id == '2'){
+           return redirect()->route('profile.create')
+           ->with('danger', 'Anda belum menambahkan data profil!');
+       } else {
+       return view('user.profile.index', compact('profile'));
+       }
+    }
 
 
     public function update(Request $request, $id)

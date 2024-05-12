@@ -26,7 +26,7 @@ class BerandaController extends Controller
             }
             elseif(empty($user->profile->alamat)){
                 Alert::warning('Warning', 'Anda belum mengisi profil, silahkan isi profil anda terlebih dahulu!');
-                return redirect()->route('profil.create');
+                return redirect()->route('profile.create');
             }
         }
     }

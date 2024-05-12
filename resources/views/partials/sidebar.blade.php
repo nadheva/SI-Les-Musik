@@ -1,5 +1,5 @@
 
-@if(Auth::user()->role_id = '1')
+@if(Auth::user()->role_id == 1)
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
@@ -99,7 +99,7 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-  @elseif(Auth::user()->role_id = 2)
+  @elseif(Auth::user()->role_id == 2)
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 

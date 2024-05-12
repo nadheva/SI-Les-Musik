@@ -44,7 +44,7 @@
                         </td>
                         <td class="align-middle text-center">{{$a->nama}}</td>
                         <td class="align-middle text-center"><img src="{{asset($a->foto)}}" style="max-width: 70px" class="img-fluid shadow border-radius-xl"></td>
-                        <td class="align-middle text-center">{{$a->deskripsi}}</td>
+                        <td class="align-middle text-center" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $a->deskripsi !!}</td>
                         <td class="align-middle text-center">
                             <div>
                             <form id="form-delete" action="{{route('alat-musik.destroy', $a->id)}}" method="POST" style="display: inline">

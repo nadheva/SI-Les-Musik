@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('resepsionis_id')->constrained('resepsionis')->nullable()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama_approver')->nullable(true);
-            $table->string('tgl_approve')->nullable(true);
+            $table->dateTime('tgl_approve')->nullable(true);
             $table->text('catatan')->nullable(true);
             $table->enum('proses', ['Ditolak', 'Dalam Proses', 'Disetujui'])->default('Dalam Proses');
             $table->bigInteger('grand_total');

@@ -42,9 +42,9 @@ class StudioController extends Controller
                     $image_name = md5(rand(1000,10000));
                     $ext = $f->extension();
                     $image_full_name =  $image_name . '.' . $ext;
-                    $upload_path = "storage/studio/foto_detail/".$image_full_name;
+                    $upload_path = "storage/studio/studio_detail/".$image_full_name;
                     // $image_url = $uploade_path;
-                    $f->storeAs('public/studio/foto_detail/', $image_full_name);
+                    $f->storeAs('public/studio/studio_detail/', $image_full_name);
                     $image[] = $upload_path;
                     // $perangkat->gambar_detail = json_encode($image);
                 }
@@ -56,7 +56,7 @@ class StudioController extends Controller
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
                 $txt = "storage/studio/". $file_name;
-                $request->foto->storeAs('public/foto', $file_name);
+                $request->foto->storeAs('public/studio', $file_name);
             } else {
                 $file_name = null;
             }
