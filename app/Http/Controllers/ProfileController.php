@@ -75,7 +75,7 @@ class ProfileController extends Controller
                     ]);
 
             Alert::success('Success', 'Profile berhasil ditambahakan!');
-            return redirect()->route('profile.show');
+            return redirect()->route('profile.show', $user->id);
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->back();
@@ -120,8 +120,9 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         try {
-
-            $profile = Profile::findOrfail($id);
+            // $user_id = Auth::user()->id;
+            // $id = Profile::select('id')->where('user_id', $user_id)->get();
+            $profile = Profile::find($id);
             $profile->nama_depan = $request->nama_depan;
             $profile->nama_belakang = $request->nama_belakang;
             $profile->tempat_lahir = $request->tempat_lahir;
@@ -145,7 +146,7 @@ class ProfileController extends Controller
             $profile->save;
 
             Alert::info('Success', 'Profile berhasil diperbarui!');
-            return redirect()->back();
+            return redirect()->route('profile.show', Auth::user()->id);
 
           } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());

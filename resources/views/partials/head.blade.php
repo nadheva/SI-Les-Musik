@@ -25,6 +25,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('template/NiceAdmin/assets/css/style.css')}}" rel="stylesheet">
+    @vite(['resources/css/app.css','resources/js/app.js'])
     <!-- =======================================================
     * Template Name: NiceAdmin
     * Updated: Nov 17 2023 with Bootstrap v5.3.2

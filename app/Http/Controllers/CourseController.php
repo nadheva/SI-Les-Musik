@@ -23,8 +23,8 @@ class CourseController extends Controller
         return view('admin.course.index', compact('course'));
         }
         else{
-            $course = Course::where('active', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
-            return view('admin.course.index', compact('course'));
+            // $course = Course::where('active', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
+            return view('user.course.index');
         }
     }
 

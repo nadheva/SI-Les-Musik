@@ -1,4 +1,16 @@
 <x-app-layout>
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Profile</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item">Users</li>
+              <li class="breadcrumb-item active">Profile</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
     <section class="section profile">
         <div class="row">
           <div class="col-xl-4">
@@ -7,7 +19,7 @@
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                 <img src="{{asset($profile->foto)}}" alt="Profile" class="rounded-circle">
-                <h2>{{$profile->nama_depan.' '.$nama_belakang}}</h2>
+                <h2>{{$profile->nama_depan.' '.$profile->nama_belakang}}</h2>
                 <h3>Pelajar</h3>
                 {{-- <div class="social-links mt-2">
                   <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -28,7 +40,7 @@
                 <ul class="nav nav-tabs nav-tabs-bordered">
 
                   <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Informasi</button>
                   </li>
 
                   <li class="nav-item">
@@ -36,11 +48,11 @@
                   </li>
 
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Pengaturan</button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Ganti Password</button>
                   </li>
 
                 </ul>
@@ -54,12 +66,12 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                      <div class="col-lg-9 col-md-8">{{$profile->nama_depan.' '.$nama_belakang}}</div>
+                      <div class="col-lg-9 col-md-8">{{$profile->nama_depan.' '.$profile->nama_belakang}}</div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Tempat / Tanggal Lahir</div>
-                      <div class="col-lg-9 col-md-8">{{$profile->tempat_lahir.' / '.$profile->tanggal_lahir->format('d-m-Y')}}</div>
+                      <div class="col-lg-9 col-md-8">{{$profile->tempat_lahir.' / '.date('d-m-Y', strtotime($profile->tanggal_lahir))}}</div>
                     </div>
 
                     <div class="row">
@@ -100,8 +112,9 @@
                   <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                     <!-- Profile Edit Form -->
-                    <form method="POST" action="{{ url('profile-update', $profile->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('profile.update', $profile->id) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                       {{-- <div class="row mb-3">
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                         <div class="col-md-8 col-lg-9">
@@ -172,7 +185,7 @@
                       <div class="row mb-3">
                         <label for="pekerjaan_ortu" class="col-md-4 col-lg-3 col-form-label">Pekerjaan Orang Tua</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="pekerjaan_ortu" type="text" class="form-cbontrol" id="pekerjaan_ortu" value="{{$profile->pekerjaan_ortu}}">
+                          <input name="pekerjaan_ortu" type="text" class="form-control" id="pekerjaan_ortu" value="{{$profile->pekerjaan_ortu}}">
                         </div>
                       </div>
 
@@ -185,7 +198,7 @@
                       <div class="row mb-3">
                         <label for="foto" class="col-md-4 col-lg-3 col-form-label">Foto</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="foto" type="file" class="form-cbontrol" id="foto" value="{{$profile->foto}}">
+                          <input name="foto" type="file" class="form-control" id="foto">
                         </div>
                       </div>
                       <div class="text-center">
@@ -277,4 +290,5 @@
           </div>
         </div>
       </section>
+    </main>
 </x-app-layout>
