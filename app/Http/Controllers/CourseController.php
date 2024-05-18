@@ -25,9 +25,10 @@ class CourseController extends Controller
         $level = Level::get();
         return view('admin.course.index', compact('course', 'alatmusik', 'level'));
         }
-        else{
-            // $course = Course::where('active', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
-            return view('user.course.index');
+        elseif(Auth::user()->role_id == 2) {
+            $course = Course::where('status', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
+            $alatmusik = AlatMusik::get();
+            return view('user.course.index', compact('course', 'alatmusik'));
         }
     }
 

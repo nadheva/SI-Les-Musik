@@ -55,7 +55,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($reservasi->latest()->where('proses', '=', 'Dalam Proses', 'OR', 'proses', '=', 'Ditolak' )->get() as $i)
+                                                    @foreach ($reservasi->where('proses', '=', 'Dalam Proses', 'OR', 'proses', '=', 'Ditolak' ) as $i)
                                                         <tr>
                                                             <td class="text-sm font-weight-normal">{{ $loop->iteration }}
                                                             </td>
@@ -99,6 +99,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($reservasi->where('proses', '=', 'Disetujui' ) as $i)
                                                             <td class="text-sm font-weight-normal">{{ $loop->iteration }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">

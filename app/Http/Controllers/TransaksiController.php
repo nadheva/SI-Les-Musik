@@ -35,13 +35,17 @@ class TransaksiController extends Controller
     {
         $user = Auth::user()->id;
         $profil = Profile::where('user_id', $user)->first();
-        if(is_null($profil)){
-            return redirect()->route('profil.create')
-            ->with('danger', 'Anda belum menambahkan data profil!');
+        if(Auth::user()->role_id == 2) {
+        $transaksi = Payment::where('user_id', $user)->get();
+            if(is_null($profil)){
+                return redirect()->route('profile.index')
+                ->with('danger', 'Anda belum menambahkan data profil!');
+            } else {
+                return view('user.transaksi.index', compact('transaksi'));
+            }
         } else {
-        $cart = Cart::where('user_id', $user)->get();
-        $total = $cart->sum('harga');
-        return view('user.cart.checkout', compact('cart', 'profil', 'total'));
+            $transaksi = Payment::latest()->get();
+            return view('admin.transaksi.index', compact('transaksi'));
         }
     }
 

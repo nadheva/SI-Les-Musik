@@ -21,7 +21,7 @@ class ReservasiController extends Controller
     {
         $reservasi = Reservasi::latest()->paginate(10);
         // $profile = Profile::where('user_id', $reservasi->user_id)->first();
-        return view('user.reservasi.index', compact('reservasi'));
+        return view('admin.reservasi.index', compact('reservasi'));
     }
 
     /**
