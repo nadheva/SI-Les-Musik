@@ -54,6 +54,8 @@ class CourseController extends Controller
                 'modul' => 'required',
                 'header' => 'required',
                 'expired_date' => 'required',
+                'period_start' => 'required',
+                'period_end' => 'required',
                 'harga' => 'required',
             ]);
 
@@ -83,6 +85,8 @@ class CourseController extends Controller
                 'status' => '1',
                 'harga' => $request->harga,
                 'expired_date' => $request->expired_date,
+                'period_start' => $request->period_start,
+                'period_end' => $request->period_end,
                 'created_by' => Auth::user()->name
             ]);
 
@@ -126,6 +130,8 @@ class CourseController extends Controller
             $course->status = $request->status;
             $course->harga = $request->harga;
             $course->expired_date = $request->expired_date;
+            $course->period_start = $request->period_start;
+            $course->period_end = $request->period_end;
             $course->updated_by = Auth::user()->name;
 
             if($modul = $request->file('modul')) {

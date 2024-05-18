@@ -18,6 +18,8 @@ class Course extends Model
         'header',
         'status',
         'expired_date',
+        'period_start',
+        'period_end',
         'harga',
         'created_by',
         'updated_by'

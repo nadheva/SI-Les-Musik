@@ -19,9 +19,14 @@ class ReservasiController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role_id == 1) {
         $reservasi = Reservasi::latest()->paginate(10);
         // $profile = Profile::where('user_id', $reservasi->user_id)->first();
         return view('admin.reservasi.index', compact('reservasi'));
+        } elseif(Auth::user()->role_id == 2) {
+        $reservasi = Reservasi::where('user_id', Auth::user()->id)->latest()->paginate(10);
+        return view('user.reservasi.index', compact('reservasi'));
+        }
     }
 
     /**

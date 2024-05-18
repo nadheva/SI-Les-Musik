@@ -128,6 +128,14 @@
                                 <input type="date" class="form-control" name="expired_date" placeholder="Masukkan Tanggal Expired">
                               </div>
                               <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Period Start :</label>
+                                <input type="date" class="form-control" name="period_start" placeholder="Masukkan Period Start">
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Period End :</label>
+                                <input type="date" class="form-control" name="period_end" placeholder="Masukkan Period End">
+                              </div>
+                              <div class="row mb-3">
                                 <label for="inputNanme4" class="form-label">Header :</label>
                                 <input type="file" class="form-control" name="header" placeholder="Upload Header">
                               </div>

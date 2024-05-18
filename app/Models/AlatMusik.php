@@ -14,4 +14,9 @@ class AlatMusik extends Model
         'foto',
         'deskripsi'
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
