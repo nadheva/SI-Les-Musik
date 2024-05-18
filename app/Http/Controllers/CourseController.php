@@ -103,9 +103,15 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
+        if(Auth::user()->role_id == 2) {
         $id1 = decrypt($id);
-        $course = Course::findOrFail($id1);
-        return view('admin.course.view', compact('course'));
+        $course = Course::where('alat_musik_id', $id1)->where('status', '=', '1')->get();
+        return view('user.course.list', compact('course'));
+        } else {
+            $id = decrypt($id);
+            $course = Course::where('alat_musik_id',$id)->get();
+            return view('admin.course.list', compact('course'));
+        }
     }
 
     /**
