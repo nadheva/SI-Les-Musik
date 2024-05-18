@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('status',['0','1']);
             $table->dateTime('expired_date');
             $table->string('created_by');
+            $table->bigInteger('harga');
             $table->string('updated_by')->nullable();
             $table->timestamps();
         });

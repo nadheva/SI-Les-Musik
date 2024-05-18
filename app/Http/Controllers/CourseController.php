@@ -9,6 +9,7 @@ use App\Models\Level;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -19,8 +20,10 @@ class CourseController extends Controller
     public function index()
     {
         if(Auth::user()->role_id == 1) {
-        $course = Course::orderBy('expired_date', 'desc')->get()->paginate(10);
-        return view('admin.course.index', compact('course'));
+        $course = Course::orderBy('expired_date', 'desc')->paginate(10);
+        $alatmusik = AlatMusik::get();
+        $level = Level::get();
+        return view('admin.course.index', compact('course', 'alatmusik', 'level'));
         }
         else{
             // $course = Course::where('active', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
@@ -49,9 +52,8 @@ class CourseController extends Controller
                 'deskripsi' => 'required',
                 'modul' => 'required',
                 'header' => 'required',
-                'status' => 'required',
                 'expired_date' => 'required',
-                'created_by' => 'required'
+                'harga' => 'required',
             ]);
 
             if($modul = $request->file('modul')) {
@@ -78,6 +80,7 @@ class CourseController extends Controller
                 'modul' => $file_modul,
                 'header' => $header,
                 'status' => '1',
+                'harga' => $request->harga,
                 'expired_date' => $request->expired_date,
                 'created_by' => Auth::user()->name
             ]);
@@ -120,6 +123,7 @@ class CourseController extends Controller
             $course->alat_musik_id = $request->alat_musik_id;
             $course->deskripsi = $request->deskripsi;
             $course->status = $request->status;
+            $course->harga = $request->harga;
             $course->expired_date = $request->expired_date;
             $course->updated_by = Auth::user()->name;
 
@@ -160,6 +164,20 @@ class CourseController extends Controller
         try {
             Course::find($id)->delete();
             Alert::warning('Success', 'Course berhasil dihapus!');
+            return redirect()->back();
+
+          } catch (\Exception $e) {
+            Alert::info('Error', $e->getMessage());
+            return redirect()->route('course.index');
+          }
+    }
+
+    public function download_modul($id)
+    {
+        try {
+            $modul = Course::select('modul')->where('id', $id)->first();
+            Storage::download($modul);
+            Alert::success('Success', 'Modul berhasil diunduh!');
             return redirect()->back();
 
           } catch (\Exception $e) {

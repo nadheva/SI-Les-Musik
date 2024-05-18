@@ -65,7 +65,7 @@
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{$i->created_at->format('d.m.Y')}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">Rp. {{@money($i->grand_total)}}
+                                                            <td class="text-sm font-weight-normal">{{Number::currency($i->grand_total, 'Rp.')}}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{$i->proses}}
                                                             </td>
@@ -111,7 +111,7 @@
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{$i->tgl_approve->format('d.m.Y')}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">Rp. @money($i->grand_total)
+                                                            <td class="text-sm font-weight-normal">{{Number::currency($i->grand_total, 'Rp.')}}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{$i->proses}}
                                                             </td>
