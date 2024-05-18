@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Validated;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class SewaPerangkatController extends Controller
+class TransaksiController extends Controller
 {
 
     public function __construct(Request $request)

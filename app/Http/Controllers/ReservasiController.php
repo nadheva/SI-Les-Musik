@@ -20,8 +20,8 @@ class ReservasiController extends Controller
     public function index()
     {
         $reservasi = Reservasi::latest()->paginate(10);
-        $profile = Profile::where('user_id', $reservasi->user_id)->first();
-        return view('user.reservasi.index', compact('reservasi', 'profile'));
+        // $profile = Profile::where('user_id', $reservasi->user_id)->first();
+        return view('user.reservasi.index', compact('reservasi'));
     }
 
     /**

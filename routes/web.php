@@ -13,7 +13,9 @@ use App\Http\Controllers\StudioController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReservasiController;
-use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,6 +44,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [BerandaController::class, 'index']);
     Route::get('login', [AuthenticatedSessionController::class, 'create']);
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
+
+
+    //Beranda
+    Route::resource('beranda', BerandaController::class);
+
+    //Transaksi
+    Route::resource('transaksi', TransaksiController::class);
+
+    //Jadwal
+    Route::resource('jadwal', JadwalController::class);
+
+    //Jadwal
+    Route::resource('laporan', LaporanController::class);
 
     //User
     Route::resource('user', UserController::class)->except('update', 'change_password');
@@ -81,9 +96,6 @@ Route::middleware('auth')->group(function () {
     Route::put('reservasi-update/{id}', [ReservasiController::class, 'update']);
     Route::put('reservasi-approve/{id}', [ReservasiController::class, 'approve']);
     Route::put('reservasi-reject/{id}', [ReservasiController::class, 'reject']);
-
-    //Payment
-    Route::resource('payment', PaymentController::class);
 
     //Profile
     Route::resource('profile', ProfileController::class);

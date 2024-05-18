@@ -2,11 +2,14 @@
 @if(Auth::user()->role_id == 1)
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard">
+        @if(Route::is('beranda.*'))
+        <a class="nav-link" href="{{route('beranda.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('beranda.index')}}">
+        @endif
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -15,31 +18,51 @@
       <li class="nav-heading">Menu</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('reservasi.*'))
+        <a class="nav-link" href="{{route('reservasi.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('reservasi.index')}}">
+        @endif
           <i class="bi bi-send"></i>
           <span>Reservasi</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('transaksi.*'))
+        <a class="nav-link" href="{{route('transaksi.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('transaksi.index')}}">
+        @endif
           <i class="bi bi-coin"></i>
           <span>Transaksi</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('course.*') ? 'active' : '' }}" href="{{ route('course.index') }}">
+        @if(Route::is('course.*'))
+        <a class="nav-link" href="{{route('course.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('course.index')}}">
+        @endif
           <i class="bi bi-book"></i>
           <span>Course</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('jadwal.*'))
+        <a class="nav-link" href="{{route('jadwal.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('jadwal.index')}}">
+        @endif
           <i class="bi bi-calendar"></i>
           <span>Jadwal</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('laporan.*'))
+        <a class="nav-link" href="{{route('laporan.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+        @endif
           <i class="bi bi-journal-text"></i>
           <span>Laporan</span>
         </a>
@@ -98,6 +121,7 @@
 
     </ul>
 
+
   </aside><!-- End Sidebar-->
   @elseif(Auth::user()->role_id == 2)
   <!-- ======= Sidebar ======= -->
@@ -106,7 +130,11 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard">
+        @if(Route::is('beranda.*'))
+        <a class="nav-link" href="{{route('beranda.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('beranda.index')}}">
+        @endif
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -114,31 +142,51 @@
 
       <li class="nav-heading">Menu</li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('course.*') ? 'active' : '' }}" href="{{ route('course.index') }}">
+        @if(Route::is('course.*'))
+        <a class="nav-link" href="{{route('course.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('course.index')}}">
+        @endif
           <i class="bi bi-book"></i>
           <span>Daftar Course</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('reservasi.*'))
+        <a class="nav-link" href="{{route('reservasi.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('reservasi.index')}}">
+        @endif
           <i class="bi bi-send"></i>
           <span>Reservasi Saya</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('transaksi.*'))
+        <a class="nav-link" href="{{route('transaksi.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('transaksi.index')}}">
+        @endif
           <i class="bi bi-coin"></i>
           <span>Riwayat Transaksi</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('jadwal.*'))
+        <a class="nav-link" href="{{route('jadwal.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('jadwal.index')}}">
+        @endif
           <i class="bi bi-calendar"></i>
           <span>Jadwal</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        @if(Route::is('laporan.*'))
+        <a class="nav-link" href="{{route('laporan.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+        @endif
           <i class="bi bi-journal-text"></i>
           <span>Laporan</span>
         </a>
