@@ -161,20 +161,38 @@
 
                                     <div class="card">
                                       <div class="card-body">
-                                        <h5 class="card-title">Data Akun</h5>
+                                        <h5 class="card-title">Data Kelas</h5>
 
                                         <!-- Vertical Form -->
                                         <div class="row g-3">
                                             <div class="row mb-3">
-                                                <label for="inputNanme4" class="form-label">Email :</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email">
-                                              </div>
-                                              <div class="row mb-3">
-                                                <label for="inputNanme4" class="form-label">Password :</label>
-                                                <input type="password" class="form-control" name="password" placeholder="Masukkan Password">
-                                              </div>
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kursus : </label>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->alat_musik->nama}}" readonly>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period Start : </label>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->period_start}}" readonly>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period End : </label>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->period_end}}" readonly>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Guru : </label>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->no_telp}}" readonly>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Studio : </label>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->no_telp}}" readonly>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan : </label>
+                                                <input type="text" name="catatan" id="catatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <input type="hidden" name="course_id" value="{{$course->id}}">
+                                            <input type="hidden" name="grand_total" value="{{$course->harga}}">
                                             <div class="text-center">
-                                              <button type="submit" class="btn btn-primary">Simpan</button>
+                                              <button type="submit" class="btn btn-primary">Daftar</button>
                                               <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                             </div>
                                           </form><!-- End No Labels Form -->

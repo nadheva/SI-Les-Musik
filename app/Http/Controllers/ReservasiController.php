@@ -42,22 +42,22 @@ class ReservasiController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $profil = Profile::where('user_id', $user->id)->first();
-        if(is_null($profil) && $user->role_id == '2'){
-            return redirect()->route('profil.create')
-            ->with('danger', 'Anda belum menambahkan data profil!');
-        } else {
+        // $user = Auth::user();
+        // $profil = Profile::where('user_id', $user->id)->first();
+        // if(is_null($profil) && $user->role_id == '2'){
+        //     return redirect()->route('profil.create')
+        //     ->with('danger', 'Anda belum menambahkan data profil!');
+        // } else {
         try {
             $request->validate([
                 'catatan' => 'required',
-                'proses' => 'required',
             ]);
 
             Reservasi::create([
                 'course_id' => $request->course_id,
                 'user_id' => Auth::user()->id,
-                'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
+                'resepsionis_id' => 1,
+                // 'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
                 'proses' => 'Dalam Proses',
                 'catatan' => $request->catatan,
                 'grand_total' => $request->grand_total
@@ -70,7 +70,6 @@ class ReservasiController extends Controller
             return redirect()->route('reservasi.index');
           }
         }
-    }
 
     /**
      * Display the specified resource.

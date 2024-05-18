@@ -60,7 +60,7 @@
                                                             <td class="text-sm font-weight-normal">{{ $loop->iteration }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">
-                                                                {{ $i->course->nama }}</td>
+                                                                {{ $i->course->judul }}</td>
                                                             <td class="text-sm font-weight-normal">{{ $i->user->name }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{$i->created_at->format('d.m.Y')}}
@@ -135,7 +135,7 @@
         </section>
 
 
-    @foreach($reservasi as $r)
+    {{-- @foreach($reservasi as $r)
     <div class="modal fade bd-example-modal-xl" id="approveReservasi-{{$r->id}}" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -212,7 +212,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
 
       </main><!-- End #main -->
 
