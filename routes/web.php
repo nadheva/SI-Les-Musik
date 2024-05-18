@@ -88,8 +88,9 @@ Route::middleware('auth')->group(function () {
     Route::put('level-update/{id}', [LevelController::class, 'update']);
 
     //Course
-    Route::resource('course', CourseController::class)->except('update');
+    Route::resource('course', CourseController::class)->except('update', 'view');
     Route::put('course-update/{id}', [CourseController::class, 'update']);
+    Route::get('course-view/{id}', [CourseController::class, 'view']);
 
     //Reservasi
     Route::resource('reservasi', ReservasiController::class)->except('update', 'approve', 'reject');

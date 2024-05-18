@@ -57,7 +57,7 @@
                             <span>Free updates: <span class="font-semibold">6 months</span></span>
                         </li>
                     </ul>
-                    <a href="#" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
+                    <a href="{{url('course-view', encrypt($course[0]->id))}}" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
                 </div>
                 @elseif($course[0]->level_id == 2 && $course->status = 1)
                 <!-- Pricing Card -->
