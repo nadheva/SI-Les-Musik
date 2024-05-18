@@ -8,6 +8,7 @@ use App\Models\AlatMusik;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
