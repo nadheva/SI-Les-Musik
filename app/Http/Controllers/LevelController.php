@@ -55,7 +55,8 @@ class LevelController extends Controller
      */
     public function show(string $id)
     {
-        $level = Level::where('id', $id)->first();
+        $id1 = decrypt($id);
+        $level = Level::where('id', $id1)->first();
         return view('admin.master.level.view', compact('level'));
     }
 

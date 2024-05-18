@@ -95,7 +95,8 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        $course = Course::findOrFail($id);
+        $id1 = decrypt($id);
+        $course = Course::findOrFail($id1);
         return view('admin.course.view', compact('course'));
     }
 

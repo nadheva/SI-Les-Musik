@@ -89,7 +89,8 @@ class GuruController extends Controller
      */
     public function show(string $id)
     {
-        $guru = Guru::where('id', $id)->first();
+        $id1 = decrypt($id);
+        $guru = Guru::where('id', $id1)->first();
         return view('admin.master.guru.view', compact('guru'));
     }
 

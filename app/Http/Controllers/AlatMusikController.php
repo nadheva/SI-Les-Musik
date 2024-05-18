@@ -63,8 +63,9 @@ class AlatMusikController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $alatmusik = AlatMusik::where('id', $id)->first();
+    {        // $sewa_perangkat = SewaPerangkat::where('id',$id)->first();
+        $id1 = decrypt($id);
+        $alatmusik = AlatMusik::where('id', $id1)->first();
         return view('admin.master.alat-musik.view', compact('alatmusik'));
     }
 

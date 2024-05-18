@@ -72,7 +72,8 @@ class ReservasiController extends Controller
      */
     public function show(string $id)
     {
-        $reservasi = Reservasi::where('id', $id)->first();
+        $id1 = decrypt($id);
+        $reservasi = Reservasi::where('id', $id1)->first();
         return view('admin.reservasi.view', compact('reservasi'));
     }
 
@@ -109,6 +110,9 @@ class ReservasiController extends Controller
             $reservasi->tgl_approve = new DateTime('now');
             $reservasi->proses = 'Disetujui';
             $reservasi->save;
+
+            $payment = new PaymentController();
+            $payment->store($reservasi->id);
 
             // return route('payment.store', $reservasi->id)
             Alert::info('Success', 'Reservasi berhasil disetujui!');

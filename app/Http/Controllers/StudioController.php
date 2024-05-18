@@ -82,7 +82,8 @@ class StudioController extends Controller
      */
     public function show(string $id)
     {
-        $studio = Studio::where('id', $id)->first();
+        $id1 = decrypt($id);
+        $studio = Studio::where('id', $id1)->first();
         return view('admin.master.studio.view', compact('studio'));
     }
 
