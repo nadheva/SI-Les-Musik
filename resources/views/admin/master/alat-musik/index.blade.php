@@ -24,7 +24,8 @@
                     <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahAlatMusik"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Alat Musik</a>
                   </div>
                   <!-- Table with stripped rows -->
-                  <table class="table datatable align-items-center mb-0" id="datatable-search">
+                  {{-- <table class="table datatable align-items-center mb-0" id="datatable-search"> --}}
+                    <table id="datatable-search" class="ui celled table" style="width:100%">
                     <thead>
                       <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
@@ -155,6 +156,11 @@
         //   fixedHeight: true
         // });
 
+        // new DataTable('#example');
+        const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+        searchable: true,
+        fixedHeight: true
+      });
 
         $('.show_confirm').click(function(event) {
                 var form =  $(this).closest("form");

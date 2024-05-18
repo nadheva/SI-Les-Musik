@@ -41,7 +41,7 @@
                                     id="cam1" role="tabpanel" aria-labelledby="cam1">
                                     <div class="row mt-4">
                                         <div class="table-responsive">
-                                            <table class="table table-flush" id="datatable-search">
+                                            <table class="table table-flush ui" id="datatable-search">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>No</th>
@@ -55,7 +55,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($reservasi->latest()->where('proses', '=', 'Dalam Proses', 'OR', 'proses', '=', 'Ditolak' )->get() as $i)
+                                                    @foreach ($reservasi->where('proses', '=', 'Dalam Proses', 'OR', 'proses', '=', 'Ditolak' ) as $i)
                                                         <tr>
                                                             <td class="text-sm font-weight-normal">{{ $loop->iteration }}
                                                             </td>
@@ -84,7 +84,7 @@
                                     role="tabpanel" aria-labelledby="cam2">
                                     <div class="row mt-4">
                                         {{-- <div class="table-responsive"> --}}
-                                            <table class="table table-flush" id="datatable-search1">
+                                            <table class="table table-flush ui" id="datatable-search1">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>No</th>
@@ -99,25 +99,26 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($reservasi->where('proses', '=', 'Disetujui' ) as $r)
                                                             <td class="text-sm font-weight-normal">{{ $loop->iteration }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">
                                                                 {{ $i->course->nama }}</td>
-                                                            <td class="text-sm font-weight-normal">{{ $i->user->name }}
+                                                            <td class="text-sm font-weight-normal">{{ $r->user->name }}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->created_at->format('d.m.Y')}}
+                                                            <td class="text-sm font-weight-normal">{{$r->created_at->format('d.m.Y')}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->approver}}
+                                                            <td class="text-sm font-weight-normal">{{$r->approver}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->tgl_approve->format('d.m.Y')}}
+                                                            <td class="text-sm font-weight-normal">{{$r->tgl_approve->format('d.m.Y')}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{Number::currency($i->grand_total, 'Rp.')}}
+                                                            <td class="text-sm font-weight-normal">{{Number::currency($r->grand_total, 'Rp.')}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->proses}}
+                                                            <td class="text-sm font-weight-normal">{{$r->proses}}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->catatan}}
+                                                            <td class="text-sm font-weight-normal">{{$r->catatan}}
                                                             </td>
-                                                            <td><a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#approveReservasi-{{$i->id}}"><i class="bi bi-eye-square"></i></a>
+                                                            <td><a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#approveReservasi-{{$r->id}}"><i class="bi bi-eye-square"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -217,10 +218,14 @@
 
       @push('scripts')
       <script>
-        // const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-        //   searchable: true,
-        //   fixedHeight: true
-        // });
+        const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+          searchable: true,
+          fixedHeight: true
+        });
+        const dataTableSearch1 = new simpleDatatables.DataTable("#datatable-search1", {
+                    searchable: true,
+                    fixedHeight: true
+        });
 
 
         $('.show_confirm').click(function(event) {

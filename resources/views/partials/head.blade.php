@@ -22,6 +22,8 @@
     <link href="{{asset('template/NiceAdmin/assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
     <link href="{{asset('template/NiceAdmin/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
     <link href="{{asset('template/NiceAdmin/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.semanticui.css">
 
     <!-- Template Main CSS File -->
     <link href="{{asset('template/NiceAdmin/assets/css/style.css')}}" rel="stylesheet">
