@@ -20,11 +20,11 @@ class BerandaController extends Controller
         }
         else if(Auth::user()->role_id == '2') {
             $user = Auth::user();
-            if(!empty($user->profile->alamat)){
+            if(isset($user->profile)){
             Alert::success('Welcome', 'Selamat datang di dashboard user!');
             return view('dashboard');
             }
-            elseif(empty($user->profile->alamat)){
+            else {
                 Alert::warning('Warning', 'Anda belum mengisi profil, silahkan isi profil anda terlebih dahulu!');
                 return redirect()->route('profile.create');
             }

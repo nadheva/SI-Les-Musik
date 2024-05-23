@@ -55,9 +55,14 @@ class TransaksiController extends Controller
         return view('user.sewa-perangkat.sewa', compact('perangkat'));
     }
 
-    public function store()
+    public function pay($reservasi_id)
     {
-        DB::transaction(function() {
+        \Midtrans\Config::$serverKey    = config('services.midtrans.serverKey');
+        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
+        \Midtrans\Config::$isSanitized  = config('services.midtrans.isSanitized');
+        \Midtrans\Config::$is3ds        = config('services.midtrans.is3ds');
+        // $id = $reservasi_id;
+        DB::transaction(function() use($reservasi_id) {
         $length = 10;
         $random = '';
         for ($i = 0; $i < $length; $i++) {
@@ -66,55 +71,17 @@ class TransaksiController extends Controller
 
         $invoice =  'INV-'.Str::upper($random);
         $user = Auth::user()->id;
-        $perangkat = Perangkat::get();
-        $cart = Cart::where('user_id', $user)->get();
-        $total = $cart->sum('harga');
+        $reservasi = Reservasi::where('id', '=', $reservasi_id)->first();
 
-        $this->request->validate([
-            'tanggal_mulai' => 'required|date|before:tanggal_berakhir',
-            'tanggal_berakhir' => 'required|date|after:tanggal_mulai'
-        ],
-        [
-            'tanggal_mulai.required' => 'Tanggal mulai wajib diisi!',
-            'tanggal_mulai.date' => 'Tanggal mulai tidak valid',
-            'tanggal_mulai.before' => 'Tanggal mulai harus sebelum tanggal berakhir',
 
-            'tanggal_berakhir.required' => 'Tanggal berakhir wajib diisi!',
-            'tanggal_berakhir.date' => 'Tanggal berakhir tidak valid',
-            'tanggal_berakhir.after' => 'Tanggal berakhir harus setelah tanggal mulai!'
-        ]);
-
-        $sewa_perangkat = SewaPerangkat::create([
-            'user_id' => $user,
+      $payment =  Payment::create([
             'invoice' => $invoice,
-            'tanggal_mulai' => $mulai = \Carbon\Carbon::createFromFormat('Y-m-d', $this->request->tanggal_mulai),
-            'tanggal_berakhir' =>  $sampai= \Carbon\Carbon::createFromFormat('Y-m-d', $this->request->tanggal_berakhir),
-            'keperluan' => $this->request->keperluan,
-            'proses' => 'Disewa',
-            'grand_total' => ($mulai->diffInDays($sampai)) * $total
-        ]);
-
-      $payment =  $sewa_perangkat->payment()->create([
-            'invoice' => $sewa_perangkat->invoice,
             'status' => 'pending',
-            'grand_total' => $sewa_perangkat->grand_total,
-            'user_id' => $sewa_perangkat->user_id
+            'grand_total' => $reservasi->grand_total,
+            'user_id' => $reservasi->user_id,
+            'reservasi_id' => $reservasi_id,
         ]);
 
-        foreach(Cart::where('user_id', Auth::user()->id)->get() as $cart) {
-            $perangkat->where('id', $cart->perangkat->id);
-            foreach (Perangkat::where('id', $cart->perangkat->id)->get() as $i)
-            $i->stok = $i->stok - $cart->jumlah;
-            $i->save();
-
-            $sewa_perangkat->order()->create([
-            'sewa_perangkat_id' => $sewa_perangkat->id,
-            'perangkat_id'      => $cart->perangkat_id,
-            'jumlah'            => $cart->jumlah,
-            'harga'             => $cart->harga,
-            ]);
-
-        }
 
         $payload = [
             'transaction_details' => [
@@ -135,11 +102,8 @@ class TransaksiController extends Controller
         // $this->response['id'] = $sewa_perangkat;
 
         });
-        Cart::with('perangkat')
-        ->where('user_id', Auth::user()->id)
-        ->delete();
-        Alert::success('Success', 'Sewa Perangkat VR berhasil ditambahkan!');
-        return redirect()->route('user-transaksi-perangkat.index');
+        // Alert::success('Success', 'Pembayaran berhasil ditambahkan!');
+        // return redirect()->route('reservasi.index');
 
     }
 

@@ -10,7 +10,7 @@ use App\Models\Resepsionis;
 use App\Models\Course;
 use DateTime;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TransaksiController;
 
 class ReservasiController extends Controller
 {
@@ -21,7 +21,6 @@ class ReservasiController extends Controller
     {
         if(Auth::user()->role_id == 1) {
         $reservasi = Reservasi::latest()->paginate(10);
-        // $profile = Profile::where('user_id', $reservasi->user_id)->first();
         return view('admin.reservasi.index', compact('reservasi'));
         } elseif(Auth::user()->role_id == 2) {
         $reservasi = Reservasi::where('user_id', Auth::user()->id)->latest()->paginate(10);
@@ -109,14 +108,17 @@ class ReservasiController extends Controller
     {
         try {
 
-            $reservasi = Reservasi::findOrfail($id);
+            $reservasi = Reservasi::find($id);
+            $transaksi= new TransaksiController();
+            $transaksi->pay($reservasi->id);
+
             $reservasi->nama_approver = Auth::user()->name;
             $reservasi->tgl_approve = new DateTime('now');
             $reservasi->proses = 'Disetujui';
-            $reservasi->save;
+            $reservasi->save();
 
-            $payment = new PaymentController();
-            $payment->store($reservasi->id);
+            // $transaksi= new TransaksiController();
+            // $transaksi->pay($reservasi->id);
 
             // return route('payment.store', $reservasi->id)
             Alert::info('Success', 'Reservasi berhasil disetujui!');
