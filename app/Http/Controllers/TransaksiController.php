@@ -19,40 +19,23 @@ use RealRashid\SweetAlert\Facades\Alert;
 class TransaksiController extends Controller
 {
 
-    public function __construct(Request $request)
-    {
-        $this->middleware('auth')->except('notificationHandler');
-
-        $this->request = $request;
-        // Set midtrans configuration
-        \Midtrans\Config::$serverKey    = config('services.midtrans.serverKey');
-        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
-        \Midtrans\Config::$isSanitized  = config('services.midtrans.isSanitized');
-        \Midtrans\Config::$is3ds        = config('services.midtrans.is3ds');
-    }
-
     public function index()
     {
+        $client = env('MIDTRANS_CLIENTKEY');
         $user = Auth::user()->id;
         $profil = Profile::where('user_id', $user)->first();
         if(Auth::user()->role_id == 2) {
-        $transaksi = Payment::where('user_id', $user)->get();
+        $transaksi = Payment::where('user_id', '=', Auth::user()->id)->get();
             if(is_null($profil)){
                 return redirect()->route('profile.index')
                 ->with('danger', 'Anda belum menambahkan data profil!');
             } else {
-                return view('user.transaksi.index', compact('transaksi'));
+                return view('user.transaksi.index', compact('transaksi', 'client'));
             }
         } else {
             $transaksi = Payment::latest()->get();
-            return view('admin.transaksi.index', compact('transaksi'));
+            return view('admin.transaksi.index', compact('transaksi', 'client'));
         }
-    }
-
-    public function create($id)
-    {
-        $perangkat = Perangkat::where('id', $id)->first();
-        return view('user.sewa-perangkat.sewa', compact('perangkat'));
     }
 
     public function pay($reservasi_id)
@@ -61,7 +44,8 @@ class TransaksiController extends Controller
         \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
         \Midtrans\Config::$isSanitized  = config('services.midtrans.isSanitized');
         \Midtrans\Config::$is3ds        = config('services.midtrans.is3ds');
-        // $id = $reservasi_id;
+
+
         DB::transaction(function() use($reservasi_id) {
         $length = 10;
         $random = '';
@@ -99,12 +83,9 @@ class TransaksiController extends Controller
         $payment->snap_token = $snapToken;
         $payment->save();
 
-        // $this->response['id'] = $sewa_perangkat;
-
+        Alert::success('Success', 'Reservasi berhasil dikonfirmasi!');
+        return redirect()->back();
         });
-        // Alert::success('Success', 'Pembayaran berhasil ditambahkan!');
-        // return redirect()->route('reservasi.index');
-
     }
 
     public function notificationHandler(Request $request)
@@ -217,40 +198,17 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        // $sewa_perangkat = SewaPerangkat::where('id',$id)->first();
         $id1 = decrypt($id);
-        $sewa_perangkat = SewaPerangkat::find($id1);
-        return view('user.transaksi.show', compact('sewa_perangkat'));
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update(Request $request, $id)
-    {
-        $sewa_perangkat = SewaPerangkat::findOrFail($id);
-        $perangkat = Perangkat::get();
-        $sewa_perangkat->update([
-            'proses' => 'Dikembalikan'
-        ]);
-
-        foreach(Order::where('sewa_perangkat_id', $id)->get() as $order) {
-          $perangkat->where('id', $order->perangkat->id);
-          foreach (Perangkat::where('id', $order->perangkat->id)->get() as $i)
-          $i->stok = $i->stok + $order->jumlah;
-          $i->save();
+        if(Auth::user()->role_id == 2){
+            $transaksi = Payment::findOrfail($id1);
+            $client = env('MIDTRANS_CLIENTKEY');
+            return view('user.transaksi.show', compact('transaksi', 'client'));
+        } else {
+            $transaksi = Payment::findOrfail($id1);
+            $client = env('MIDTRANS_CLIENTKEY');
+            return view('admin.transaksi.show', compact('transaksi', 'client'));
         }
-        Alert::info('Info', 'Sewa Perangkat VR berhasil dikembalikan!');
-        return redirect()->route('pengembalian-perangkat');
-    }
 
-    public function destroy($id)
-    {
-        SewaPerangkat::find($id)->delete();
-        Alert::warning('Warning', 'Sewa Perangkat VR berhasil dihapus!');
-        return redirect()->back();
     }
 
 

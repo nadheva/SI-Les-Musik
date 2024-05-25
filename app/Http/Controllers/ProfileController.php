@@ -17,10 +17,9 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-     public function index($user_id)
+     public function index()
      {
-        $user_id = Auth::user()->id;
-        $profile = Profile::where('user_id', $user_id)->first();
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
         if(is_null($profile) && Auth::user()->role_id == '2'){
             return redirect()->route('profile.create')
             ->with('danger', 'Anda belum menambahkan data profil!');
@@ -75,7 +74,7 @@ class ProfileController extends Controller
                     ]);
 
             Alert::success('Success', 'Profile berhasil ditambahakan!');
-            return redirect()->route('profile.show', $user->id);
+            return redirect()->route('profile.show', encrypt($user->id));
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->back();
@@ -104,10 +103,10 @@ class ProfileController extends Controller
     //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
     // }
 
-    public function show($user_id)
+    public function show($id)
     {
-       $user_id = Auth::user()->id;
-       $profile = Profile::where('user_id', $user_id)->first();
+    //    $user_id = Auth::user()->id;
+       $profile = Profile::where('user_id', decrypt($id))->first();
        if(is_null($profile) && Auth::user()->role_id == '2'){
            return redirect()->route('profile.create')
            ->with('danger', 'Anda belum menambahkan data profil!');

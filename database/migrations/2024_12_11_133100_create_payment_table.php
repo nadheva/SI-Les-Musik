@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('snap_token')->nullable();
             $table->bigInteger('grand_total');
             $table->foreignId('reservasi_id')->nullable()->constrained('reservasi')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

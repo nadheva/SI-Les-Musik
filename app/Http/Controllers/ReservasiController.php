@@ -41,12 +41,6 @@ class ReservasiController extends Controller
      */
     public function store(Request $request)
     {
-        // $user = Auth::user();
-        // $profil = Profile::where('user_id', $user->id)->first();
-        // if(is_null($profil) && $user->role_id == '2'){
-        //     return redirect()->route('profil.create')
-        //     ->with('danger', 'Anda belum menambahkan data profil!');
-        // } else {
         try {
             $request->validate([
                 'catatan' => 'required',
@@ -111,17 +105,13 @@ class ReservasiController extends Controller
             $reservasi = Reservasi::find($id);
             $transaksi= new TransaksiController();
             $transaksi->pay($reservasi->id);
-
             $reservasi->nama_approver = Auth::user()->name;
-            $reservasi->tgl_approve = new DateTime('now');
+            $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Disetujui';
             $reservasi->save();
 
-            // $transaksi= new TransaksiController();
-            // $transaksi->pay($reservasi->id);
-
-            // return route('payment.store', $reservasi->id)
             Alert::info('Success', 'Reservasi berhasil disetujui!');
+            return redirect()->route('reservasi.index');
           } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return route('reservasi.store', $reservasi->id);
@@ -134,7 +124,7 @@ class ReservasiController extends Controller
 
             $reservasi = Reservasi::findOrfail($id);
             $reservasi->nama_approver = Auth::user()->name;
-            $reservasi->tgl_approve = new DateTime('now');
+            $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Ditolak';
             $reservasi->save;
 

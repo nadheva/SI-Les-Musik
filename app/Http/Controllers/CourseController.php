@@ -117,10 +117,15 @@ class CourseController extends Controller
     public function view(string $id)
     {
         if(Auth::user()->role_id == 2) {
-        $id1 = decrypt($id);
-        $course = Course::where('id', $id1)->first();
-        $profile = Profile::where('user_id', Auth::user()->id)->first();
-        return view('user.course.view', compact('course', 'profile'));
+            if(isset(Auth::user()->profile)) {
+            $id1 = decrypt($id);
+            $course = Course::where('id', $id1)->first();
+            $profile = Profile::where('user_id', Auth::user()->id)->first();
+            return view('user.course.view', compact('course', 'profile'));
+            } else {
+                Alert::warning('Info', 'Silahkan lengkapi profile terlebih dahulu!');
+                return redirect()->back();
+            }
         } else {
             $id1 = decrypt($id);
             $course = Course::where('id', $id1)->first();
