@@ -2,7 +2,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-          <h1>Data Guru</h1>
+          <h1>Data Resepsionis</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -21,7 +21,7 @@
                   <h5 class="card-title">Datatables</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
                   <div class="col-12 text-end">
-                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Data Guru</a>
+                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahRole"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Data Resepsionis</a>
                   </div>
                   <!-- Table with stripped rows -->
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
@@ -31,34 +31,33 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                           <b>N</b>ama
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Telepon</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Telepon</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
                         {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th> --}}
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($guru as $g)
+                        @foreach($resepsionis as $r)
                       <tr>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                         </td>
-                        <td class="align-middle text-center">{{$g->nama}}</td>
-                        <td class="align-middle text-center">Guru {{$g->alat_musik->nama}}</td>
-                        <td class="align-middle text-center">{{$g->grade}}</td>
-                        <td class="align-middle text-center">{{$g->no_telp}}</td>
-                        {{-- <td class="align-middle text-center">{{$g->alat_musik->nama}}</td> --}}
-                        <td class="align-middle text-center">{{$g->email}}</td>
+                        <td class="align-middle text-center">{{$r->nama}}</td>
+                        <td class="align-middle text-center">{{$r->email}}</td>
+                        <td class="align-middle text-center">{{$r->no_telp}}</td>
+                        <td class="align-middle text-center"><img src="{{asset($r->foto)}}" style="max-width: 70px" class="img-fluid shadow border-radius-xl"></td>
+                        <td class="align-middle text-center" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $r->deskripsi !!}</td>
                         <td class="align-middle text-center">
                             <div>
-                            <form id="form-delete" action="{{route('guru.destroy', $g->id)}}" method="POST" style="display: inline">
+                            <form id="form-delete" action="{{route('resepsionis.destroy', $r->id)}}" method="POST" style="display: inline">
                               @csrf
                               @method("DELETE")
                               <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="bi bi-trash"></i></button>
                             </form>
-                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editGuru-{{$g->id}}"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editGuru-{{$r->id}}"><i class="bi bi-pencil-square"></i></a>
                             {{-- <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editRole-{{$g->id}}"><i class="bi bi-eye"></i></a> --}}
                           </div>
                         </td>
@@ -74,16 +73,16 @@
             </div>
           </div>
         </section>
-                        @foreach($guru as $i)
+                        @foreach($resepsionis as $i)
                         <div class="modal fade" id="editGuru-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editGuruLabel"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form method="POST" action="{{ url('guru-update', $i->id) }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ url('resepsionis-update', $i->id) }}" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editRoleLabel">Edit Data Guru</h5>
+                                            <h5 class="modal-title" id="editRoleLabel">Edit Data Resepsionis</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true"></span>
                                             </button>
@@ -99,32 +98,8 @@
                                                     <input type="number" class="form-control" name="no_telp" placeholder="Masukkan Nomor Telepon" value="{{$i->no_telp}}">
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="inputNanme4" class="form-label">Lulusan :</label>
-                                                    <input type="text" class="form-control" name="lulusan" placeholder="Masukkan Lulusan" value="{{$i->lulusan}}">
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
-                                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" value="{{$i->tahun_lulus}}">
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="inputNanme4" class="form-label">Kursus :</label>
-                                                    <select id="inputState" class="form-select" name="alat_musik_id">
-                                                        <option selected value="{{$i->alat_musik_id}}">{{$i->alat_musik->nama}}</option>
-                                                        @foreach($alatmusik as $item)
-                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="inputNanme4" class="form-label">Grade :</label>
-                                                    <select id="inputState" class="form-select" name="grade">
-                                                        <option selected value="{{$i->grade}}">{{$i->grade}}</option>
-                                                        <option value="A">A</option>
-                                                        <option value="A-">A-</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="B">B</option>
-                                                        <option value="C">C</option>
-                                                    </select>
+                                                    <label for="inputNanme4" class="form-label">Email : </label>
+                                                    <input type="email" class="form-control" name="email" placeholder="Masukkan Email" value="{{$i->email}}">
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="inputNanme4" class="form-label">Foto :</label>
@@ -150,10 +125,10 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ route('guru.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('resepsionis.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Data Guru</h5>
+                        <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Data Resepsionis</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -165,7 +140,7 @@
 
                                 <div class="card">
                                   <div class="card-body">
-                                    <h5 class="card-title">Data Guru</h5>
+                                    <h5 class="card-title">Data Resepsionis</h5>
 
                                     <!-- Horizontal Form -->
                                       <div class="row mb-3">
@@ -177,32 +152,8 @@
                                         <input type="number" class="form-control" name="no_telp" placeholder="Masukkan Nomor Telepon">
                                       </div>
                                       <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Lulusan :</label>
-                                        <input type="text" class="form-control" name="lulusan" placeholder="Masukkan Lulusan">
-                                      </div>
-                                      <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Tahun Lulus :</label>
-                                        <input type="number" class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus">
-                                      </div>
-                                      <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Kursus :</label>
-                                        <select id="inputState" class="form-select" name="alat_musik_id">
-                                            <option selected>Silahkan Pilih Kursus</option>
-                                            @foreach($alatmusik as $item)
-                                            <option value="{{$item->id}}">{{$item->nama}}</option>
-                                            @endforeach
-                                          </select>
-                                      </div>
-                                      <div class="row mb-3">
-                                        <label for="inputNanme4" class="form-label">Grade :</label>
-                                        <select id="inputState" class="form-select" name="grade">
-                                            <option selected>Silahakan Pilih Grade</option>
-                                            <option value="A">A</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                          </select>
+                                        <label for="inputNanme4" class="form-label">Email :</label>
+                                        <input type="text" class="form-control" name="email" placeholder="Masukkan Email">
                                       </div>
                                       <div class="row mb-3">
                                         <label for="inputNanme4" class="form-label">Foto :</label>

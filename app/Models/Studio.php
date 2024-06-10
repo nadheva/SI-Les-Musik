@@ -19,6 +19,6 @@ class Studio extends Model
 
     public function alatmusik()
     {
-        return $this->belongsTo(AlatMusik::class);
+        return $this->belongsTo(AlatMusik::class, 'alat_musik_id', 'id');
     }
 }

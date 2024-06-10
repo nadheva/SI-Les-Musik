@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\AlatMusik;
 use App\Models\Studio;
 
 class StudioController extends Controller
@@ -14,7 +15,8 @@ class StudioController extends Controller
     public function index()
     {
         $studio = Studio::latest()->paginate(10);
-        return view('admin.master.studio.index', compact('studio'));
+        $alatmusik = AlatMusik::latest()->get();
+        return view('admin.master.studio.index', compact('studio', 'alatmusik'));
     }
 
     /**
@@ -66,7 +68,7 @@ class StudioController extends Controller
                 'foto' => $txt,
                 'foto_detail' => json_encode($image),
                 'deskripsi' => $request->deskripsi,
-                'alat_musik' => $request->alat_musik_id
+                'alat_musik_id' => $request->alat_musik_id
             ]);
 
             Alert::success('Success', 'Studio berhasil ditambahakan!');

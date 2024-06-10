@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="card-body">
-                      <h5 class="card-title">Sales <span>| Today</span></h5>
+                      <h5 class="card-title">Transaksi <span>| Hari ini</span></h5>
 
                       <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="ps-3">
                           <h6>145</h6>
-                          <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                          <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">kenaikan</span>
 
                         </div>
                       </div>
@@ -71,15 +71,15 @@
                     </div>
 
                     <div class="card-body">
-                      <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                      <h5 class="card-title">Penghasilan <span>| Bulan ini</span></h5>
 
                       <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                           <i class="bi bi-currency-dollar"></i>
                         </div>
                         <div class="ps-3">
-                          <h6>$3,264</h6>
-                          <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                          <h6>Rp. 90.700.000,00</h6>
+                          <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">kenaikan</span>
 
                         </div>
                       </div>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="card-body">
-                      <h5 class="card-title">Customers <span>| This Year</span></h5>
+                      <h5 class="card-title">Pelanggan <span>| Tahun ini</span></h5>
 
                       <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -115,7 +115,7 @@
                         </div>
                         <div class="ps-3">
                           <h6>1244</h6>
-                          <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                          <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">penurunan</span>
 
                         </div>
                       </div>
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="card-body">
-                      <h5 class="card-title">Reports <span>/Today</span></h5>
+                      <h5 class="card-title">Laporan <span>/Hari ini</span></h5>
 
                       <!-- Line Chart -->
                       <div id="reportsChart"></div>
@@ -377,7 +377,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+                  <h5 class="card-title">Aktivitas <span>| Hari ini</span></h5>
 
                   <div class="activity">
 
