@@ -11,6 +11,8 @@ use App\Models\Course;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TransaksiController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentMail;
 
 class ReservasiController extends Controller
 {
@@ -105,11 +107,14 @@ class ReservasiController extends Controller
             $reservasi = Reservasi::find($id);
             $transaksi= new TransaksiController();
             $transaksi->pay($reservasi->id);
+            Mail::to($reservasi->user->email)->send(new PaymentMail([
+                'title' => 'Tagihan Pembayaran Sekolah Musik',
+                'body' => 'The Body',
+            ]));
             $reservasi->nama_approver = Auth::user()->name;
             $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Disetujui';
             $reservasi->save();
-
             Alert::info('Success', 'Reservasi berhasil disetujui!');
             return redirect()->route('reservasi.index');
           } catch (\Exception $e) {

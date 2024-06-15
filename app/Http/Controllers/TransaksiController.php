@@ -210,6 +210,4 @@ class TransaksiController extends Controller
         }
 
     }
-
-
 }
