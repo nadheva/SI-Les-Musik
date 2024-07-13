@@ -107,6 +107,11 @@
             </a>
           </li>
           <li>
+            <a class="nav-link {{ Route::is('periode.*') ? 'active' : ''}}" href="{{route('periode.index')}}">
+              <i class="bi bi-circle"></i><span>Periode</span>
+            </a>
+          </li>
+          <li>
             <a class="nav-link {{ Route::is('resepsionis.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
               <i class="bi bi-circle"></i><span>Resepsionis</span>
             </a>

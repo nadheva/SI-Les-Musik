@@ -17,7 +17,7 @@ class PeriodeController extends Controller
     {
         if(Auth::user()->role_id == 1) {
             $periode = Periode::latest()->paginate(10);
-            return view('admin.periode.index', compact('periode'));
+            return view('admin.master.periode.index', compact('periode'));
         } else {
             Alert::info('Error', 'Maaf anda tidak diizinkan untuk mengakses halaman ini!');
             return redirect()->back();
