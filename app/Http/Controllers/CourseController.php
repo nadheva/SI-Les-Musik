@@ -8,6 +8,7 @@ use App\Models\AlatMusik;
 use App\Models\Level;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Periode;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -20,13 +21,14 @@ class CourseController extends Controller
     public function index()
     {
         if(Auth::user()->role_id == 1) {
-        $course = Course::orderBy('expired_date', 'desc')->paginate(10);
+        $course = Course::latest()->paginate(10);
         $alatmusik = AlatMusik::get();
         $level = Level::get();
-        return view('admin.course.index', compact('course', 'alatmusik', 'level'));
+        $periode = Periode::latest()->get();
+        return view('admin.course.index', compact('course', 'alatmusik', 'level', 'periode'));
         }
         elseif(Auth::user()->role_id == 2) {
-            $course = Course::where('status', '=', '1')->orderBy('expired_date', 'desc')->paginate(10);
+            $course = Course::where('status', '=', '1')->latest()->paginate(10);
             $alatmusik = AlatMusik::get();
             return view('user.course.index', compact('course', 'alatmusik'));
         }
@@ -53,9 +55,7 @@ class CourseController extends Controller
                 'deskripsi' => 'required',
                 'modul' => 'required',
                 'header' => 'required',
-                'expired_date' => 'required',
-                'period_start' => 'required',
-                'period_end' => 'required',
+                'periode_id' => 'required',
                 'harga' => 'required',
             ]);
 
@@ -84,9 +84,7 @@ class CourseController extends Controller
                 'header' => $header,
                 'status' => '1',
                 'harga' => $request->harga,
-                'expired_date' => $request->expired_date,
-                'period_start' => $request->period_start,
-                'period_end' => $request->period_end,
+                'periode_id' => $request->periode_id,
                 'created_by' => Auth::user()->name
             ]);
 
@@ -153,9 +151,7 @@ class CourseController extends Controller
             $course->deskripsi = $request->deskripsi;
             $course->status = $request->status;
             $course->harga = $request->harga;
-            $course->expired_date = $request->expired_date;
-            $course->period_start = $request->period_start;
-            $course->period_end = $request->period_end;
+            $course->periode_id = $request->periode_id;
             $course->updated_by = Auth::user()->name;
 
             if($modul = $request->file('modul')) {

@@ -36,7 +36,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Expired</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Periode</th>
                         {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th> --}}
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
@@ -57,7 +57,7 @@
                         <td class="align-middle text-center">Aktif</td>
                         @endif
                         <td class="align-middle text-center">{{Number::currency($c->harga, 'Rp.')}}</td>
-                        <td class="align-middle text-center">{{$c->expired_date}}</td>
+                        <td class="align-middle text-center">{{$c->periode->nama_periode}}</td>
                         {{-- <td class="align-middle text-center">{{$g->alat_musik->nama}}</td> --}}
                         <td class="align-middle text-center">
                             <div>
@@ -124,16 +124,13 @@
                                 <input type="number" class="form-control" name="harga" placeholder="Masukkan Harga">
                               </div>
                               <div class="row mb-3">
-                                <label for="inputNanme4" class="form-label">Tanggal Expired :</label>
-                                <input type="date" class="form-control" name="expired_date" placeholder="Masukkan Tanggal Expired">
-                              </div>
-                              <div class="row mb-3">
-                                <label for="inputNanme4" class="form-label">Period Start :</label>
-                                <input type="date" class="form-control" name="period_start" placeholder="Masukkan Period Start">
-                              </div>
-                              <div class="row mb-3">
-                                <label for="inputNanme4" class="form-label">Period End :</label>
-                                <input type="date" class="form-control" name="period_end" placeholder="Masukkan Period End">
+                                <label for="inputNanme4" class="form-label">Periode Course :</label>
+                                <select id="inputState" class="form-select" name="periode_id">
+                                    <option selected>Silahkan Pilih Periode</option>
+                                    @foreach($periode as $item)
+                                    <option value="{{$item->id}}">{{$item->nama_periode}}</option>
+                                    @endforeach
+                                  </select>
                               </div>
                               <div class="row mb-3">
                                 <label for="inputNanme4" class="form-label">Header :</label>

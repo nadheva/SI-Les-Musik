@@ -17,9 +17,7 @@ class Course extends Model
         'modul',
         'header',
         'status',
-        'expired_date',
-        'period_start',
-        'period_end',
+        'periode_id',
         'harga',
         'created_by',
         'updated_by'
@@ -33,5 +31,10 @@ class Course extends Model
     public function alat_musik()
     {
         return $this->belongsTo(AlatMusik::class);
+    }
+
+    public function periode()
+    {
+        return $this->hasOne(Periode::class);
     }
 }

@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('modul');
             $table->string('header');
             $table->enum('status',['0','1']);
-            $table->dateTime('expired_date');
-            $table->dateTime('period_start');
-            $table->dateTime('period_end');
+            $table->foreignId('periode_id')->constrained('periode')->onDelete('cascade')->onUpdate('cascade');
             $table->string('created_by');
             $table->bigInteger('harga');
             $table->string('updated_by')->nullable();
