@@ -27,19 +27,19 @@
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
                       <tr>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>N</b>o.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>K</b>ode</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                           <b>N</b>ama Periode
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Awal Pendaftaran</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir Pendaftaran</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Awal Pembelajaran</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir Pembelajaran</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Awal Ujian</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir Ujian</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>wal <b>P</b>endaftaran</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>khir <b>P</b>endaftaran</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>wal <b>P</b>embelajaran</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>khir <b>P</b>embelajaran</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>wal <b>U</b>jian</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>T</b>gl. <b>A</b>khir <b>U</b>jian</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>S</b>tatus</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>A</b>ksi</th>
                       </tr>
                     </thead>
                     <tbody>
