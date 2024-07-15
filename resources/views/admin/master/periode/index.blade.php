@@ -86,8 +86,6 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ route('periode.store') }}" enctype="multipart/form-data">
-                    @csrf
                     <div class="modal-header">
                         <h5 class="modal-title card-title" id="tambahRoleLabel">Tambah Periode</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -95,45 +93,50 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
-                            <div class="form-group">
-                              <label class="col-form-label">Kode : </label>
-                              <input type="number" class="form-control"  name="kode" placeholder="Masukkan Kode" value="{{old('kode')}}" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">Nama Periode : </label>
-                                <input type="text" class="form-control"  name="nama_periode" placeholder="Masukkan Nama Periode" value="{{old('nama_periode')}}" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Awal Pendaftaran</label>
-                                <input type="date" class="form-control" name="tgl_awal_pendaftaran" placeholder="Masukkan Tgl. Awal Pendaftaran" value="{{old('tgl_awal_pendaftaran')}}" required>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Akhir Pendaftaran</label>
-                                <input type="date" class="form-control" name="tgl_akhir_pendaftaran" placeholder="Masukkan Tgl. Akhir Pendaftaran" value="{{old('tgl_akhir_pendaftaran')}}" required>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Awal Pembelajaran</label>
-                                <input type="date" class="form-control" name="tgl_awal_pembelajaran" placeholder="Masukkan Tgl. Awal Pembelajaran" value="{{old('tgl_awal_pembelajaran')}}" required>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Akhir Pembelajaran</label>
-                                <input type="date" class="form-control" name="tgl_akhir_pembelajaran" placeholder="Masukkan Tgl. Akhir Pembelajaran" value="{{old('tgl_akhir_pembelajaran')}}" required>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Awal Ujian</label>
-                                <input type="date" class="form-control" name="tgl_awal_ujian" placeholder="Masukkan Tgl. Awal Ujian" value="{{old('tgl_awal_ujian')}}" required>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Akhir Pembelajaran</label>
-                                <input type="date" class="form-control" name="tgl_akhir_ujian" placeholder="Masukkan Tgl. Akhir Ujian" value="{{old('tgl_akhir_ujian')}}" required>
-                              </div>
+                    <form class="row g-3"></form>
+                        <form class="row g-3" method="post" action="{{ route('periode.store') }}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="form-group">
+                            <label class="col-form-label">Kode : </label>
+                            <input type="number" class="form-control"  name="kode" placeholder="Masukkan Kode (4 Digit Angka)" value="{{old('kode')}}" required>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-form-label">Nama Periode : </label>
+                              <input type="text" class="form-control"  name="nama_periode" placeholder="Masukkan Nama Periode" value="{{old('nama_periode')}}" required>
+                          </div>
+                        <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Awal Pendaftaran</label>
+                            <input type="date" class="form-control" name="tgl_awal_pendaftaran" placeholder="Masukkan Tgl. Awal Pendaftaran" value="{{old('tgl_awal_pendaftaran')}}" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Akhir Pendaftaran</label>
+                            <input type="date" class="form-control" name="tgl_akhir_pendaftaran" placeholder="Masukkan Tgl. Akhir Pendaftaran" value="{{old('tgl_akhir_pendaftaran')}}" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Awal Pembelajaran</label>
+                            <input type="date" class="form-control" name="tgl_awal_pembelajaran" placeholder="Masukkan Tgl. Awal Pembelajaran" value="{{old('tgl_awal_pembelajaran')}}" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Akhir Pembelajaran</label>
+                            <input type="date" class="form-control" name="tgl_akhir_pembelajaran" placeholder="Masukkan Tgl. Akhir Pembelajaran" value="{{old('tgl_akhir_pembelajaran')}}" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Awal Ujian</label>
+                            <input type="date" class="form-control" name="tgl_awal_ujian" placeholder="Masukkan Tgl. Awal Ujian" value="{{old('tgl_awal_ujian')}}" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="input" class="form-label">Tgl. Akhir Ujian</label>
+                            <input type="date" class="form-control" name="tgl_akhir_ujian" placeholder="Masukkan Tgl. Akhir Ujian" value="{{old('tgl_akhir_ujian')}}" required>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn btn-success">Simpan</button>
                         </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn btn-success">Simpan</button>
+                      </form>
                     </div>
-                </form>
+                  </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -143,9 +146,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="POST" action="{{ url('periode-update', $i->id) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="editRoleLabel">Edit Periode</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -153,7 +154,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3"></form>
+                            <form class="row g-3" method="POST" action="{{ url('periode-update', $i->id) }}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                             <div class="form-group">
                               <label class="col-form-label">Kode : </label>
                               <input type="number" class="form-control"  name="kode" placeholder="Masukkan Kode" value="{{$i->kode}}" required>
@@ -183,7 +187,7 @@
                                 <input type="date" class="form-control" name="tgl_awal_ujian" placeholder="Masukkan Tgl. Awal Ujian" value="{{$i->tgl_awal_ujian}}" required>
                               </div>
                               <div class="col-md-6">
-                                <label for="input" class="form-label">Tgl. Akhir Pembelajaran</label>
+                                <label for="input" class="form-label">Tgl. Akhir Ujian</label>
                                 <input type="date" class="form-control" name="tgl_akhir_ujian" placeholder="Masukkan Tgl. Akhir Ujian" value="{{$i->tgl_akhir_ujian}}" required>
                               </div>
                               <div class="form-group">

@@ -41,13 +41,42 @@ class PeriodeController extends Controller
             $request->validate([
                 'kode' => 'required|min:4|max:4',
                 'nama_periode' => 'required',
-                'tgl_awal_pendaftaran' => 'required',
-                'tgl_akhir_pendaftaran' => 'required',
-                'tgl_awal_pembelajaran' => 'required',
-                'tgl_akhir_pembelajaran' => 'required',
-                'tgl_awal_ujian' => 'required',
-                'tgl_akhir_ujian' => 'required',
-                'status' => 'required',
+                'tgl_awal_pendaftaran' => 'required|date|before:tgl_akhir_pendaftaran',
+                'tgl_akhir_pendaftaran' => 'required|date|after:tgl_awal_pendaftaran|before:tgl_awal_pembelajaran',
+                'tgl_awal_pembelajaran' => 'required|date|after:tgl_akhir_pendaftaran|before:tgl_akhir_pembelajaran',
+                'tgl_akhir_pembelajaran' => 'required|date|after:tgl_awal_pembelajaran|before:tgl_awal_ujian',
+                'tgl_awal_ujian' => 'required|date|before:tgl_akhir_ujian|after:tgl_akhir_pembelajaran',
+                'tgl_akhir_ujian' => 'required|date|after:tgl_awal_ujian|after:tgl_akhir_pembelajaran'
+            ],
+            [
+                'tgl_awal_pendaftaran.required' => 'Tanggal awal pendaftaran wajib diisi!',
+                'tgl_awal_pendaftaran.date' => 'Tanggal tidak valid!',
+                'tgl_awal_pendaftaran.before' => 'Tanggal awal pendaftaran harus sebelum tanggal akhir pendaftaran!',
+
+                'tgl_akhir_pendaftaran.required' => 'Tanggal akhir pendaftaran wajib diisi!',
+                'tgl_akhir_pendaftaran.date' => 'Tanggal tidak valid!',
+                'tgl_akhir_pendaftaran.after' => 'Tanggal akhir pendaftaran harus setelah tanggal awal pendaftaran!',
+                'tgl_akhir_pendaftaran.before' => 'Tanggal akhir pendaftaran harus sebelum tanggal awal pembelajaran',
+
+                'tgl_awal_pembelajaran.required' => 'Tanggal awal pembelajaran wajib diisi!',
+                'tgl_awal_pembelajaran.date' => 'Tanggal tidak valid!',
+                'tgl_awal_pembelajaran.after' => 'Tanggal awal pembelajaran harus setelah tanggal akhir pendaftaran!',
+                'tgl_awal_pembelajaran.before' => 'Tanggal awal pembelajaran harus sebelum tanggal akhir pembelajaran',
+
+                'tgl_akhir_pembelajaran.required' => 'Tanggal akhir pembelajaran wajib diisi!',
+                'tgl_akhir_pembelajaran.date' => 'Tanggal tidak valid!',
+                'tgl_akhir_pembelajaran.after' => 'Tanggal akhir pembelajaran harus setelah tanggal awal pendaftaran!',
+                'tgl_akhir_pembelajaran.before' => 'Tanggal akhir pembelajaran harus sebelum tanggal awal ujian',
+
+                'tgl_awal_ujian.required' => 'Tanggal awal ujian wajib diisi!',
+                'tgl_awal_ujian.date' => 'Tanggal tidak valid!',
+                'tgl_awal_ujian.after' => 'Tanggal awal ujian harus setelah tanggal akhir pembelajaran!',
+                'tgl_awal_ujian.before' => 'Tanggal awal ujian harus sebelum tanggal akhir ujian',
+
+                'tgl_akhir_ujian.required' => 'Tanggal akhir ujian wajib diisi!',
+                'tgl_akhir_ujian.date' => 'Tanggal tidak valid!',
+                'tgl_akhir_ujian.after' => 'Tanggal akhir ujian harus setelah tanggal awal ujian!',
+                'tgl_akhir_ujian.before' => 'Tanggal akhir ujian harus setelah tanggal akhir pembelajaran!',
             ]);
 
             Periode::create([

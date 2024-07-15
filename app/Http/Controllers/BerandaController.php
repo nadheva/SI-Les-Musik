@@ -25,7 +25,7 @@ class BerandaController extends Controller
             return view('dashboard');
             }
             else {
-                Alert::warning('Warning', 'Anda belum mengisi profil, silahkan isi profil anda terlebih dahulu!');
+                Alert::info('Info', 'Silahkan isi profil anda terlebih dahulu!');
                 return redirect()->route('profile.create');
             }
         }
