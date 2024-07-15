@@ -86,7 +86,7 @@ class PeriodeController extends Controller
                 'tgl_akhir_pendaftaran' => $request->tgl_akhir_pendaftaran,
                 'tgl_awal_pembelajaran' => $request->tgl_awal_pembelajaran,
                 'tgl_akhir_pembelajaran' => $request->tgl_akhir_pembelajaran,
-                'tgl_awal_pujian' => $request->tgl_awal_ujian,
+                'tgl_awal_ujian' => $request->tgl_awal_ujian,
                 'tgl_akhir_ujian' => $request->tgl_akhir_ujian,
                 'status' => '1',
             ]);

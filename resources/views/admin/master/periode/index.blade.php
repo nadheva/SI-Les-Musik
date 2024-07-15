@@ -38,8 +38,8 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir Pembelajaran</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Awal Ujian</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir Ujian</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Awal Pendaftaran</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tgl. Akhir
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -50,13 +50,17 @@
                         </td>
                         <td class="align-middle text-center">{{$a->kode}}</td>
                         <td class="align-middle text-center">{{$a->nama_periode}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_awal_pendaftaran}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_akhir_pendaftaran}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_awal_pembelajaran}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_akhir_pembelajaran}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_awal_ujian}}</td>
-                        <td class="align-middle text-center">{{$a->tgl_akhir_ujian}}</td>
-                        <td class="align-middle text-center">{{$a->status}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pendaftaran)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pendaftaran)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pembelajaran)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pembelajaran)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_ujian)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_ujian)->format('d/m/Y')}}</td>
+                        @if($a->status = 1)
+                        <td class="align-middle text-center">Aktif</td>
+                        @elseif($a->status = 0)
+                        <td class="align-middle text-center">Tidak Aktif</td>
+                        @endif
                         <td class="align-middle text-center">
                             <div>
                             <form id="form-delete" action="{{route('periode.destroy', $a->id)}}" method="POST" style="display: inline">
