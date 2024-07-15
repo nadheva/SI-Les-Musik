@@ -51,7 +51,7 @@ class ReservasiController extends Controller
             Reservasi::create([
                 'course_id' => $request->course_id,
                 'user_id' => Auth::user()->id,
-                'resepsionis_id' => 1,
+                // 'resepsionis_id' => 1,
                 // 'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
                 'proses' => 'Dalam Proses',
                 'catatan' => $request->catatan,
@@ -62,7 +62,7 @@ class ReservasiController extends Controller
             return redirect()->route('reservasi.index');
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
-            return redirect()->route('reservasi.index');
+            return redirect()->back();
           }
         }
 
@@ -107,10 +107,10 @@ class ReservasiController extends Controller
             $reservasi = Reservasi::find($id);
             $transaksi= new TransaksiController();
             $transaksi->pay($reservasi->id);
-            Mail::to($reservasi->user->email)->send(new PaymentMail([
-                'title' => 'Tagihan Pembayaran Sekolah Musik',
-                'body' => 'The Body',
-            ]));
+            // Mail::to($reservasi->user->email)->send(new PaymentMail([
+            //     'title' => 'Tagihan Pembayaran Sekolah Musik',
+            //     'body' => 'The Body',
+            // ]));
             $reservasi->nama_approver = Auth::user()->name;
             $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Disetujui';

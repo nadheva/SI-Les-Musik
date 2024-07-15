@@ -171,11 +171,11 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period Start : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->period_start}}" readonly>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{\Carbon\Carbon::parse($course->periode->tgl_awal_pembelajaran)->format('d/m/Y')}}" readonly>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period End : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->period_end}}" readonly>
+                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{\Carbon\Carbon::parse($course->periode->tgl_akhir_pembelajaran)->format('d/m/Y')}}" readonly>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Guru : </label>

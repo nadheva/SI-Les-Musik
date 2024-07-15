@@ -28,7 +28,7 @@ class Reservasi extends Model
 
     public function resepsionis()
     {
-        return $this->belongsTo(Resepsionis::class);
+        return $this->hasMany(Resepsionis::class);
     }
 
     public function user()

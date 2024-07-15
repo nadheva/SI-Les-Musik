@@ -216,11 +216,11 @@
                                     </div>
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Period Start : </label>
-                                        <input type="text" name="nama" id="nama" class="form-control" value="{{$r->course->period_start}}" readonly>
+                                        <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($r->course->periode->tgl_awal_pembelajaran)->format('d/m/Y')}}" readonly>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Period End : </label>
-                                        <input type="text" name="nama" id="nama" class="form-control" value="{{$r->course->period_end}}" readonly>
+                                        <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($r->course->periode->tgl_akhir_pembelajaran)->format('d/m/Y')}}" readonly>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Nama Guru : </label>
