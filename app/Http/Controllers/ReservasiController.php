@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Profile;
 use App\Models\Resepsionis;
 use App\Models\Course;
+use App\Models\NotificationLog;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TransaksiController;
@@ -115,6 +116,13 @@ class ReservasiController extends Controller
             $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Disetujui';
             $reservasi->save();
+
+            // NotificationLog::create([
+            //     'reservasi_id' => $reservasi->id,
+            //     'user_id' => $reservasi->user_id,
+            //     'message' => '<p> Reservasi telah disetujui, Silahkan menuju halaman transaksi dan melakukan pembayaran transaksi dengan nomor invoice {{$transaksi->invoice}} </p>',
+            //     'is_read' => 0
+            // ]);
             Alert::info('Success', 'Reservasi berhasil disetujui!');
             return redirect()->route('reservasi.index');
           } catch (\Exception $e) {
@@ -132,7 +140,12 @@ class ReservasiController extends Controller
             $reservasi->tgl_approve = \Carbon\Carbon::now();
             $reservasi->proses = 'Ditolak';
             $reservasi->save;
-
+            // NotificationLog::create([
+            //     'reservasi_id' => $reservasi->id,
+            //     'user_id' => $reservasi->user_id,
+            //     'message' => '<p> Reservasi ditolak, silahkan hubungi resepsionis dan majukan reservasi kembali </p>',
+            //     'is_read' => 0
+            // ]);
             Alert::info('Success', 'Reservasi berhasil ditolak!');
             return redirect()->back();
 

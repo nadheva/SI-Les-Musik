@@ -11,8 +11,9 @@ class NotificationLog extends Model
     protected $table = 'notification_log';
     protected $fillable = [
         'reservasi_id',
-        'status',
-        'read'
+        'user_id',
+        'message',
+        'is_read'
     ];
 
     public function reservasi()

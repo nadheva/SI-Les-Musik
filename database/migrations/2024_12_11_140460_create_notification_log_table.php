@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('notification_log', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservasi_id')->constrained('reservasi')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('status');
-            $table->enum('read',['0','1'])->default('0');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('message');
+            $table->enum('is_read',['0','1'])->default('0');
             $table->timestamps();
         });
     }
