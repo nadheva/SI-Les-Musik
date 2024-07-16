@@ -12,6 +12,7 @@ use App\Models\Periode;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -59,6 +60,30 @@ class CourseController extends Controller
                 'harga' => 'required',
             ]);
 
+            $data_exist = Course::where('periode_id', '=', $request->periode_id)
+            ->where('alat_musik_id', '=', $request->alat_musik_id)
+            ->where('level_id', '=', $request->level_id)
+            ->first();
+
+            $periode_input = Periode::where('id', '=', $request->periode_id)->select('tgl_awal_pendaftaran');
+            $data_period = DB::table('course')
+                            ->join('periode', 'course.periode_id', '=', 'periode.id')
+                            ->where('course.alat_musik_id', '=', $request->alat_musik_id)
+                            ->where('course.level_id', '=', $request->level_id)
+                            ->where('periode.tgl_akhir_ujian', '<=', $periode_input)
+                            ->get();
+
+            if($data_exist){
+                Alert::info('Info', 'Course sudah pernah ditambahakan, silahkan cek kembali!');
+                return redirect()->back();
+            }
+            else if($data_period){
+                Alert::info('Info', 'Periode Course berdekatan dengan course sebelumnya yang masih aktif, silahkan cek kembali!');
+                return redirect()->back();
+            }
+
+            else {
+
             if($modul = $request->file('modul')) {
                 $new_modul_name = rand() . '.' . $modul->getClientOriginalExtension();
                 $file_modul = "storage/modul/". $new_modul_name;
@@ -75,6 +100,7 @@ class CourseController extends Controller
             } else {
                 $file_name = null;
             }
+
             Course::create([
                 'judul' => $request->judul,
                 'level_id' => $request->level_id,
@@ -90,6 +116,7 @@ class CourseController extends Controller
 
             Alert::success('Success', 'Course berhasil ditambahakan!');
             return redirect()->route('course.index');
+        }
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->route('course.index');

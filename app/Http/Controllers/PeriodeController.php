@@ -79,6 +79,16 @@ class PeriodeController extends Controller
                 'tgl_akhir_ujian.before' => 'Tanggal akhir ujian harus setelah tanggal akhir pembelajaran!',
             ]);
 
+            $periode_check = Periode::Where('status', '=', 1)
+                                    ->Where('tgl_awal_pendaftaran', '>=', $request->tgl_akhir_ujian)
+                                    ->orWhere('tgl_akhir_ujian', '<=', $request->tgl_awal_pendaftaran)
+                                    ->get();
+
+            if($periode_check) {
+                Alert::info('Info', 'Periode tidak valid, silahkan cek kembali!');
+                return redirect()->back();
+            }else {
+
             Periode::create([
                 'kode' => $request->kode,
                 'nama_periode' => $request->nama_periode,
@@ -93,6 +103,7 @@ class PeriodeController extends Controller
 
             Alert::success('Success', 'Periode berhasil ditambahakan!');
             return redirect()->route('periode.index');
+        }
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->route('periode.index');
