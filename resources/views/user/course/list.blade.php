@@ -99,7 +99,7 @@
                     <a href="#" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Get started</a>
                 </div>
                 <!-- Pricing Card -->
-                @elseif($course[0]->level_id == 3 && $course->status = 1)
+                @elseif($course[0]->level_id == 3)
                 <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Advance</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Best for large scale uses and extended redistribution rights.</p>
@@ -135,7 +135,10 @@
                             <span>Free updates: <span class="font-semibold">36 months</span></span>
                         </li>
                     </ul>
-                    <a href="#" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Get started</a>
+                    @if($course->status = 1)
+                    <a href="{{url('course-view', encrypt($course[0]->id))}}" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
+                    @elseif($course->status = 0)
+                    <a href="" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900" @disabled(true)>Daftar Kelas</a>
                 </div>
                 @endif
             </div>

@@ -1,4 +1,5 @@
 <x-app-layout>
+    @vite(['resources/css/app.css','resources/js/app.js'])
     <main id="main" class="main">
 
         <div class="pagetitle">
@@ -12,148 +13,78 @@
             </ol>
           </nav>
         </div><!-- End Page Title -->
-    <section>
-        <div class="container-fluid py-4">
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row mb-3"></div>
-                    <h5 class="mb-4"></h5>
-                    <div class="row">
-                      <div class="col-xl-5 col-lg-6 text-center">
-                        <img class="w-100 border-radius-lg shadow-lg mx-auto" src="https://images.unsplash.com/photo-1616627781431-23b776aad6b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1884&q=80" alt="chair">
-                        <div class="my-gallery d-flex mt-4 pt-2" itemscope itemtype="http://schema.org/ImageGallery">
-                          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                            <a href="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-pink.jpg" itemprop="contentUrl" data-size="500x600">
-                              <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-pink.jpg" alt="Image description" />
-                            </a>
-                          </figure>
-                          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                            <a href="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/black-chair.jpg" itemprop="contentUrl" data-size="500x600">
-                              <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/black-chair.jpg" itemprop="thumbnail" alt="Image description" />
-                            </a>
-                          </figure>
-                          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                            <a href="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-steel.jpg" itemprop="contentUrl" data-size="500x600">
-                              <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-steel.jpg" itemprop="thumbnail" alt="Image description" />
-                            </a>
-                          </figure>
-                          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                            <a href="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-wood.jpg" itemprop="contentUrl" data-size="500x600">
-                              <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-wood.jpg" itemprop="thumbnail" alt="Image description" />
-                            </a>
-                          </figure>
-                        </div>
-                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
-                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-                          <!-- Background of PhotoSwipe.
-      It's a separate element, as animating opacity is faster than rgba(). -->
-                          <div class="pswp__bg"></div>
-                          <!-- Slides wrapper with overflow:hidden. -->
-                          <div class="pswp__scroll-wrap">
-                            <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-                            <!-- don't modify these 3 pswp__item elements, data is added later on. -->
-                            <div class="pswp__container">
-                              <div class="pswp__item"></div>
-                              <div class="pswp__item"></div>
-                              <div class="pswp__item"></div>
-                            </div>
-                            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-                            <div class="pswp__ui pswp__ui--hidden">
-                              <div class="pswp__top-bar">
-                                <!--  Controls are self-explanatory. Order can be changed. -->
-                                <div class="pswp__counter"></div>
+        <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+            <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+              <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+                <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                  <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
+                  <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
+                </div>
 
-                                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
-                                <!-- element will get class pswp__preloader--active when preloader is running -->
-                                <div class="pswp__preloader">
-                                  <div class="pswp__preloader__icn">
-                                    <div class="pswp__preloader__cut">
-                                      <div class="pswp__preloader__donut"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                                <div class="pswp__share-tooltip"></div>
-                              </div>
-                              <div class="pswp__caption">
-                                <div class="pswp__caption__center"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-5 mx-auto">
-                        <h3 class="mt-lg-0 mt-4">{{$course->judul}}</h3>
-                        <div class="rating">
-                          <i class="fas fa-star" aria-hidden="true"></i>
-                          <i class="fas fa-star" aria-hidden="true"></i>
-                          <i class="fas fa-star" aria-hidden="true"></i>
-                          <i class="fas fa-star" aria-hidden="true"></i>
-                          <i class="fas fa-star-half-alt" aria-hidden="true"></i>
-                        </div>
-                        <br>
-                        <h6 class="mb-0 mt-3">Harga</h6>
-                        <h5>{{Number::currency($course->harga, 'Rp.')}} /Semester</h5>
-                        <span class="badge bg-success">Tersedia</span>
-                        <br>
-                        <label class="mt-4">Deskripsi :</label>
-                        <ul>
-                          <li>{{$course->alat_musik->deskripsi}}</li>
-                          <li>{{$course->deskripsi}}</li>
-                        </ul>
-                        {{-- <div class="row mt-4">
-                          <div class="col-lg-5 mt-lg-0 mt-2">
-                            <label>Frame Material</label>
-                            <select class="form-control" name="choices-material" id="choices-material">
-                              <option value="Choice 1" selected="">Wood</option>
-                              <option value="Choice 2">Steel</option>
-                              <option value="Choice 3">Aluminium</option>
-                              <option value="Choice 4">Carbon</option>
-                            </select>
-                          </div>
-                          <div class="col-lg-5 mt-lg-0 mt-2">
-                            <label>Color</label>
-                            <select class="form-control" name="choices-colors" id="choices-colors">
-                              <option value="Choice 1" selected="">White</option>
-                              <option value="Choice 2">Gray</option>
-                              <option value="Choice 3">Black</option>
-                              <option value="Choice 4">Blue</option>
-                              <option value="Choice 5">Red</option>
-                              <option value="Choice 6">Pink</option>
-                            </select>
-                          </div>
-                          <div class="col-lg-2">
-                            <label>Quantity</label>
-                            <select class="form-control" name="choices-quantity" id="choices-quantity">
-                              <option value="Choice 1" selected="">1</option>
-                              <option value="Choice 2">2</option>
-                              <option value="Choice 3">3</option>
-                              <option value="Choice 4">4</option>
-                              <option value="Choice 5">5</option>
-                              <option value="Choice 6">6</option>
-                              <option value="Choice 7">7</option>
-                              <option value="Choice 8">8</option>
-                              <option value="Choice 9">9</option>
-                              <option value="Choice 10">10</option>
-                            </select>
-                          </div>
-                        </div> --}}
-                        <div class="row mt-8">
-                          <div class="col-lg-10">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formulirPendaftaran">Daftar Kelas
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div class="mt-6 sm:mt-8 lg:mt-0">
+                  <h1
+                    class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
+                  >
+                    {{$course->judul}}
+                  </h1>
+                  <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+                    <p
+                      class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
+                    >
+                      {{Number::currency($course->harga, 'Rp.')}} /Semester
+                    </p>
                   </div>
+
+                  <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
+                    <a
+                      href="#"
+                      title=""
+                      class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                      role="button"
+                    >
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+                      </svg>
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                        />
+                      </svg>
+                      Download Modul
+                    </a>
+
+                    <a
+                      href=""
+                      title=""
+                      class="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#formulirPendaftaran"
+                      role="button"
+                    >
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z" clip-rule="evenodd"/>
+                      </svg>
+
+                      Daftar Kelas
+                    </a>
+                  </div>
+
+                  <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+
+                  <p class="mb-6 text-gray-500 dark:text-gray-400">
+                    {{$course->deskripsi}}
+                  </p>
+
+                  <p class="text-gray-500 dark:text-gray-400">
+                    {{$course->alat_musik->deskripsi}}
+                  </p>
                 </div>
               </div>
             </div>
-        </section>
+          </section>
 
             <!-- Modal Tambah Role -->
             <div class="modal fade bd-example-modal-xl" id="formulirPendaftaran" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
