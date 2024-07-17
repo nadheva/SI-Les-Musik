@@ -19,5 +19,6 @@ class NotificationLog extends Model
     public function reservasi()
     {
         return $this->belongsTo(Reservasi::class);
+        
     }
 }

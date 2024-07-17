@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('reservasi_id')->constrained('reservasi')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('message');
-            $table->enum('is_read',['0','1'])->default('0');
+            $table->enum('is_read',['0','1'])->default('0'); // 0 : belum dibaca, 1 : dibaca
             $table->timestamps();
         });
     }

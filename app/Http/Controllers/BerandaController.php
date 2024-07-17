@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
+use App\Models\NotificationLog;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
@@ -77,5 +78,11 @@ class BerandaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function notification()
+    {
+        $notification = NotificationLog::where('user_id', '=', Auth::user()->id)->where('status', '=', '0')->latest()->get();
+        return $notification;
     }
 }

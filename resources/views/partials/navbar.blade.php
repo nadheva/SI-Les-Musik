@@ -1,3 +1,10 @@
+<?php
+        use App\Http\Controllers\BerandaController;
+        $controller = new BerandaController();
+        $notification = $controller->notification();
+
+?>
+
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -29,43 +36,39 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            @if($notification->count() !== 0)
+            <span class="badge bg-primary badge-number">{{$notification->count()}}</span>
+            @endif
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              Anda memiliki {{$notification->count()}} notifikasi baru!
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Tandai telah dibaca</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
+            @foreach($notification as $i)
             <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
+                @if($i->reservasi->proses = 'Ditolak')
+                <i class="bi bi-x-circle text-danger"></i>
+                @elseif($i->reservasi->proses = 'Disetujui')
+                <i class="bi bi-info-circle text-primary"></i>
+                @else
+                <i class="bi bi-exclamation-circle text-warning"></i>
+                @endif
               <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
+                <h4>Reservasi Sekolah Musik</h4>
+                <p>{{$i->message}}</p>
+                <p>{{\Carbon\Carbon::parse($i->created_at->diffFor)->diffForHumans()}}</p>
               </div>
             </li>
 
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            @endforeach
 
             <li class="notification-item">
               <i class="bi bi-check-circle text-success"></i>
@@ -79,21 +82,8 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
             <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              <a href="#">Lihat semua notifikasi</a>
             </li>
 
           </ul><!-- End Notification Dropdown Items -->
