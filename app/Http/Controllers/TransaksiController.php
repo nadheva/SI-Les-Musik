@@ -11,6 +11,8 @@ use Midtrans\Snap;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Validated;
@@ -54,6 +56,9 @@ class TransaksiController extends Controller
         }
 
         $invoice =  'INV-'.Str::upper($random);
+        $invoiceFile = $invoice.".pdf";
+        $invoicePath = ("invoices/".$invoiceFile);
+        $pdf = PDF::loadView('user.transaksi.invoice-unpaid', compact('cart_data', 'invoice', 'data', 'tanggal'))->save($invoicePath);
         $user = Auth::user()->id;
         $reservasi = Reservasi::where('id', '=', $reservasi_id)->first();
 
