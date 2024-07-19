@@ -82,7 +82,7 @@ class BerandaController extends Controller
 
     public function notification()
     {
-        $notification = NotificationLog::where('user_id', '=', Auth::user()->id)->where('status', '=', '0')->latest()->get();
+        $notification = NotificationLog::where('user_id', '=', Auth::user()->id)->where('is_read', '=', '0')->latest()->get();
         return $notification;
     }
 }

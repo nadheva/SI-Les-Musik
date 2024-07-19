@@ -33,14 +33,12 @@
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
-
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             @if($notification->count() !== 0)
             <span class="badge bg-primary badge-number">{{$notification->count()}}</span>
             @endif
           </a><!-- End Notification Icon -->
-
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               Anda memiliki {{$notification->count()}} notifikasi baru!
@@ -166,7 +164,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{Auth::user()->name}}</h6>
-              <span>{{Auth::user()->role->role}}</span>
+              <span>{{Auth::user()->role->fungsi}}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
