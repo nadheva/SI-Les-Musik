@@ -27,16 +27,16 @@
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
                       <tr>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>N</b>o.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                           <b>N</b>ama
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Telepon</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>K</b>ursus</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>G</b>rade</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>N</b>o. <b>T</b>elepon</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>E</b>mail</th>
                         {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th> --}}
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>A</b>ksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -115,12 +115,12 @@
                                             <table class="table datatable align-items-center mb-0" id="datatable-search1">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th>No</th>
-                                                        <th>Invoice</th>
-                                                        <th>Course</th>
-                                                        <th>Status</th>
-                                                        <th>Harga Course</th>
-                                                        <th>Aksi</th>
+                                                        <th><b>N</b>o.</th>
+                                                        <th><b>I</b>nvoice</th>
+                                                        <th><b>C</b>ourse</th>
+                                                        <th><b>S</b>tatus</th>
+                                                        <th><b>H</b>arga <b>C</b>ourse</th>
+                                                        <th><b>A</b>ksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

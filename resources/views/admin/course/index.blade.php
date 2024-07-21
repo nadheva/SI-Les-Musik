@@ -27,18 +27,18 @@
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
                       <tr>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>N</b>o.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                           <b>J</b>udul
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Periode</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>J</b>enis</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>L</b>evel</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>D</b>eskripsi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>S</b>tatus</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>H</b>arga</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>P</b>eriode</th>
                         {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kursus</th> --}}
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>A</b>ksi</th>
                       </tr>
                     </thead>
                     <tbody>

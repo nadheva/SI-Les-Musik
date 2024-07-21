@@ -1,7 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Guru;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\AlatMusik;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -11,7 +18,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $laporan = DB::table('reservasi');
+        return view('admin.laporan.index');
     }
 
     /**

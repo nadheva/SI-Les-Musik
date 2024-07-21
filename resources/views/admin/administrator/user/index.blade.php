@@ -27,14 +27,14 @@
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
                     <thead>
                       <tr>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>N</b>o.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                           <b>U</b>sername
                         </th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-type="date" data-format="YYYY/DD/MM">Join</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>E</b>mail</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>R</b>ole</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-type="date" data-format="YYYY/DD/MM"><b>J</b>oin</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><b>A</b>ksi</th>
                       </tr>
                     </thead>
                     <tbody>

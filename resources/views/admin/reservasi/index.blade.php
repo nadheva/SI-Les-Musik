@@ -44,14 +44,14 @@
                                             <table class="table datatable align-items-center mb-0" id="datatable-search">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th>No</th>
-                                                        <th>Jenis Course</th>
-                                                        <th>Nama Pemesan</th>
-                                                        <th>Tanggal</th>
-                                                        <th>Harga Course</th>
-                                                        <th>Proses</th>
-                                                        <th>Catatan</th>
-                                                        <th>Aksi</th>
+                                                        <th><b>N</b>o</th>
+                                                        <th><b>J</b>enis <b>C</b>ourse</th>
+                                                        <th><b>N</b>ama <b>P</b>emesan</th>
+                                                        <th><b>T</b>anggal</th>
+                                                        <th><b>H</b>arga <b>C</b>ourse</th>
+                                                        <th><b>P</b>roses</th>
+                                                        <th><b>C</b>atatan</th>
+                                                        <th><b>A</b>ksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
