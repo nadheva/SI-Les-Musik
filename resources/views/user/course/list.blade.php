@@ -140,7 +140,7 @@ p {
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
                 @elseif($course->status = 0)
                 <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
-                @endi
+                @endif
             </div>
             </div>
             </div>
@@ -171,7 +171,7 @@ p {
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
                 @elseif($course->status = 0)
                 <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
-                @endi
+                @endif
             </div>
             </div>
             </div>
