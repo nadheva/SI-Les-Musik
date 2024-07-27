@@ -14,7 +14,7 @@
 }
 
 .event .btn {
-    background: #ff007a;
+    background: #006eff;
 }
 
 .event .nav-content strong {
@@ -276,12 +276,12 @@ ul {
         <main id="main" class="main">
 
             <div class="pagetitle">
-              <h1>Kelas</h1>
+              <h1>Course</h1>
               <nav>
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                   <li class="breadcrumb-item">Users</li>
-                  <li class="breadcrumb-item active">Kelas</li>
+                  <li class="breadcrumb-item active">Course</li>
                 </ol>
               </nav>
             </div><!-- End Page Title -->
@@ -361,9 +361,9 @@ ul {
 <h2>Course {{$c->nama}}</h2>
 <p>{{$c->deskripsi}}</p>
 @if(count($c->course) > 0)
-<a href="#" class="btn mt-20 mr-10"><i class="far fa-ticket-alt"></i>Daftar</a>
+<a href="{{route('course.show', encrypt($c->id))}}" class="btn mt-20 mr-10"><i class="far fa-ticket-alt"></i>Daftar</a>
 @else
-<a href="#" class="btn mt-20 mr-10 disabled"><i class="far fa-ticket-alt"></i>Daftar</a>
+<a href="" class="btn mt-20 mr-10 disabled"><i class="far fa-ticket-alt"></i>Daftar</a>
 @endif
 {{-- <a href="#" class="btn mt-20">Read More</a> --}}
 <div class="crical"> </div>

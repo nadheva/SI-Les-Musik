@@ -1,154 +1,187 @@
 <x-app-layout>
-    @vite(['resources/css/app.css','resources/js/app.js'])
-    <main id="main" class="main">
+<style type="text/css">
+    	body{margin-top:20px;}
+.pricing-box {
+  -webkit-box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+  padding: 35px 50px;
+  border-radius: 20px;
+  position: relative;
+}
 
+.pricing-box .plan {
+  font-size: 34px;
+}
+
+.pricing-badge {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  right: 0;
+  width: 100%;
+  display: block;
+  font-size: 15px;
+  padding: 0;
+  overflow: hidden;
+  height: 100px;
+}
+
+.pricing-badge .badge {
+  float: right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  right: -67px;
+  top: 17px;
+  position: relative;
+  text-align: center;
+  width: 200px;
+  font-size: 13px;
+  margin: 0;
+  padding: 7px 10px;
+  font-weight: 500;
+  color: #ffffff;
+  background: #fb7179;
+}
+.mb-2, .my-2 {
+    margin-bottom: .5rem!important;
+}
+p {
+    line-height: 1.7;
+}
+
+
+    </style>
+    <main id="main" class="main">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
         <div class="pagetitle">
           <h1>Kelas</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
               <li class="breadcrumb-item">Users</li>
-              <li class="breadcrumb-item ">Kelas</li>
-              <li class="breadcrumb-item active">Daftar Kelas</li>
+              <li class="breadcrumb-item ">Course</li>
+              <li class="breadcrumb-item active">Daftar Level Course</li>
             </ol>
           </nav>
         </div><!-- End Page Title -->
-    <section class="bg-white dark:bg-gray-900">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Pilih kelas sesuai level</h2>
-                <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+        <section class="section" id="pricing">
+            <div class="container">
+            <div class="row">
+            <div class="col-lg-12">
+            <div class="title-box text-center">
+            <h3 class="title-heading mt-4">Pilih kelas sesuai level </h3>
+            <p class="text-muted f-17 mt-3">Vivamus ac nulla ultrices laoreet neque mollis mi morbi
+            elementum mauris
+            sit amet arcu <br> fringilla auctor In eleifend maximus nisi sed vulputate.</p>
+            <img src="images/home-border.png" height="15" class="mt-3" alt>
             </div>
-            <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-                <!-- Beginner -->
-                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                    <h3 class="mb-4 text-2xl font-semibold">Beginner</h3>
-                    <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Pilihan terbaik untuk pemula</p>
-                    <div class="flex justify-center items-baseline my-8">
-                        <span class="mr-2 text-5xl font-extrabold"></span>
-                        <span class="text-gray-500 dark:text-gray-400">{{Number::currency($course[0]->harga, 'Rp.')}}/kelas</span>
-                    </div>
-                    <!-- List -->
-                    <ul role="list" class="mb-8 space-y-4 text-left">
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Individual configuration</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>No setup, or hidden fees</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Team size: <span class="font-semibold">1 developer</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Premium support: <span class="font-semibold">6 months</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Free updates: <span class="font-semibold">6 months</span></span>
-                        </li>
-                    </ul>
-                    @if($course[0]->level_id == 1 && $course->status = 1)
-                    <a href="{{url('course-view', encrypt($course[0]->id))}}" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
-                    @elseif($course->status = 0)
-                    <a href="" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900" @disabled(true)>Daftar Kelas</a>
-                    @endif
-                </div>
-
-                <!-- Intermediate -->
-                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                    <h3 class="mb-4 text-2xl font-semibold">Intermediate</h3>
-                    <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Relevant for multiple users, extended & premium support.</p>
-                    <div class="flex justify-center items-baseline my-8">
-                        <span class="mr-2 text-5xl font-extrabold">$99</span>
-                        <span class="text-gray-500 dark:text-gray-400">/month</span>
-                    </div>
-                    <!-- List -->
-                    <ul role="list" class="mb-8 space-y-4 text-left">
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Individual configuration</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>No setup, or hidden fees</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Team size: <span class="font-semibold">10 developers</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Premium support: <span class="font-semibold">24 months</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Free updates: <span class="font-semibold">24 months</span></span>
-                        </li>
-                    </ul>
-                    @if($course[0]->level_id == 2 && $course->status = 1)
-                    <a href="{{url('course-view', encrypt($course[0]->id))}}" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
-                    @elseif($course->status = 0)
-                    <a href="" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900" @disabled(true)>Daftar Kelas</a>
-                    @endif
-                </div>
-                <!-- Advance -->
-                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                    <h3 class="mb-4 text-2xl font-semibold">Advance</h3>
-                    <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Best for large scale uses and extended redistribution rights.</p>
-                    <div class="flex justify-center items-baseline my-8">
-                        <span class="mr-2 text-5xl font-extrabold">$499</span>
-                        <span class="text-gray-500 dark:text-gray-400">/month</span>
-                    </div>
-                    <!-- List -->
-                    <ul role="list" class="mb-8 space-y-4 text-left">
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Individual configuration</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>No setup, or hidden fees</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Team size: <span class="font-semibold">100+ developers</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Premium support: <span class="font-semibold">36 months</span></span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span>Free updates: <span class="font-semibold">36 months</span></span>
-                        </li>
-                    </ul>
-                    @if($course[0]->level_id == 3 && $course->status = 1)
-                    <a href="{{url('course-view', encrypt($course[0]->id))}}" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Daftar Kelas</a>
-                    @elseif($course->status = 0)
-                    <a href="" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900" @disabled(true)>Daftar Kelas</a>
-                    @endif
-                </div>
             </div>
-        </div>
-      </section>
+            </div>
+            <div class="row mt-5 pt-4">
+            <div class="col-lg-4">
+            <div class="pricing-box mt-4">
+            <i class="mdi mdi-account h1"></i>
+            <h4 class="f-20">Beginner</h4>
+            <div class="mt-4 pt-2">
+            <p class="mb-2 f-18">Features</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
+            Target Audience</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
+            User Account</p>
+            <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>100+</b>
+            Video Tuts</p>
+            <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Public</b>
+            Displays
+            </p>
+            </div>
+            <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
+            </p>
+            <div class="pricing-plan mt-4 pt-2">
+                <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
+                <p class="text-muted mb-0">Per Semester</p>
+            </div>
+            <div class="mt-4 pt-3">
+            @if($course[0]->level_id == 3 && $course->status = 1)
+            <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+            @elseif($course->status = 0)
+            <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+            @endif
+            </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+            <div class="pricing-box mt-4">
+            <div class="pricing-badge">
+            <span class="badge">Featured</span>
+            </div>
+            <i class="mdi mdi-account-multiple h1 text-primary"></i>
+            <h4 class="f-20 text-primary">Intermediatte</h4>
+            <div class="mt-4 pt-2">
+            <p class="mb-2 f-18">Features</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
+            Target Audience</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
+            User Account</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>100+</b>
+            Video Tuts</p>
+            <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Public</b>
+            Displays
+            </p>
+            </div>
+            <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
+            </p>
+            <div class="pricing-plan mt-4 pt-2">
+                <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
+                <p class="text-muted mb-0">Per Semester</p>
+            </div>
+            <div class="mt-4 pt-3">
+                @if($course[0]->level_id == 3 && $course->status = 1)
+                <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @elseif($course->status = 0)
+                <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+                @endi
+            </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+            <div class="pricing-box mt-4">
+            <i class="mdi mdi-account-multiple-plus h1"></i>
+            <h4 class="f-20">Advance</h4>
+            <div class="mt-4 pt-2">
+            <p class="mb-2 f-18">Features</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
+            Target Audience</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
+            User Account</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>100+</b>
+            Video Tuts</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Public</b>
+            Displays
+            </p>
+            </div>
+            <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
+            </p>
+            <div class="pricing-plan mt-4 pt-2">
+            <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
+            <p class="text-muted mb-0">Per Semester</p>
+            </div>
+            <div class="mt-4 pt-3">
+                @if($course[0]->level_id == 3 && $course->status = 1)
+                <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @elseif($course->status = 0)
+                <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+                @endi
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
     </main>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </x-app-layout>
