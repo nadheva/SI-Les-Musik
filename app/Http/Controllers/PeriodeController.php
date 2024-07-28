@@ -84,7 +84,7 @@ class PeriodeController extends Controller
                                     ->orWhere('tgl_akhir_ujian', '<=', $request->tgl_awal_pendaftaran)
                                     ->get();
 
-            if($periode_check) {
+            if(count($periode_check) > 0) {
                 Alert::info('Info', 'Periode tidak valid, silahkan cek kembali!');
                 return redirect()->back();
             }else {
