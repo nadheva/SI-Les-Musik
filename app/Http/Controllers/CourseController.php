@@ -77,7 +77,7 @@ class CourseController extends Controller
                 Alert::info('Info', 'Course sudah pernah ditambahakan, silahkan cek kembali!');
                 return redirect()->back();
             }
-            else if($data_period){
+            else if(count($data_period) > 0){
                 Alert::info('Info', 'Periode Course berdekatan dengan course sebelumnya yang masih aktif, silahkan cek kembali!');
                 return redirect()->back();
             }
