@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 
     //Beranda
-    Route::resource('beranda', BerandaController::class);
+    Route::resource('beranda', BerandaController::class)->except('index');
 
     //Transaksi
     Route::resource('transaksi', TransaksiController::class);
