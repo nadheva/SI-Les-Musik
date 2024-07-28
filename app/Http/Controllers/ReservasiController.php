@@ -52,19 +52,19 @@ class ReservasiController extends Controller
            $reservasi =     Reservasi::create([
                             'course_id' => $request->course_id,
                             'user_id' => Auth::user()->id,
-                            // 'resepsionis_id' => 1,
+                            'resepsionis_id' => 1,
                             // 'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
                             'proses' => 'Dalam Proses',
                             'catatan' => $request->catatan,
                             'grand_total' => $request->grand_total
                         ]);
 
-            NotificationLog::create([
-                'reservasi_id' => $reservasi->id,
-                'user_id' => 1,
-                'message' => '<p> Reservasi course {{$reservasi->course->judul}} oleh {{$reservasi->user->name}} butuh approval, Silahkan menuju halaman reservasi untuk melakukan proses approval </p>',
-                'is_read' => 0
-            ]);
+            // NotificationLog::create([
+            //     'reservasi_id' => $reservasi->id,
+            //     'user_id' => 1,
+            //     'message' => '<p> Reservasi course {{$reservasi->course->judul}} oleh {{$reservasi->user->name}} butuh approval, Silahkan menuju halaman reservasi untuk melakukan proses approval </p>',
+            //     'is_read' => 0
+            // ]);
 
             Alert::success('Success', 'Reservasi berhasil ditambahakan!');
             return redirect()->route('reservasi.index');
@@ -124,12 +124,12 @@ class ReservasiController extends Controller
             $reservasi->proses = 'Disetujui';
             $reservasi->save();
 
-            NotificationLog::create([
-                'reservasi_id' => $reservasi->id,
-                'user_id' => $reservasi->user_id,
-                'message' => '<p> Reservasi telah disetujui, Silahkan menuju halaman transaksi dan melakukan pembayaran transaksi dengan nomor invoice {{$transaksi->pay()->invoice}} </p>',
-                'is_read' => 0
-            ]);
+            // NotificationLog::create([
+            //     'reservasi_id' => $reservasi->id,
+            //     'user_id' => $reservasi->user_id,
+            //     'message' => '<p> Reservasi telah disetujui, Silahkan menuju halaman transaksi dan melakukan pembayaran transaksi dengan nomor invoice {{$transaksi->pay()->invoice}} </p>',
+            //     'is_read' => 0
+            // ]);
             Alert::info('Success', 'Reservasi berhasil disetujui!');
             return redirect()->route('reservasi.index');
           } catch (\Exception $e) {

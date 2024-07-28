@@ -35,6 +35,6 @@ class Course extends Model
 
     public function periode()
     {
-        return $this->belongsTo(Periode::class);
+        return $this->belongsTo(Periode::class, 'periode_id', 'id');
     }
 }

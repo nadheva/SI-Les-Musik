@@ -97,16 +97,16 @@ p {
             </div>
             <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
             </p>
-            <div class="pricing-plan mt-4 pt-2">
+            {{-- <div class="pricing-plan mt-4 pt-2">
                 <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
                 <p class="text-muted mb-0">Per Semester</p>
-            </div>
-            <div class="mt-4 pt-3">
-            @if($course[0]->level_id == 3 && $course->status = 1)
+            </div> --}}
+            @if($course[0]->level_id == 1 && $course[0]->status = 1)
             <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
             @elseif($course->status = 0)
             <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
             @endif
+            <div class="mt-4 pt-3">
             </div>
             </div>
             </div>
@@ -115,8 +115,8 @@ p {
             <div class="pricing-badge">
             <span class="badge">Featured</span>
             </div>
-            <i class="mdi mdi-account-multiple h1 text-primary"></i>
-            <h4 class="f-20 text-primary">Intermediatte</h4>
+            <i class="mdi mdi-account-multiple h1"></i>
+            <h4 class="f-20">Intermediatte</h4>
             <div class="mt-4 pt-2">
             <p class="mb-2 f-18">Features</p>
             <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
@@ -131,12 +131,12 @@ p {
             </div>
             <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
             </p>
-            <div class="pricing-plan mt-4 pt-2">
+            {{-- <div class="pricing-plan mt-4 pt-2">
                 <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
                 <p class="text-muted mb-0">Per Semester</p>
-            </div>
+            </div> --}}
             <div class="mt-4 pt-3">
-                @if($course[0]->level_id == 3 && $course->status = 1)
+                @if($course[0]->level_id == 2 && $course[0]->status = 1)
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
                 @elseif($course->status = 0)
                 <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
@@ -162,12 +162,12 @@ p {
             </div>
             <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
             </p>
-            <div class="pricing-plan mt-4 pt-2">
+            {{-- <div class="pricing-plan mt-4 pt-2">
             <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
             <p class="text-muted mb-0">Per Semester</p>
-            </div>
+            </div> --}}
             <div class="mt-4 pt-3">
-                @if($course[0]->level_id == 3 && $course->status = 1)
+                @if($course[0]->level_id == 3 && $course[0]->status = 1)
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
                 @elseif($course->status = 0)
                 <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>

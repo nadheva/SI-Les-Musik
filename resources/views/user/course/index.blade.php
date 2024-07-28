@@ -330,11 +330,11 @@ ul {
 <div class="title">
 <img src="{{asset($c->foto)}}" alt="img">
 <h5>{{$c->nama}}</h5>
-@if(count($c->course) > 0)
-<span class="text-lg"></span>{{$c->periode->tgl_akhir_pendaftaran}}</p>
+{{-- @if(count($c->course) > 0)
+<span class="text-lg"></span>{{$c->course->periode->tgl_akhir_pendaftaran}}</p>
 @else
 <span class="text-lg"></span>Kelas Ditutup</p>
-@endif
+@endif --}}
 <p>Level:</p>
 </div>
 <ul>
@@ -351,12 +351,12 @@ ul {
 <div class="col-lg-10">
 <div class="event-list-content fix">
 <ul data-animation="fadeInUp animated" data-delay=".2s" style="animation-delay: 0.2s;" class>
-@if(count($c->course) > 0)
+{{-- @if(count($c->course) > 0)
 <li>Batas Pendaftaran</li>
-<li>{{$c->periode->tgl_akhir_pendaftaran}}</li>
+<li>{{$c->course->periode->tgl_akhir_pendaftaran}}</li>
 @else
 <li>Kelas Tidak Tersedia</li>
-@endif
+@endif --}}
 </ul>
 <h2>Course {{$c->nama}}</h2>
 <p>{{$c->deskripsi}}</p>

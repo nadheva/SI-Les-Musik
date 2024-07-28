@@ -56,9 +56,9 @@ class TransaksiController extends Controller
         }
 
         $invoice =  'INV-'.Str::upper($random);
-        $invoiceFile = $invoice.".pdf";
-        $invoicePath = ("invoices/".$invoiceFile);
-        $pdf = PDF::loadView('user.transaksi.invoice-unpaid', compact('cart_data', 'invoice', 'data', 'tanggal'))->save($invoicePath);
+        // $invoiceFile = $invoice.".pdf";
+        // $invoicePath = ("invoices/".$invoiceFile);
+        // $pdf = PDF::loadView('user.transaksi.invoice-unpaid', compact('cart_data', 'invoice', 'data', 'tanggal'))->save($invoicePath);
         $user = Auth::user()->id;
         $reservasi = Reservasi::where('id', '=', $reservasi_id)->first();
 
@@ -207,11 +207,11 @@ class TransaksiController extends Controller
         if(Auth::user()->role_id == 2){
             $transaksi = Payment::findOrfail($id1);
             $client = env('MIDTRANS_CLIENTKEY');
-            return view('user.transaksi.show', compact('transaksi', 'client'));
+            return view('user.transaksi.view', compact('transaksi', 'client'));
         } else {
             $transaksi = Payment::findOrfail($id1);
             $client = env('MIDTRANS_CLIENTKEY');
-            return view('admin.transaksi.show', compact('transaksi', 'client'));
+            return view('admin.transaksi.view', compact('transaksi', 'client'));
         }
 
     }
