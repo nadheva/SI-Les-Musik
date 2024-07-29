@@ -80,7 +80,8 @@ class ProfileController extends Controller
                     ]);
 
             Alert::success('Success', 'Profile berhasil ditambahakan!');
-            return redirect()->route('profile.show', encrypt($user->id));
+            // return redirect()->route('profile.show', encrypt($user->id));
+            return redirect()->route('profile.index');
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->back();
@@ -111,14 +112,14 @@ class ProfileController extends Controller
 
     public function show($id)
     {
-    //    $user_id = Auth::user()->id;
-    //    $profile = Profile::where('user_id', decrypt($id))->first();
-    //    if(is_null($profile) && Auth::user()->role_id == '2'){
-    //        return redirect()->route('profile.create')
-    //        ->with('danger', 'Anda belum menambahkan data profil!');
-    //    } else {
-    //    return view('user.profile.index', compact('profile'));
-    //    }
+       $user_id = Auth::user()->id;
+       $profile = Profile::where('user_id', decrypt($id))->first();
+       if(is_null($profile) && Auth::user()->role_id == '2'){
+           return redirect()->route('profile.create')
+           ->with('danger', 'Anda belum menambahkan data profil!');
+       } else {
+       return view('user.profile.index', compact('profile'));
+       }
     }
 
 
