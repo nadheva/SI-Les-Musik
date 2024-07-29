@@ -196,6 +196,29 @@
           <span>Laporan</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      <li class="nav-heading">Support</li>
+
+      <li class="nav-item">
+        @if(Route::is('faq.*'))
+        <a class="nav-link" href="{{route('faq.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('faq.index')}}">
+        @endif
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        @if(Route::is('kontak.*'))
+        <a class="nav-link" href="{{route('kontak.index')}}">
+        @else
+        <a class="nav-link collapsed" href="{{route('kontak.index')}}">
+        @endif
+          <i class="bi bi-envelope"></i>
+          <span>Kontak</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->

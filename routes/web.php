@@ -17,6 +17,8 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\KontakController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -59,6 +61,12 @@ Route::middleware('auth')->group(function () {
     //Jadwal
     Route::resource('laporan', LaporanController::class);
 
+    //Faq
+    Route::resource('faq', FaqController::class);
+
+    //Kontak
+    Route::resource('kontak', KontakController::class);
+    
     //Periode
     Route::resource('periode', PeriodeController::class)->except('update');
     Route::put('periode-update/{id}', [PeriodeController::class, 'update']);
