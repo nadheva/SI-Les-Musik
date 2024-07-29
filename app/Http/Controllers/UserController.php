@@ -20,9 +20,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::latest()->get()->except(Auth::user()->id, 'id');
-        $role = Role::get();
-        return view('admin.administrator.user.index', compact('user', 'role'));
+        if (Auth::user()->role_id == '1') {
+            $user = User::latest()->get()->except(Auth::user()->id, 'id');
+            $role = Role::get();
+            return view('admin.administrator.user.index', compact('user', 'role'));
+        } else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
+        }
     }
 
     /**

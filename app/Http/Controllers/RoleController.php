@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use RealRashid\SweetAlert\Facades\Alert;
 use PHPUnit\Event\Code\Throwable;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -14,8 +15,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = Role::latest()->get();
-        return view('admin.administrator.role.index', compact('role'));
+        if (Auth::user()->role_id == '1') {
+            $role = Role::latest()->get();
+            return view('admin.administrator.role.index', compact('role'));
+        } else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
+        }
     }
 
     /**

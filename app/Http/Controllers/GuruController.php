@@ -18,9 +18,14 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $guru = Guru::latest()->get();
-        $alatmusik = AlatMusik::latest()->get();
-        return view('admin.master.guru.index', compact('guru', 'alatmusik'));
+        if (Auth::user()->role_id == '1') {
+            $guru = Guru::latest()->get();
+            $alatmusik = AlatMusik::latest()->get();
+            return view('admin.master.guru.index', compact('guru', 'alatmusik'));
+        } else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
+        }
     }
 
     /**

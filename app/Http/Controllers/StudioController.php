@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\AlatMusik;
 use App\Models\Studio;
+use Illuminate\Support\Facades\Auth;
 
 class StudioController extends Controller
 {
@@ -14,9 +15,14 @@ class StudioController extends Controller
      */
     public function index()
     {
-        $studio = Studio::latest()->paginate(10);
-        $alatmusik = AlatMusik::latest()->get();
-        return view('admin.master.studio.index', compact('studio', 'alatmusik'));
+        if (Auth::user()->role_id == '1') {
+            $studio = Studio::latest()->paginate(10);
+            $alatmusik = AlatMusik::latest()->get();
+            return view('admin.master.studio.index', compact('studio', 'alatmusik'));
+        } else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
+        }
     }
 
     /**

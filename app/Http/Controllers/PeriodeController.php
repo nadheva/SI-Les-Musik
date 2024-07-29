@@ -19,8 +19,8 @@ class PeriodeController extends Controller
             $periode = Periode::latest()->paginate(10);
             return view('admin.master.periode.index', compact('periode'));
         } else {
-            Alert::info('Error', 'Maaf anda tidak diizinkan untuk mengakses halaman ini!');
-            return redirect()->back();
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
         }
     }
 

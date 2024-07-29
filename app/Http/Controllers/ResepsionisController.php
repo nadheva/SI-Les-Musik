@@ -18,8 +18,13 @@ class ResepsionisController extends Controller
      */
     public function index()
     {
-        $resepsionis = Resepsionis::latest()->get();
-        return view('admin.master.resepsionis.index', compact('resepsionis'));
+        if (Auth::user()->role_id == '1') {
+            $resepsionis = Resepsionis::latest()->get();
+            return view('admin.master.resepsionis.index', compact('resepsionis'));
+        } else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('user.beranda.index');
+        }
     }
 
     /**

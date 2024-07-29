@@ -17,13 +17,13 @@ class BerandaController extends Controller
     {
         if (Auth::user()->role_id == '1') {
             Alert::success('Welcome', 'Selamat datang di dashboard admin!');
-        return view('dashboard');
+        return view('admin.beranda.index');
         }
         else if(Auth::user()->role_id == '2') {
             $user = Auth::user();
             if(isset($user->profile)){
             Alert::success('Welcome', 'Selamat datang di dashboard user!');
-            return view('dashboard');
+            return view('user.beranda.index');
             }
             else {
                 Alert::info('Info', 'Silahkan isi profil anda terlebih dahulu!');
