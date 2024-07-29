@@ -176,6 +176,7 @@ Data Formulir
 </div>
 </div>
 
+
 <div class="col-lg-3">
 <div class="card position-sticky top-0">
 <div class="p-3 bg-light bg-opacity-10">
@@ -193,6 +194,7 @@ Data Formulir
 <div class="d-flex justify-content-between mb-4 small">
 <span>TOTAL</span> <strong class="text-dark">{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</strong>
 </div>
+@if($transaksi->status == 'pending')
 <div class="form-check mb-1 small">
 <input class="form-check-input" type="checkbox" value id="tnc">
 <label class="form-check-label" for="tnc">
@@ -202,6 +204,9 @@ Saya menyetujui <a href="#">syarat dan ketentuan</a>
 <button class="btn btn-primary w-100 mt-2" id="pay-button">Bayar</button>
 </div>
 </div>
+@elseif($transaksi->status == 'success')
+<button class="btn btn-success w-100 mt-2 readonly">Lunas</button>
+@endif
 </div>
 </div>
 </div>

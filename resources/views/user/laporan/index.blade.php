@@ -66,7 +66,7 @@
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{ $i->periode }}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->tgl_join->format('d-m-Y')}}
+                                                            <td class="text-sm font-weight-normal">{{\Carbon\Carbon::parse($i->tgl_join)->format('d-m-Y') }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">
                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#approveReservasi-">Detail
@@ -108,7 +108,7 @@
                                                             </td>
                                                             <td class="text-sm font-weight-normal">{{ $i->periode }}
                                                             </td>
-                                                            <td class="text-sm font-weight-normal">{{$i->tgl_join->format('d-m-Y')}}
+                                                            <td class="text-sm font-weight-normal">{{\Carbon\Carbon::parse($i->tgl_join)->format('d-m-Y') }}
                                                             </td>
                                                             <td class="text-sm font-weight-normal">
                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#approveReservasi-">Detail
