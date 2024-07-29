@@ -29,7 +29,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->route('beranda.index');
+
+        // intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -43,6 +45,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('/login');
+        return redirect()->route('login');
     }
 }

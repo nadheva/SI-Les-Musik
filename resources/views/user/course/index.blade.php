@@ -351,12 +351,12 @@ ul {
 <div class="col-lg-10">
 <div class="event-list-content fix">
 <ul data-animation="fadeInUp animated" data-delay=".2s" style="animation-delay: 0.2s;" class>
-{{-- @if(count($c->course) > 0)
+@if(count($c->course) > 0)
 <li>Batas Pendaftaran</li>
-<li>{{$c->course->periode->tgl_akhir_pendaftaran}}</li>
+<li>{{$c->course[0]->periode->tgl_akhir_pendaftaran}}</li>
 @else
 <li>Kelas Tidak Tersedia</li>
-@endif --}}
+@endif
 </ul>
 <h2>Course {{$c->nama}}</h2>
 <p>{{$c->deskripsi}}</p>

@@ -17,14 +17,20 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-     public function index()
-     {
-        $profile = Profile::where('user_id', Auth::user()->id)->first();
-        if(is_null($profile) && Auth::user()->role_id == '2'){
-            return redirect()->route('profile.create')
-            ->with('danger', 'Anda belum menambahkan data profil!');
-        } else {
-        return view('user.profile.index', compact('profile'));
+     public function index(){
+
+        if (Auth::user()->role_id == '2') {
+            $profile = Profile::where('user_id', Auth::user()->id)->first();
+            if(is_null($profile) && Auth::user()->role_id == '2'){
+                return redirect()->route('profile.create')
+                ->with('danger', 'Anda belum menambahkan data profil!');
+            } else {
+            return view('user.profile.index', compact('profile'));
+            }
+        }
+        else {
+            Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+            return view('admin.beranda.index');
         }
      }
 
@@ -106,22 +112,33 @@ class ProfileController extends Controller
     public function show($id)
     {
     //    $user_id = Auth::user()->id;
-       $profile = Profile::where('user_id', decrypt($id))->first();
-       if(is_null($profile) && Auth::user()->role_id == '2'){
-           return redirect()->route('profile.create')
-           ->with('danger', 'Anda belum menambahkan data profil!');
-       } else {
-       return view('user.profile.index', compact('profile'));
-       }
+    //    $profile = Profile::where('user_id', decrypt($id))->first();
+    //    if(is_null($profile) && Auth::user()->role_id == '2'){
+    //        return redirect()->route('profile.create')
+    //        ->with('danger', 'Anda belum menambahkan data profil!');
+    //    } else {
+    //    return view('user.profile.index', compact('profile'));
+    //    }
     }
 
 
     public function update(Request $request, $id)
     {
         try {
+
+            $request->validate([
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'alamat' => 'required',
+                'no_telp' => 'required',
+                'nama_ortu' => 'required',
+                'pekerjaan_ortu' => 'required',
+            ]);
             // $user_id = Auth::user()->id;
             // $id = Profile::select('id')->where('user_id', $user_id)->get();
-            $profile = Profile::find($id);
+            $profile = Profile::where('user_id', Auth::user()->id);
             $profile->nama_depan = $request->nama_depan;
             $profile->nama_belakang = $request->nama_belakang;
             $profile->tempat_lahir = $request->tempat_lahir;
@@ -145,7 +162,7 @@ class ProfileController extends Controller
             $profile->save;
 
             Alert::info('Success', 'Profile berhasil diperbarui!');
-            return redirect()->route('profile.show', Auth::user()->id);
+            return redirect()->route('profile.index');
 
           } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());

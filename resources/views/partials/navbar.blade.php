@@ -169,7 +169,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
+            @if(Auth::user()->role_id == 2)
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('profile.index')}}">
                 <i class="bi bi-person"></i>
@@ -177,6 +177,7 @@
               </a>
             </li>
             <li>
+            @endif
               <hr class="dropdown-divider">
             </li>
 
