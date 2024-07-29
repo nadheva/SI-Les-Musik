@@ -352,8 +352,8 @@ ul {
 <div class="event-list-content fix">
 <ul data-animation="fadeInUp animated" data-delay=".2s" style="animation-delay: 0.2s;" class>
 @if(count($c->course) > 0)
-<li>Batas Pendaftaran</li>
-<li>{{$c->course[0]->periode->tgl_akhir_pendaftaran}}</li>
+<li>Batas Pendaftaran:</li>
+<li>{{\Carbon\Carbon::parse($c->course[0]->periode->tgl_akhir_pendaftaran)->format('d-m-Y')}}</li>
 @else
 <li>Kelas Tidak Tersedia</li>
 @endif

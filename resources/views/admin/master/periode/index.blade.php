@@ -50,12 +50,12 @@
                         </td>
                         <td class="align-middle text-center">{{$a->kode}}</td>
                         <td class="align-middle text-center">{{$a->nama_periode}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pendaftaran)->format('d/m/Y')}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pendaftaran)->format('d/m/Y')}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pembelajaran)->format('d/m/Y')}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pembelajaran)->format('d/m/Y')}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_ujian)->format('d/m/Y')}}</td>
-                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_ujian)->format('d/m/Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pendaftaran)->format('d-m-Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pendaftaran)->format('d-m-Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_pembelajaran)->format('d-m-Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_pembelajaran)->format('d-m-Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_awal_ujian)->format('d-m-Y')}}</td>
+                        <td class="align-middle text-center">{{\Carbon\Carbon::parse($a->tgl_akhir_ujian)->format('d-m-Y')}}</td>
                         @if($a->status = 1)
                         <td class="align-middle text-center">Aktif</td>
                         @elseif($a->status = 0)

@@ -71,9 +71,7 @@ p {
             <div class="col-lg-12">
             <div class="title-box text-center">
             <h3 class="title-heading mt-4">Pilih kelas sesuai level </h3>
-            <p class="text-muted f-17 mt-3">Vivamus ac nulla ultrices laoreet neque mollis mi morbi
-            elementum mauris
-            sit amet arcu <br> fringilla auctor In eleifend maximus nisi sed vulputate.</p>
+            <p class="text-muted f-17 mt-3">Pada level mana anda sekarang?<br> Silahkan pilih level sesuai kemampuan dan standar yang anda miliki.</p>
             <img src="images/home-border.png" height="15" class="mt-3" alt>
             </div>
             </div>
@@ -84,27 +82,30 @@ p {
             <i class="mdi mdi-account h1"></i>
             <h4 class="f-20">Beginner</h4>
             <div class="mt-4 pt-2">
-            <p class="mb-2 f-18">Features</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
-            Target Audience</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
-            User Account</p>
-            <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>100+</b>
+            <p class="mb-2 f-18">Detail</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            New member of music school.</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Belum mengetahui dasar-dasar note.</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Untuk anak yang ingin menambah skill baru.</p>
+            {{-- <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>100+</b>
             Video Tuts</p>
             <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Public</b>
             Displays
-            </p>
+            </p> --}}
             </div>
-            <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
-            </p>
+            {{-- <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
+            </p> --}}
             {{-- <div class="pricing-plan mt-4 pt-2">
                 <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
                 <p class="text-muted mb-0">Per Semester</p>
             </div> --}}
             @if($course[0]->level_id == 1 && $course[0]->status = 1)
             <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
-            @elseif($course->status = 0)
-            <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+            @else
+            <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
+                </p>
             @endif
             <div class="mt-4 pt-3">
             </div>
@@ -113,24 +114,24 @@ p {
             <div class="col-lg-4">
             <div class="pricing-box mt-4">
             <div class="pricing-badge">
-            <span class="badge">Featured</span>
+            {{-- <span class="badge">Featured</span> --}}
             </div>
             <i class="mdi mdi-account-multiple h1"></i>
-            <h4 class="f-20">Intermediatte</h4>
+            <h4 class="f-20">Intermediate</h4>
             <div class="mt-4 pt-2">
-            <p class="mb-2 f-18">Features</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
-            Target Audience</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
-            User Account</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>100+</b>
+            <p class="mb-2 f-18">Detail:</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Sudah mengenal dasar-dasar musik.</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Sudah menyelesaikan ujian beginner 2x atau mengikuti les lebih dari 1 tahun.</p>
+            {{-- <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>100+</b>
             Video Tuts</p>
             <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Public</b>
             Displays
-            </p>
+            </p> --}}
             </div>
-            <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
-            </p>
+            {{-- <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
+            </p> --}}
             {{-- <div class="pricing-plan mt-4 pt-2">
                 <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
                 <p class="text-muted mb-0">Per Semester</p>
@@ -138,8 +139,9 @@ p {
             <div class="mt-4 pt-3">
                 @if($course[0]->level_id == 2 && $course[0]->status = 1)
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
-                @elseif($course->status = 0)
-                <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+                @else
+                <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
+                    </p>
                 @endif
             </div>
             </div>
@@ -149,19 +151,19 @@ p {
             <i class="mdi mdi-account-multiple-plus h1"></i>
             <h4 class="f-20">Advance</h4>
             <div class="mt-4 pt-2">
-            <p class="mb-2 f-18">Features</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Unlimited</b>
-            Target Audience</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>1</b>
-            User Account</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>100+</b>
-            Video Tuts</p>
-            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Public</b>
+            <p class="mb-2 f-18">Detail:</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            High Grade.</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Sudah melewati level intermediate.</p>
+            <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i>
+            Sudah mengikuti les lebih dari 2 tahun.</p>
+            {{-- <p class="mb-2"><i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b>Public</b>
             Displays
-            </p>
-            </div>
+            </p> --}}
+            {{-- </div>
             <p class="mt-4 pt-2 text-muted">Semper urna veal tempus pharetra elit habisse platea dictumst.
-            </p>
+            </p> --}}
             {{-- <div class="pricing-plan mt-4 pt-2">
             <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
             <p class="text-muted mb-0">Per Semester</p>
@@ -169,8 +171,9 @@ p {
             <div class="mt-4 pt-3">
                 @if($course[0]->level_id == 3 && $course[0]->status = 1)
                 <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
-                @elseif($course->status = 0)
-                <a href="" class="btn btn-primary btn-rounded disabled">Tidak tersedia</a>
+                @else
+                <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
+                    </p>
                 @endif
             </div>
             </div>

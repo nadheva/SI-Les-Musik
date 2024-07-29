@@ -22,8 +22,8 @@
                     <h5 class="mb-4"></h5>
                     <div class="row">
                       <div class="col-xl-5 col-lg-6 text-center">
-                        <img class="w-100 border-radius-lg shadow-lg mx-auto" src="https://images.unsplash.com/photo-1616627781431-23b776aad6b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1884&q=80" alt="chair">
-                        <div class="my-gallery d-flex mt-4 pt-2" itemscope itemtype="http://schema.org/ImageGallery">
+                        <img class="w-100 border-radius-lg shadow-lg mx-auto" src="{{asset($course->alat_musik->foto)}}" alt="chair">
+                        {{-- <div class="my-gallery d-flex mt-4 pt-2" itemscope itemtype="http://schema.org/ImageGallery">
                           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                             <a href="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-pink.jpg" itemprop="contentUrl" data-size="500x600">
                               <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-pink.jpg" alt="Image description" />
@@ -44,7 +44,7 @@
                               <img class="w-75 min-height-100 max-height-100 border-radius-lg shadow" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/chair-wood.jpg" itemprop="thumbnail" alt="Image description" />
                             </a>
                           </figure>
-                        </div>
+                        </div> --}}
                         <!-- Root element of PhotoSwipe. Must have class pswp. -->
                         <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
                           <!-- Background of PhotoSwipe.
@@ -183,40 +183,40 @@
                                         </div>
                                         <div class="row mb-3"></div>
                                           <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->nama_depan." ".$profile->nama_belakang}}" readonly>
+                                            <label for="name" class="form-label">Nama Lengkap : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->nama_depan." ".$profile->nama_belakang}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tempat / Tanggal Lahir : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->tempat_lahir.' / '.date('d-m-Y', strtotime($profile->tanggal_lahir))}}" readonly>
+                                            <label for="name" class="form-label">Tempat / Tanggal Lahir : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->tempat_lahir.' / '.date('d-m-Y', strtotime($profile->tanggal_lahir))}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat : </label>
-                                            <textarea type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->alamat}}" readonly>{{$profile->alamat}}</textarea>
+                                            <label for="name" class="form-label">Alamat : </label>
+                                            <textarea type="text" name="nama" id="nama" class="form-control" value="{{$profile->alamat}}" readonly>{{$profile->alamat}}</textarea>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Telepon : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->no_telp}}" readonly>
+                                            <label for="name" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->no_telp}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->email}}" readonly>
+                                            <label for="name" class="form-label">Email : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->email}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instagram : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->instagram}}" readonly>
+                                            <label for="name" class="form-label">Instagram : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->instagram}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Orang Tua : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->nama_ortu}}" readonly>
+                                            <label for="name" class="form-label">Nama Orang Tua : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->nama_ortu}}" readonly>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan Orang Tua : </label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->pekerjaan_ortu}}" readonly>
+                                            <label for="name" class="form-label">Pekerjaan Orang Tua : </label>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->pekerjaan_ortu}}" readonly>
                                         </div>
                                           <div class="row mb-3">
-                                            <label for="inputNanme4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alat musik yang dimiliki :</label>
-                                            <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" name="deskripsi" readonly>{{$profile->alat_musik_dimiliki}}</textarea>
+                                            <label for="inputNanme4" class="form-label">Alat musik yang dimiliki :</label>
+                                            <textarea type="text" class="form-control" name="deskripsi" readonly>{{$profile->alat_musik_dimiliki}}</textarea>
                                           </div>
                                         {{-- </div> --}}
                                         <!-- End Horizontal Form -->
@@ -235,28 +235,28 @@
                                         <!-- Vertical Form -->
                                         <div class="row g-3">
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kursus : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$course->alat_musik->nama}}" readonly>
+                                                <label for="name" class="form-label">Kursus : </label>
+                                                <input type="text" name="nama" id="nama" class="form-control" value="{{$course->alat_musik->nama}}" readonly>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period Start : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{\Carbon\Carbon::parse($course->periode->tgl_awal_pembelajaran)->format('d/m/Y')}}" readonly>
+                                                <label for="name" class="form-label">Period Start : </label>
+                                                <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($course->periode->tgl_awal_pembelajaran)->format('d/m/Y')}}" readonly>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Period End : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{\Carbon\Carbon::parse($course->periode->tgl_akhir_pembelajaran)->format('d/m/Y')}}" readonly>
+                                                <label for="name" class="form-label">Period End : </label>
+                                                <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($course->periode->tgl_akhir_pembelajaran)->format('d/m/Y')}}" readonly>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Guru : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->no_telp}}" readonly>
+                                                <label for="name" class="form-label">Nama Guru : </label>
+                                                <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->no_telp}}" readonly>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Studio : </label>
-                                                <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{$profile->no_telp}}" readonly>
+                                                <label for="name" class="form-label">Studio : </label>
+                                                <input type="text" name="nama" id="nama" class="form-control" value="{{$profile->no_telp}}" readonly>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan : </label>
-                                                <input type="text" name="catatan" id="catatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <label for="name" class="form-label">Catatan : </label>
+                                                <input type="text" name="catatan" id="catatan" class="form-control" placeholder="(Wajib Diisi)">
                                             </div>
                                             <input type="hidden" name="course_id" value="{{$course->id}}">
                                             <input type="hidden" name="grand_total" value="{{$course->harga}}">
