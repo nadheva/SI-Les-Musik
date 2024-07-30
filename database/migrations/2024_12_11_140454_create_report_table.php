@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('report', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservasi_id')->references('reservasi')->onDelete('cascade')->onUpdate('cascade');
-            $table->longText('catatan');
+            // $table->foreignId('reservasi_id')->references('reservasi')->onDelete('cascade')->onUpdate('cascade');
+            // $table->longText('catatan');
             $table->timestamps();
         });
     }

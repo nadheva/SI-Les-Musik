@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('notification_log', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservasi_id')->constrained('reservasi')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_create_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('approver_role_id')->constrained('role')->nullable()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_receiver_id')->constrained('users')->nullable()->onDelete('cascade')->onUpdate('cascade');
             $table->string('message');
             $table->enum('is_read',['0','1'])->default('0'); // 0 : belum dibaca, 1 : dibaca
             $table->timestamps();

@@ -11,7 +11,9 @@ class NotificationLog extends Model
     protected $table = 'notification_log';
     protected $fillable = [
         'reservasi_id',
-        'user_id',
+        'user_create_id',
+        'approver_role_id',
+        'user_receiver_id',
         'message',
         'is_read'
     ];
@@ -19,6 +21,6 @@ class NotificationLog extends Model
     public function reservasi()
     {
         return $this->belongsTo(Reservasi::class);
-        
+
     }
 }

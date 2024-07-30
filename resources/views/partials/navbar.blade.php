@@ -1,7 +1,12 @@
 <?php
         use App\Http\Controllers\BerandaController;
         $controller = new BerandaController();
-        $notification = $controller->notification();
+        $notification_approver = $controller->notification_approver();
+        $notification_user = $controller->notification_user();
+
+        use App\Http\Controllers\ProfileController;
+        $profilecontroller = new ProfileController();
+        $profile_id = $profilecontroller->getProfile();
 
 ?>
 
@@ -32,61 +37,137 @@
           </a>
         </li><!-- End Search Icon-->
 
+
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            @if($notification->count() !== 0)
-            <span class="badge bg-primary badge-number">{{$notification->count()}}</span>
+        @if(Auth::user()->role_id == 1)
+            @if($notification_approver->count() !== 0)
+            <span class="badge bg-primary badge-number">{{$notification_approver->count()}}</span>
             @endif
+        @elseif(Auth::user()->role_id == 2)
+            @if($notification_approver->count() !== 0)
+            <span class="badge bg-primary badge-number">{{$notification_user->count()}}</span>
+            @endif
+        @endif
           </a><!-- End Notification Icon -->
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+        @if(Auth::user()->role_id == 1)
             <li class="dropdown-header">
-              Anda memiliki {{$notification->count()}} notifikasi baru!
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Tandai telah dibaca</span></a>
+              Anda memiliki {{$notification_approver->count()}} notifikasi baru!
+              <a href="read_notification_user"><span class="badge rounded-pill bg-primary p-2 ms-2">Tandai telah dibaca</span></a>
+              </form>
             </li>
+        @elseif(Auth::user()->role_id == 2)
+            <li class="dropdown-header">
+              Anda memiliki {{$notification_user->count()}} notifikasi baru!
+              <a href="read_notification_user"><span class="badge rounded-pill bg-primary p-2 ms-2">Tandai telah dibaca</span></a>
+            </li>
+        @endif
             <li>
               <hr class="dropdown-divider">
             </li>
-            @foreach($notification as $i)
+        @if(Auth::user()->role_id == 1)
+            @foreach($notification_approver as $i)
             <li class="notification-item">
-                @if($i->reservasi->proses = 'Ditolak')
-                <i class="bi bi-x-circle text-danger"></i>
-                @elseif($i->reservasi->proses = 'Disetujui')
+                @if($i->reservasi->proses = 'Disetujui')
                 <i class="bi bi-info-circle text-primary"></i>
+                @elseif($i->reservasi->proses = 'Ditolak')
+                <i class="bi bi-x-circle text-danger"></i>
                 @else
                 <i class="bi bi-exclamation-circle text-warning"></i>
                 @endif
               <div>
                 <h4>Reservasi Sekolah Musik</h4>
                 <p>{{$i->message}}</p>
-                <p>{{\Carbon\Carbon::parse($i->created_at->diffFor)->diffForHumans()}}</p>
+                <p>{{\Carbon\Carbon::parse($i->created_at)->diffForHumans()}}</p>
               </div>
             </li>
-
             <li>
               <hr class="dropdown-divider">
             </li>
             @endforeach
-
+            @elseif(Auth::user()->role_id == 2)
+            @foreach($notification_user as $i)
             <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
+                @if($i->reservasi->proses = 'Disetujui')
+                <i class="bi bi-info-circle text-primary"></i>
+                @elseif($i->reservasi->proses = 'Ditolak')
+                <i class="bi bi-x-circle text-danger"></i>
+                @else
+                <i class="bi bi-exclamation-circle text-warning"></i>
+                @endif
               <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
+                <h4>Reservasi Sekolah Musik</h4>
+                <p>{{$i->message}}</p>
+                <p>{{\Carbon\Carbon::parse($i->created_at)->diffForHumans()}}</p>
               </div>
             </li>
-
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            @endforeach
+         @endif
             <li>
               <hr class="dropdown-divider">
             </li>
             <li class="dropdown-footer">
               <a href="#">Lihat semua notifikasi</a>
             </li>
-
           </ul><!-- End Notification Dropdown Items -->
-
         </li><!-- End Notification Nav -->
+        {{-- @elseif(Auth::user()->role_id = 2)
+        <li class="nav-item dropdown">
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-bell"></i>
+              @if($notification_user->count() !== 0)
+              <span class="badge bg-primary badge-number">{{$notification_user->count()}}</span>
+              @endif
+            </a><!-- End Notification Icon -->
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+              <li class="dropdown-header">
+                Anda memiliki {{$notification_user->count()}} notifikasi baru!
+                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Tandai telah dibaca</span></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              @foreach($notification_user as $a)
+              <li class="notification-item">
+                  @if($a->reservasi->proses = 'Ditolak')
+                  <i class="bi bi-x-circle text-danger"></i>
+                  @elseif($a->reservasi->proses = 'Disetujui')
+                  <i class="bi bi-info-circle text-primary"></i>
+                  @else
+                  <i class="bi bi-exclamation-circle text-warning"></i>
+                  @endif
+                <div>
+                  <h4>Reservasi Sekolah Musik</h4>
+                  <p>{{$a->message}}</p>
+                  <p>{{\Carbon\Carbon::parse($a->created_at)->diffForHumans()}}</p>
+                </div>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              @endforeach
+              <li class="notification-item">
+                <i class="bi bi-check-circle text-success"></i>
+                <div>
+                  <h4>Sit rerum fuga</h4>
+                  <p>Quae dolorem earum veritatis oditseno</p>
+                  <p>2 hrs. ago</p>
+                </div>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="dropdown-footer">
+                <a href="#">Lihat semua notifikasi</a>
+              </li>
+            </ul><!-- End Notification Dropdown Items -->
+          </li><!-- End Notification Nav -->
+          @endif --}}
 
         {{-- <li class="nav-item dropdown">
 
@@ -164,20 +245,27 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{Auth::user()->name}}</h6>
-              <span>{{Auth::user()->role->fungsi}}</span>
+              {{-- <span>{{Auth::user()->r}}</span> --}}
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            @if(Auth::user()->role_id == 2)
+            @if(is_null($profile_id) && Auth::user()->role_id == 2)
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.index')}}">
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.create') }}">
+                  <i class="bi bi-person"></i>
+                  <span>Profile Saya</span>
+                </a>
+              </li>
+            @elseif(Auth::user()->role_id == 2)
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.show', $profile_id) }}">
                 <i class="bi bi-person"></i>
                 <span>Profile Saya</span>
               </a>
             </li>
-            <li>
             @endif
+            <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -215,3 +303,23 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+  <script>
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+    $(document).on('click', 'a.jquery-postback', function(e) {
+        e.preventDefault(); // does not go through with the link.
+
+        var $this = $(this);
+
+        $.post({
+            type: $this.data('method'),
+            url: $this.attr('href')
+        }).done(function (data) {
+            alert('success');
+            console.log(data);
+        });
+    });
+    </script>

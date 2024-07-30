@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Profile;
 use App\Models\NotificationLog;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -80,9 +81,30 @@ class BerandaController extends Controller
         //
     }
 
-    public function notification()
+    public function notification_approver()
     {
-        $notification = NotificationLog::where('user_id', '=', Auth::user()->id)->where('is_read', '=', '0')->latest()->get();
-        return $notification;
+        return NotificationLog::where('approver_role_id', '=', 1 )->where('is_read', '=', '0')->latest()->get();
     }
+
+    public function notification_user()
+    {
+        return NotificationLog::where('user_receiver_id', '=', Auth::user()->id)->where('is_read', '=', '0')->latest()->get();
+    }
+
+    public function read_notification_approver()
+    {
+        DB::table('notification_log')->where('approver_role_id', '=', 1 )->where('is_read', '=', '0')
+        ->update(['is_read' => 1]);
+        Alert::success('Success', 'Notifikasi telah dibaca!');
+        return redirect()->back();
+    }
+
+    public function read_notification_user()
+    {
+        DB::table('notification_log')->where('user_receiver_id', '=', Auth::user()->id)->where('is_read', '=', '0')
+        ->update(['is_read' => 1]);
+        Alert::success('Success', 'Notifikasi telah dibaca!');
+        return redirect()->back();
+    }
+
 }

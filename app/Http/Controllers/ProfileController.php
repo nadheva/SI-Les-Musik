@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Profile;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -112,21 +113,36 @@ class ProfileController extends Controller
 
     public function show($id)
     {
-       $user_id = Auth::user()->id;
-       $profile = Profile::where('user_id', decrypt($id))->first();
-       if(is_null($profile) && Auth::user()->role_id == '2'){
-           return redirect()->route('profile.create')
-           ->with('danger', 'Anda belum menambahkan data profil!');
+    //    $id1 = Crypt::decrypt($id);
+       $profile = Profile::findOrFail($id);
+    //    $profile = Profile::findOrFail(Crypt::decrypt($id));
+       if(is_null($profile)){
+        Alert::warning('Info', 'Anda belum menambahkan data profil!');
+        return redirect()->route('profile.create');
        } else {
        return view('user.profile.index', compact('profile'));
        }
+
+
+    //    if (Auth::user()->role_id == '2') {
+    //     $profile = Profile::where('user_id', Auth::user()->id)->first();
+    //     if(is_null($profile) && Auth::user()->role_id == '2'){
+    //         return redirect()->route('profile.create')
+    //         ->with('danger', 'Anda belum menambahkan data profil!');
+    //     } else {
+    //     return view('user.profile.index', compact('profile'));
+    //     }
+    // }
+    // else {
+    //     Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
+    //     return view('admin.beranda.index');
+    // }
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         try {
-
             $request->validate([
                 'nama_depan' => 'required',
                 'nama_belakang' => 'required',
@@ -137,9 +153,8 @@ class ProfileController extends Controller
                 'nama_ortu' => 'required',
                 'pekerjaan_ortu' => 'required',
             ]);
-            // $user_id = Auth::user()->id;
-            // $id = Profile::select('id')->where('user_id', $user_id)->get();
-            $profile = Profile::where('user_id', Auth::user()->id);
+            $profile = Profile::findOrFail($id);
+            $profile->user_id = Auth::user()->id;
             $profile->nama_depan = $request->nama_depan;
             $profile->nama_belakang = $request->nama_belakang;
             $profile->tempat_lahir = $request->tempat_lahir;
@@ -163,11 +178,11 @@ class ProfileController extends Controller
             $profile->save;
 
             Alert::info('Success', 'Profile berhasil diperbarui!');
-            return redirect()->route('profile.index');
+            return redirect()->route('profile.show', $profile->id);
 
           } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
-            return redirect()->route('profile.view');
+            return redirect()->back();
           }
     }
     /**
@@ -189,5 +204,11 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function getProfile()
+    {
+        $profile_id = Profile::select('id')->where('user_id', '=', Auth::user()->id)->first();
+        return $profile_id;
     }
 }

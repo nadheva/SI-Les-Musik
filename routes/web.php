@@ -50,8 +50,9 @@ Route::middleware('auth')->group(function () {
 
 
     //Beranda
-    Route::resource('beranda', BerandaController::class);
-
+    Route::resource('beranda', BerandaController::class)->except('read_notification_approver', 'read_notification_user');
+    Route::get('read_notification_approver', [BerandaController::class, 'read_notification_approver']);
+    Route::patch('read_notification_user', [BerandaController::class, 'read_notification_user']);
     //Transaksi
     Route::resource('transaksi', TransaksiController::class);
 
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
 
     //Kontak
     Route::resource('kontak', KontakController::class);
-    
+
     //Periode
     Route::resource('periode', PeriodeController::class)->except('update');
     Route::put('periode-update/{id}', [PeriodeController::class, 'update']);
@@ -112,8 +113,8 @@ Route::middleware('auth')->group(function () {
     Route::put('reservasi-reject/{id}', [ReservasiController::class, 'reject']);
 
     //Profile
-    Route::resource('profile', ProfileController::class)->except('update');
-    Route::put('profile-update/{id}', [ProfileController::class, 'update']);
+    Route::resource('profile', ProfileController::class);
+    // Route::put('profile-update/{id}', [ProfileController::class, 'update']);
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

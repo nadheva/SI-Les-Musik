@@ -108,7 +108,7 @@
                   <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                     <!-- Profile Edit Form -->
-                    <form method="POST" action="{{ url('profile-update', $profile->id) }}" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update', $profile->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                       {{-- <div class="row mb-3">
@@ -150,7 +150,7 @@
                       <div class="row mb-3">
                         <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
                         <div class="col-md-8 col-lg-9">
-                          <textarea name="alamat" class="form-control quill-editor-default" id="alamat" style="height: 100px">{{$profile->alamat}}</textarea>
+                          <textarea name="alamat" class="form-control" id="alamat" style="height: 100px">{{$profile->alamat}}</textarea>
                         </div>
                       </div>
                       <div class="row mb-3">
@@ -194,7 +194,7 @@
                       <div class="row mb-3">
                         <label for="foto" class="col-md-4 col-lg-3 col-form-label">Foto</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="foto" type="file" class="form-control" id="foto">
+                          <input name="foto" type="file" class="form-control" id="foto" value="{{asset($profile->foto)}}">
                         </div>
                       </div>
                       <div class="text-center">
@@ -204,7 +204,7 @@
 
                   </div>
 
-                  <div class="tab-pane fade pt-3" id="profile-change-password">
+                  {{-- <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
                     <form method="POST" action="{{url('change-password')}}" enctype="multipart/form-data">
                         @csrf
@@ -232,7 +232,7 @@
                       <div class="text-center">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                       </div>
-                    </form><!-- End Change Password Form -->
+                    </form><!-- End Change Password Form --> --}}
 
                   </div>
 
