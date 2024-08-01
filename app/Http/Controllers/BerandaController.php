@@ -83,12 +83,12 @@ class BerandaController extends Controller
 
     public function notification_approver()
     {
-        return NotificationLog::where('approver_role_id', '=', 1 )->where('is_read', '=', '0')->latest()->get();
+        return NotificationLog::where('approver_role_id', '=', 1 )->where('is_read', '=', '0')->latest()->paginate(3);
     }
 
     public function notification_user()
     {
-        return NotificationLog::where('user_receiver_id', '=', Auth::user()->id)->where('is_read', '=', '0')->latest()->get();
+        return NotificationLog::where('user_receiver_id', '=', Auth::user()->id)->where('is_read', '=', '0')->latest()->paginate(3);
     }
 
     public function read_notification_approver()

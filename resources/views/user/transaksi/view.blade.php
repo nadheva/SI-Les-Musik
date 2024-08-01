@@ -219,7 +219,6 @@ Saya menyetujui <a href="#">syarat dan ketentuan</a>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
-
     </script>
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{$client}}" type="text/javascript"></script>
     <script type="text/javascript">
