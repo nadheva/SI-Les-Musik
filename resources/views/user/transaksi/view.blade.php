@@ -69,9 +69,9 @@ Detail Transaksi
 </g>
 </svg> --}}
 @if($transaksi->status == "success")
-<button class="btn btn-success w-100 mt-2" id="success">Invoice</button>
+<a class="btn btn-success w-100 mt-2" href="{{route('get-invoice', encrypt($transaksi->id))}}" target="_blank">Invoice</a>
 @else
-<button class="btn btn-danger w-100 mt-2" id="success" disabled>Invoice</button>
+<a class="btn btn-danger w-100 mt-2" disabled>Invoice</a>
 @endif
 </span>
 </h2>

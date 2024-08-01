@@ -111,46 +111,46 @@ tbody, td, tfoot, th, thead, tr {
 <div class="card">
 <div class="card-body p-5">
 <h2>
-Hey {{$transaksi->user->}},
+Hey {{$transaksi->user->name}},
 </h2>
 <p class="fs-sm">
-This is the receipt for a payment of <strong>$312.00</strong> (USD) you made to Spacial Themes.
+Ini adalah tanda terima pembayaran sebesar <strong>{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</strong> untuk reservasi Course {{$transaksi->reservasi->course->judul}}.
 </p>
 <div class="border-top border-gray-200 pt-4 mt-4">
 <div class="row">
 <div class="col-md-6">
-<div class="text-muted mb-2">Payment No.</div>
-<strong>#88305</strong>
+<div class="text-muted mb-2">Nomor Invoice</div>
+<strong>{{$transaksi->invoice}}</strong>
 </div>
 <div class="col-md-6 text-md-end">
-<div class="text-muted mb-2">Payment Date</div>
-<strong>Feb/09/20</strong>
+<div class="text-muted mb-2">Tanggal Pembayaran</div>
+<strong>{{$transaksi->updated_at}}</strong>
 </div>
 </div>
 </div>
 <div class="border-top border-gray-200 mt-4 py-4">
 <div class="row">
 <div class="col-md-6">
-<div class="text-muted mb-2">Client</div>
+<div class="text-muted mb-2">Klien</div>
 <strong>
-John McClane
+{{$transaksi->user->profile->nama_depan." ".$transaksi->user->profile->nama_belakang}}
 </strong>
 <p class="fs-sm">
-989 5th Avenue, New York, 55832
+{{    $transaksi->user->profile->alamat }}
 <br>
-<a href="#!" class="text-purple"><span class="__cf_email__" data-cfemail="e58f8a8d8ba58088848c89cb868a88">[email&#160;protected]</span>
+{{-- <a href="#!" class="text-purple"><span class="__cf_email__" data-cfemail="e58f8a8d8ba58088848c89cb868a88">[email&#160;protected]</span> --}}
 </a>
 </p>
 </div>
 <div class="col-md-6 text-md-end">
-<div class="text-muted mb-2">Payment To</div>
+<div class="text-muted mb-2">Pembayaran kepada</div>
 <strong>
-Themes LLC
+PT Sincere Music
 </strong>
 <p class="fs-sm">
-9th Avenue, San Francisco 99383
+    Jl. Bungur Besar Raya No.63, Kemayoran, Kec. Kemayoran, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620
 <br>
-<a href="#!" class="text-purple"><span class="__cf_email__" data-cfemail="4d39252820283e0d28202c2421632e2220">[email&#160;protected]</span>
+{{-- <a href="#!" class="text-purple"><span class="__cf_email__" data-cfemail="4d39252820283e0d28202c2421632e2220">[email&#160;protected]</span> --}}
 </a>
 </p>
 </div>
@@ -159,42 +159,42 @@ Themes LLC
 <table class="table border-bottom border-gray-200 mt-3">
 <thead>
 <tr>
-<th scope="col" class="fs-sm text-dark text-uppercase-bold-sm px-0">Description</th>
+<th scope="col" class="fs-sm text-dark text-uppercase-bold-sm px-0">Judul Course</th>
 <th scope="col" class="fs-sm text-dark text-uppercase-bold-sm text-end px-0">Amount</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="px-0">Theme customization</td>
-<td class="text-end px-0">$60.00</td>
-</tr>
-<tr>
-<td class="px-0">Website design</td>
-<td class="text-end px-0">$80.00</td>
+<td class="px-0">{{$transaksi->reservasi->course->judul}} Level {{$transaksi->reservasi->course->level->nama}}</td>
+<td class="text-end px-0">{{Number::currency(($transaksi->reservasi->course->harga) , 'Rp.')}}</td>
 </tr>
 </tbody>
 </table>
 <div class="mt-5">
 <div class="d-flex justify-content-end">
 <p class="text-muted me-3">Subtotal:</p>
-<span>$390.00</span>
+<span>{{Number::currency(($transaksi->reservasi->course->harga) , 'Rp.')}}</span>
 </div>
 <div class="d-flex justify-content-end">
-<p class="text-muted me-3">Discount:</p>
-<span>-$40.00</span>
+    <p class="text-muted me-3">Admin Fee:</p>
+    <span>RP. 4,000.00</span>
+</div>
+<div class="d-flex justify-content-end">
+<p class="text-muted me-3">Diskon:</p>
+<span>RP. 0.00</span>
 </div>
 <div class="d-flex justify-content-end mt-3">
 <h5 class="me-3">Total:</h5>
-<h5 class="text-success">$399.99 USD</h5>
+<h5 class="text-success">{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</h5>
 </div>
 </div>
 </div>
-<a href="#!" class="btn btn-dark btn-lg card-footer-btn justify-content-center text-uppercase-bold-sm hover-lift-light">
+{{-- <a href="#!" class="btn btn-dark btn-lg card-footer-btn justify-content-center text-uppercase-bold-sm hover-lift-light">
 <span class="svg-icon text-white me-2">
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-g</title><path d="M336,208V113a80,80,0,0,0-160,0v95" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path><rect x="96" y="208" width="320" height="272" rx="48" ry="48" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></rect></svg>
 </span>
 Pay Now
-</a>
+</a> --}}
 </div>
 </div>
 </div>
@@ -202,7 +202,8 @@ Pay Now
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-
 </script>
 </body>
 </html>
+
+<script>window.print()</script>

@@ -215,4 +215,11 @@ class TransaksiController extends Controller
         }
 
     }
+
+    public function invoice($id)
+    {
+        $id1 = decrypt($id);
+        $transaksi = Payment::findOrFail($id1);
+        return view('user.transaksi.invoice-paid', compact('transaksi'));
+    }
 }

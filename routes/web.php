@@ -54,7 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::get('read_notification_approver', [BerandaController::class, 'read_notification_approver']);
     Route::patch('read_notification_user', [BerandaController::class, 'read_notification_user']);
     //Transaksi
-    Route::resource('transaksi', TransaksiController::class);
+    Route::resource('transaksi', TransaksiController::class)->except('invoice');
+    Route::get('invoice/{id}', [TransaksiController::class, 'invoice'])->name('get-invoice');
 
     //Jadwal
     Route::resource('jadwal', JadwalController::class);
