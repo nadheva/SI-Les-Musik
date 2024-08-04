@@ -175,17 +175,17 @@ PT Sincere Music
 <p class="text-muted me-3">Subtotal:</p>
 <span>{{Number::currency(($transaksi->reservasi->course->harga) , 'Rp.')}}</span>
 </div>
-<div class="d-flex justify-content-end">
+{{-- <div class="d-flex justify-content-end">
     <p class="text-muted me-3">Admin Fee:</p>
     <span>RP. 4,000.00</span>
-</div>
+</div> --}}
 <div class="d-flex justify-content-end">
 <p class="text-muted me-3">Diskon:</p>
 <span>RP. 0.00</span>
 </div>
 <div class="d-flex justify-content-end mt-3">
 <h5 class="me-3">Total:</h5>
-<h5 class="text-success">{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</h5>
+<h5 class="text-success">{{Number::currency(($transaksi->reservasi->course->harga), 'Rp.')}}</h5>
 </div>
 </div>
 </div>

@@ -1,19 +1,214 @@
 <x-app-layout>
     <main id="main" class="main">
 
-        <section class="section">
-          <div class="row">
-            <div class="col-lg-12">
+        <div class="pagetitle">
+          <h1>Dashboard</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
 
-              <div class="card">
-                <div class="card-body">
-                  {{-- <h5 class="card-title">Datatables</h5> --}}
-                  {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
-    <h5>Selamat datang di dashboard user, {{Auth::user()->name}}</h5>
-                </div>
+        <section class="section dashboard">
+          <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+              <div class="row">
+
+                <!-- Sales Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card sales-card">
+
+                    {{-- <div class="filter">
+                      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                          <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                      </ul>
+                    </div> --}}
+
+                    <div class="card-body">
+                      <h5 class="card-title">Transaksi <span>| Tahun ini</span></h5>
+                      {{-- <h5 class="card-title">Transaksi</h5> --}}
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>{{count($transaksi->where('status', '=', 'success'))}}</h6>
+                          {{-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">kenaikan</span> --}}
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div><!-- End Sales Card -->
+
+                <!-- Revenue Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card revenue-card">
+
+                    {{-- <div class="filter">
+                      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                          <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                      </ul>
+                    </div> --}}
+
+                    <div class="card-body">
+                      <h5 class="card-title">Pembayaran <span>| Tahun ini</span></h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>{{Number::currency(($transaksi->where('status', '=', 'success')->sum('grand_total')) , 'Rp.')}}</h6>
+                          {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">kenaikan</span> --}}
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div><!-- End Revenue Card -->
+
+                <!-- Customers Card -->
+                <div class="col-xxl-4 col-xl-12">
+
+                  <div class="card info-card customers-card">
+
+                    {{-- <div class="filter">
+                      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                          <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                      </ul>
+                    </div> --}}
+
+                    <div class="card-body">
+                      <h5 class="card-title">Course Aktif</h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>{{$course_aktif}}</h6>
+                          {{-- <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">penurunan</span> --}}
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div><!-- End Customers Card -->
+
+
+                <!-- Recent Sales -->
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+
+
+                    <div class="card-body">
+                      <h5 class="card-title">Pendaftaran Course Dibuka</h5>
+
+                      <table class="table table-borderless datatable">
+                        <thead>
+                          <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Level</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Batas Pendaftaran</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($course as $c)
+                          <tr>
+                            <th scope="row"><a href="#">#{{ $loop->iteration }}</a></th>
+                            <td>{{$c->judul}}</td>
+                            <td><a href="#" class="text-primary">{{$c->level->nama}}</a></td>
+                            <td>{{Number::currency(($c->harga) , 'Rp.')}}</td>
+                            <td><span class="badge bg-warning">{{\Carbon\Carbon::parse($c->periode->tgl_akhir_pendaftaran)->format('d-m-Y') }}</span></td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+
+                    </div>
+
+                  </div>
+                </div><!-- End Recent Sales -->
+
+
+
               </div>
-            </div>
+            </div><!-- End Left side columns -->
+
+            <!-- Right side columns -->
+            <div class="col-lg-4">
+
+              <!-- Recent Activity -->
+              <div class="card">
+                {{-- <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div> --}}
+
+                <div class="card-body">
+                  <h5 class="card-title">Aktivitas <span>| Tahun ini</span></h5>
+
+                  <div class="activity">
+
+                    @foreach ($notification as $i)
+                    <div class="activity-item d-flex">
+                      <div class="activite-label">{{\Carbon\Carbon::parse($i->created_at)->diffForHumans()}}</div>
+                      <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                      <div class="activity-content">
+                        {{$i->message}}
+                      </div>
+                    </div><!-- End activity item-->
+                    @endforeach
+                  </div>
+
+                </div>
+              </div><!-- End Recent Activity -->
+
+            </div><!-- End Right side columns -->
+
           </div>
         </section>
-    </main>
+
+      </main><!-- End #main -->
+
 </x-app-layout>

@@ -184,15 +184,15 @@ Data Formulir
 <div class="d-flex justify-content-between mb-1 small">
 <span>Subtotal</span> <span>{{Number::currency($transaksi->reservasi->course->harga, 'Rp.')}}</span>
 </div>
-<div class="d-flex justify-content-between mb-1 small">
+{{-- <div class="d-flex justify-content-between mb-1 small">
 <span>Admin Fee</span> <span>RP. 4,000.00</span>
-</div>
+</div> --}}
 <div class="d-flex justify-content-between mb-1 small">
 <span>Kupon (Kode: -)</span> <span class="text-danger">RP. 0.00</span>
 </div>
 <hr>
 <div class="d-flex justify-content-between mb-4 small">
-<span>TOTAL</span> <strong class="text-dark">{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</strong>
+<span>TOTAL</span> <strong class="text-dark">{{Number::currency(($transaksi->reservasi->course->harga), 'Rp.')}}</strong>
 </div>
 @if($transaksi->status == 'pending')
 <div class="form-check mb-1 small">
