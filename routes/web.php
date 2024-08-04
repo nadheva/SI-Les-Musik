@@ -114,7 +114,8 @@ Route::middleware('auth')->group(function () {
     Route::put('reservasi-reject/{id}', [ReservasiController::class, 'reject']);
 
     //Profile
-    Route::resource('profile', ProfileController::class);
+    Route::resource('profile', ProfileController::class)->except('update');
+    Route::put('profile-update/{id}', [ProfileController::class, 'update']);
     // Route::put('profile-update/{id}', [ProfileController::class, 'update']);
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

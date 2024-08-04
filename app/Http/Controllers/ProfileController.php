@@ -143,25 +143,25 @@ class ProfileController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $request->validate([
-                'nama_depan' => 'required',
-                'nama_belakang' => 'required',
-                'tempat_lahir' => 'required',
-                'tanggal_lahir' => 'required',
-                'alamat' => 'required',
-                'no_telp' => 'required',
-                'nama_ortu' => 'required',
-                'pekerjaan_ortu' => 'required',
-            ]);
+            // $request->validate([
+            //     'nama_depan' => 'required',
+            //     'nama_belakang' => 'required',
+            //     'tempat_lahir' => 'required',
+            //     'tanggal_lahir' => 'required',
+            //     'alamat' => 'required',
+            //     'no_telp' => 'required',
+            //     'nama_ortu' => 'required',
+            //     'pekerjaan_ortu' => 'required',
+            // ]);
             $profile = Profile::findOrFail($id);
-            $profile->user_id = Auth::user()->id;
+            $profile->user_id = $request->user_id;
             $profile->nama_depan = $request->nama_depan;
             $profile->nama_belakang = $request->nama_belakang;
             $profile->tempat_lahir = $request->tempat_lahir;
             $profile->tanggal_lahir = $request->tanggal_lahir;
             $profile->alamat = $request->alamat;
+            $profile->email = $request->email;
             $profile->no_telp = $request->no_telp;
-            $profile->email = Auth::user()->email;
             $profile->instagram = $request->instagram;
             $profile->nama_ortu = $request->nama_ortu;
             $profile->pekerjaan_ortu = $request->pekerjaan_ortu;
@@ -175,7 +175,7 @@ class ProfileController extends Controller
             } else {
                 $file_name = null;
             }
-            $profile->save;
+            $profile->save();
 
             Alert::info('Success', 'Profile berhasil diperbarui!');
             return redirect()->route('profile.show', $profile->id);
