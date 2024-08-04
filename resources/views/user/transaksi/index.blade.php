@@ -98,7 +98,7 @@
         </section>
     </main>
     @push('scripts')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{$client}}" type="text/javascript"></script>
+    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{$client}}" type="text/javascript"></script>
     <script type="text/javascript">
       if (document.getElementById('products-list')) {
         const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
