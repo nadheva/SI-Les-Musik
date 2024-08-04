@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reservasi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained('course')->nullable()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('resepsionis_id')->constrained('resepsionis')->nullable()->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('resepsionis_id')->constrained('resepsionis')->nullable()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama_approver')->nullable(true);
             $table->dateTime('tgl_approve')->nullable(true);

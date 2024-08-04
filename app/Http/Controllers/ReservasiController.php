@@ -53,7 +53,7 @@ class ReservasiController extends Controller
            $reservasi =     Reservasi::create([
                             'course_id' => $request->course_id,
                             'user_id' => Auth::user()->id,
-                            'resepsionis_id' => null,
+                            // 'resepsionis_id' => null,
                             // 'resepsionis_id' => Resepsionis::select('id')->inRandomOrder()->first(),
                             'proses' => 'Dalam Proses',
                             'catatan' => $request->catatan,

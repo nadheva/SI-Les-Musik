@@ -11,7 +11,7 @@ class Reservasi extends Model
     protected $table = 'reservasi';
     protected $fillable = [
         'course_id',
-        'resepsionis_id',
+        // 'resepsionis_id',
         'user_id',
         'nama_approver',
         'tgl_approve',

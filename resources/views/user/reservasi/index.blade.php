@@ -215,21 +215,21 @@
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{$r->course->alat_musik->nama}}" readonly>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="name" class="form-label">Period Start : </label>
+                                        <label for="name" class="form-label">Tanggal Awal Pembelajaran : </label>
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($r->course->periode->tgl_awal_pembelajaran)->format('d/m/Y')}}" readonly>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="name" class="form-label">Period End : </label>
+                                        <label for="name" class="form-label">Tanggal Akhir Pembelajaran : </label>
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{\Carbon\Carbon::parse($r->course->periode->tgl_akhir_pembelajaran)->format('d/m/Y')}}" readonly>
                                     </div>
-                                    <div class="row mb-3">
+                                    {{-- <div class="row mb-3">
                                         <label for="name" class="form-label">Nama Guru : </label>
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{$r->user->profile->no_telp}}" readonly>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Studio : </label>
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{$r->user->profile->no_telp}}" readonly>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Catatan : </label>
                                         <input type="text" name="catatan" id="catatan" class="form-control">
