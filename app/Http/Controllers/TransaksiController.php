@@ -78,8 +78,8 @@ class TransaksiController extends Controller
                 'gross_amount' => $payment->grand_total,
             ],
             'customer_details' => [
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
+                'first_name' => $reservasi->user->name,
+                'email' => $reservasi->user->email,
             ]
         ];
 
