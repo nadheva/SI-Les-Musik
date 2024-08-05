@@ -48,7 +48,7 @@
                             <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                         </td>
                         <td class="align-middle text-center">{{$c->judul}}</td>
-                        <td class="align-middle text-center">Guru {{$c->alat_musik->nama}}</td>
+                        <td class="align-middle text-center">{{$c->alat_musik->nama}}</td>
                         <td class="align-middle text-center">{{$c->level->nama}}</td>
                         <td class="align-middle text-center">{{$c->deskripsi}}</td>
                         @if($c->status == '0')
@@ -153,6 +153,95 @@
             </div>
         </div>
     </div>
+
+
+
+
+        <!--Modal edit course-->
+        @foreach($course as $i)
+        <div class="modal fade bd-example-modal-lg" id="editCourse-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="tambahCourse"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form method="post" action="{{ url('course-update', $i->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title card-title" id="tambahRoleLabel">Edit Course</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Judul :</label>
+                                <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul" value="{{$i->judul}}">
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Jenis Course :</label>
+                                <select id="inputState" class="form-select" name="alat_musik_id">
+                                    <option value="{{$i->alat_musik_id}}" selected>{{$i->alat_musik->nama}}</option>
+                                    @foreach($alatmusik as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                  </select>
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Level Course :</label>
+                                <select id="inputState" class="form-select" name="level_id">
+                                    <option value="{{$i->level_id}}" selected>{{$i->level->nama}}</option>
+                                    @foreach($level as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                  </select>
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Harga : </label>
+                                <input type="number" class="form-control" name="harga" placeholder="Masukkan Harga" value="{{$i->harga}}">
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Periode Course :</label>
+                                <select id="inputState" class="form-select" name="periode_id">
+                                    <option value="{{$i->periode_id}}" selected>{{$i->periode->nama_periode}}"</option>
+                                    @foreach($periode as $item)
+                                    <option value="{{$item->id}}">{{$item->nama_periode}}</option>
+                                    @endforeach
+                                  </select>
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Header :</label>
+                                <input type="file" class="form-control" name="header" placeholder="Upload Header" value="{{$i->header}}">
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Modul :</label>
+                                <input type="file" class="form-control" name="modul" placeholder="Upload Modul" value="{{$i->modul}}">
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Deskripsi :</label>
+                                <textarea type="text" class="form-control quill-editor-default" name="deskripsi" placeholder="Masukkan Deskripsi" value="{{$i->deskripsi}}"></textarea>
+                              </div>
+                              <div class="row mb-3">
+                                <label for="inputNanme4" class="form-label">Status :</label>
+                                <select id="inputState" class="form-select" name="status">
+                                    @if($i->status == 1)
+                                    <option value="1" selected>Aktif</option>
+                                    @elseif($i->status == 0)
+                                    <option value="0" selected>Tidak Aktif</option>
+                                    @endif
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Tidak Aktif</option>
+                                  </select>
+                              </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn btn-success">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
       </main><!-- End #main -->
 

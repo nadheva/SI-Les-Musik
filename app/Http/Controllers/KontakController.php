@@ -16,7 +16,7 @@ class KontakController extends Controller
             return view('user.kontak.index');
         } else {
             Alert::warning('Info', 'Anda tidak diizinkan mengakses halaman tersebut!');
-            return view('admin.beranda.index');
+            return redirect()->back();
         }
     }
 

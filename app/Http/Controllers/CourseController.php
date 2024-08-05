@@ -199,9 +199,9 @@ class CourseController extends Controller
             } else {
                 $file_name = null;
             }
-            $course->save;
+            $course->save();
 
-            Alert::info('Success', 'Alat Musik berhasil diperbarui!');
+            Alert::info('Success', 'Course berhasil diperbarui!');
             return redirect()->back();
 
           } catch (\Exception $e) {

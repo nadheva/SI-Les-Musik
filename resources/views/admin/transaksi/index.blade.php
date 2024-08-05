@@ -91,7 +91,8 @@
                                                     @endif
                                                     <td class="align-middle text-center">{{Number::currency($t->grand_total, 'Rp.')}}</td>
                                                     <td class="align-middle text-center">
-                                                                @if($t->status == "pending")
+                                                        <a href="{{route('transaksi.show', encrypt($t->id))}}" class="btn btn-primary">Detail</button>
+                                                                {{-- @if($t->status == "pending")
                                                                 <button class="btn btn-info" id="pay-button">Bayar</button>
                                                                 @elseif($t->status == "success")
                                                                 <button class="btn btn-success" id="pay-button">Sudah Bayar</button>
@@ -99,7 +100,7 @@
                                                                 <button class="btn btn-danger" id="pay-button">Gagal</button>
                                                                 @elseif($t->status == "expired")
                                                                 <button class="btn btn-warning" id="pay-button">Kadaluarsa</button>
-                                                                @endif
+                                                                @endif --}}
                                                     </td>
                                                   </tr>
                                                   @endforeach
@@ -162,7 +163,8 @@
                                                     @endif
                                                     <td class="align-middle text-center">{{Number::currency($t->grand_total, 'Rp.')}}</td>
                                                     <td class="align-middle text-center">
-                                                                @if($t->status == "pending")
+                                                        <a href="{{route('transaksi.show', encrypt($t->id))}}" class="btn btn-primary">Detail</button>
+                                                                {{-- @if($t->status == "pending")
                                                                 <button class="btn btn-info" id="pay-button">Bayar</button>
                                                                 @elseif($t->status == "success")
                                                                 <button class="btn btn-success" id="pay-button">Sudah Bayar</button>
@@ -170,7 +172,7 @@
                                                                 <button class="btn btn-danger" id="pay-button">Gagal</button>
                                                                 @elseif($t->status == "expired")
                                                                 <button class="btn btn-warning" id="pay-button">Kadaluarsa</button>
-                                                                @endif
+                                                                @endif --}}
                                                     </td>
                                                   </tr>
                                                   @endforeach
