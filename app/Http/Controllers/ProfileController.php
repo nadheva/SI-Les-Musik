@@ -58,8 +58,8 @@ class ProfileController extends Controller
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
-                $txt = "storage/profile/". $file_name;
-                $request->foto->storeAs('public/profile', $file_name);
+                $txt = "storage/foto_profil/". $file_name;
+                $request->foto->storeAs('public/foto_profil', $file_name);
             } else {
                 $file_name = null;
             }
@@ -169,8 +169,8 @@ class ProfileController extends Controller
             if (isset($request->foto)) {
                 $extention = $request->foto->extension();
                 $file_name = time() . '.' . $extention;
-                $txt = "storage/profile/". $file_name;
-                $request->foto->storeAs('public/profile', $file_name);
+                $txt = "storage/foto_profil/". $file_name;
+                $request->foto->storeAs('public/foto_profil', $file_name);
                 $profile->foto = $txt;
             } else {
                 $file_name = null;
