@@ -101,8 +101,10 @@ p {
                 <h4 class="text-muted"> <span class="plan pl-3 text-dark">{{Number::currency($course[0]->harga, 'Rp.')}}/semester</span></h4>
                 <p class="text-muted mb-0">Per Semester</p>
             </div> --}}
-            @if($course[0]->level_id == 1 && $course[0]->status = 1)
-            <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+            @if(count($course->where('level', '=', '1')->where('status', '=', '1')) > 0)
+            @foreach($course->where('level', '=', '1')->where('status', '=', '1') as $c)
+            <a href="{{url('course-view', encrypt($c->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+            @endforeach
             @else
             <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
                 </p>
@@ -137,8 +139,10 @@ p {
                 <p class="text-muted mb-0">Per Semester</p>
             </div> --}}
             <div class="mt-4 pt-3">
-                @if($course[0]->level_id == 2 && $course[0]->status = 1)
-                <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @if(count($course->where('level', '=', '2')->where('status', '=', '1')) > 0)
+                @foreach($course->where('level', '=', '2')->where('status', '=', '1') as $c)
+                <a href="{{url('course-view', encrypt($c->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @endforeach
                 @else
                 <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
                     </p>
@@ -169,8 +173,10 @@ p {
             <p class="text-muted mb-0">Per Semester</p>
             </div> --}}
             <div class="mt-4 pt-3">
-                @if($course[0]->level_id == 3 && $course[0]->status = 1)
-                <a href="{{url('course-view', encrypt($course[0]->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @if(count($course->where('level', '=', '3')->where('status', '=', '1')) > 0)
+                @foreach($course->where('level', '=', '3')->where('status', '=', '1') as $c)
+                <a href="{{url('course-view', encrypt($c->id))}}" class="btn btn-primary btn-rounded">Daftar</a>
+                @endforeach
                 @else
                 <p class="mb-2"><i class="mdi mdi-close-circle text-danger f-18 mr-2"></i><b>Tidak tersedia</b>
                     </p>

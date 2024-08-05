@@ -130,7 +130,14 @@ class CourseController extends Controller
     {
         if(Auth::user()->role_id == 2) {
         $id1 = decrypt($id);
-        $course = Course::where('alat_musik_id', $id1)->where('status', '=', '1')->get();
+        // $course = Course::where('alat_musik_id', $id1)->where('status', '=', '1')->get();
+
+        $course = DB::table('alatmusik')
+        ->join('course', 'course.alat_musik_id', '=', 'alatmusik.id')
+        ->join('level', 'level.id', '=', 'course.level_id')
+        ->where('course.alat_musik_id', '=', $id1)
+        ->select('level.id as level', 'course.status as status', 'course.id as id')
+        ->get();
         return view('user.course.list', compact('course'));
         } else {
             $id = decrypt($id);
