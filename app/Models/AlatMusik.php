@@ -17,7 +17,7 @@ class AlatMusik extends Model
 
     public function course()
     {
-        // return $this->belongsTo(Course::class, 'alat_musik_id', 'id');
-        return $this->belongsTo(Course::class);
+        return $this->hasMany(Course::class, 'alat_musik_id', 'id');
+        // return $this->belongsTo(Course::class);
     }
 }
