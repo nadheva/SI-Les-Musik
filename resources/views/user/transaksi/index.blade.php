@@ -71,7 +71,7 @@
                           </div>
                         </td>
                         @endif
-                        <td class="align-middle text-center">{{Number::currency(($t->grand_total)+4000, 'Rp.')}}</td>
+                        <td class="align-middle text-center">{{Number::currency(($t->grand_total), 'Rp.')}}</td>
                         <td class="align-middle text-center">
                             <a href="{{route('transaksi.show', encrypt($t->id))}}" class="btn btn-primary">Detail</button>
                                     {{-- @if($t->status == "pending")

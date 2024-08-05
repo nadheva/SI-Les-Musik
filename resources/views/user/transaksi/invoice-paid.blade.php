@@ -114,7 +114,7 @@ tbody, td, tfoot, th, thead, tr {
 Hey {{$transaksi->user->name}},
 </h2>
 <p class="fs-sm">
-Ini adalah tanda terima pembayaran sebesar <strong>{{Number::currency(($transaksi->reservasi->course->harga)+4000, 'Rp.')}}</strong> untuk reservasi Course {{$transaksi->reservasi->course->judul}}.
+Ini adalah tanda terima pembayaran sebesar <strong>{{Number::currency(($transaksi->reservasi->course->harga), 'Rp.')}}</strong> untuk reservasi Course {{$transaksi->reservasi->course->judul}}.
 </p>
 <div class="border-top border-gray-200 pt-4 mt-4">
 <div class="row">
