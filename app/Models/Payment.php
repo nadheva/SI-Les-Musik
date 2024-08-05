@@ -20,7 +20,7 @@ class Payment extends Model
     ];
 
     public function reservasi(){
-        return $this->belongsTo(Reservasi::class);
+        return $this->belongsTo(Reservasi::class, 'reservasi_id');
     }
 
     public function user(){
