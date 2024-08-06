@@ -18,7 +18,7 @@
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                <img src="{{asset($profile->foto)}}" alt="Profile" class="rounded-circle">
+                <img src="{{asset($profile->foto)}}" alt=""  class="rounded-circle">
                 <h2>{{$profile->nama_depan.' '.$profile->nama_belakang}}</h2>
                 <h3>Pelajar</h3>
                 {{-- <div class="social-links mt-2">
