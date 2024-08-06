@@ -97,7 +97,7 @@
                         <br>
                         <h6 class="mb-0 mt-3">Harga</h6>
                         <h5>{{Number::currency($course->harga, 'Rp.')}} /Semester</h5>
-                        <span class="badge bg-success">Tersedia</span>
+                        <span class="badge bg-success">{{$course->level->nama}}</span>
                         <br>
                         <label class="mt-4">Deskripsi :</label>
                         <ul>
