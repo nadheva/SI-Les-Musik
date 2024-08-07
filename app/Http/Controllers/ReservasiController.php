@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PaymentMail;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReservasiController extends Controller
 {
@@ -45,12 +47,49 @@ class ReservasiController extends Controller
     public function store(Request $request)
     {
         try {
+          $course = Course::where('id', '=', $request->course_id)->first();
+        //   $cek_course = DB::table('reservasi')
+        //                     ->join('course', 'course.id', '=', 'reservasi.course_id')
+        //                     ->join('alatmusik', 'alatmusik.id', '=', 'course.alat_musik_id')
+        //                     ->join('level', 'level.id', '=', 'course.level_id')
+        //                     ->join('periode', 'periode.id', '=', 'course.periode_id')
+        //                     ->where('alatmusik.id', '=', $course->alat_musik_id)
+        //                     ->where('periode.id', '==', $course->periode_id)
+        //                     ->where('reservasi.course_id', '=', $request->course_id)
+        //                     ->where('reservasi.proses', '!==', 'Ditolak')
+        //                     ->where('reservasi.user_id', '=', Auth::user()->id)
+        //                     ->get();
+        $data_exist = Reservasi::where('course_id', '=', $request->course_id)
+                                ->where('user_id', '=', Auth::user()->id)
+                                ->where('proses', '!=', 'Ditolak')
+                                ->count();
+
+        $cek_level_course = DB::table('reservasi')
+                            ->join('course', 'course.id', '=', 'reservasi.course_id')
+                            ->join('alatmusik', 'alatmusik.id', '=', 'course.alat_musik_id')
+                            ->join('level', 'level.id', '=', 'course.level_id')
+                            ->join('periode', 'periode.id', '=', 'course.periode_id')
+                            // ->where('course.id', '=', $request->course_id)
+                            ->where('course.level_id', '=', $course->level_id)
+                            ->where('alatmusik.id', '=', $course->alat_musik_id)
+                            ->where('periode.tgl_akhir_ujian', '<=', Carbon::now())
+                            ->count();
+            // dd($data_exist);
+            // die();
+        if($data_exist > 0){
+            Alert::warning('Warning', 'Anda telah mendaftar jenis course tersebut di periode yang sama!');
+            return redirect()->back();
+        }
+        else if($cek_level_course > 0){
+            Alert::warning('Warning', 'Anda masih aktif di jenis course tersebut di periode yang sama!');
+            return redirect()->back();
+        }
+        else
+        {
             $request->validate([
                 'catatan' => 'required',
             ]);
-            $user_id =
-
-           $reservasi =     Reservasi::create([
+           $reservasi = Reservasi::create([
                             'course_id' => $request->course_id,
                             'user_id' => Auth::user()->id,
                             // 'resepsionis_id' => null,
@@ -70,6 +109,7 @@ class ReservasiController extends Controller
 
             Alert::success('Success', 'Reservasi berhasil ditambahakan!');
             return redirect()->route('reservasi.index');
+        }
         } catch (\Exception $e) {
             Alert::info('Error', $e->getMessage());
             return redirect()->back();
@@ -153,9 +193,10 @@ class ReservasiController extends Controller
 
             NotificationLog::create([
                 'reservasi_id' => $reservasi->id,
-                'user_id' => $reservasi->user_id,
-                'message' => 'Reservasi ditolak, silahkan hubungi resepsionis dan majukan reservasi kembali',
-                'is_read' => 0
+                'user_create_id' => Auth::user()->id,
+                'approver_role_id' => null,
+                'user_receiver_id' => $reservasi->user->id,
+                'message' => "Reservasi {$reservasi->course->judul} ditolak, silahkan hubungi resepsionis dan majukan reservasi kembali",
             ]);
             Alert::info('Success', 'Reservasi berhasil ditolak!');
             return redirect()->back();

@@ -73,8 +73,20 @@ class CourseController extends Controller
                             ->where('periode.tgl_akhir_ujian', '<=', $periode_input)
                             ->get();
 
+            $data_course_period = DB::table('course')
+                        ->join('periode', 'course.periode_id', '=', 'periode.id')
+                        ->join('alatmusik', 'alatmusik.id', '=', 'course.alat_musik_id')
+                        ->where('course.alat_musik_id', '=', $request->alat_musik_id)
+                        ->select('periode.nama_periode as nama_periode, alatmusik.nama as alat_musik')
+                        ->get();
+
+
             if($data_exist){
                 Alert::info('Info', 'Course sudah pernah ditambahakan, silahkan cek kembali!');
+                return redirect()->back();
+            }
+            else if(count($data_course_period) > 0){
+                Alert::info('Info', "'Course'.$data_course_period->alat_musik.' telah ditambahkan dengan periode '.$data_course_period->nama_periode.");
                 return redirect()->back();
             }
             else if(count($data_period) > 0){
