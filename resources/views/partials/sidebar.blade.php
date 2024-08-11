@@ -91,11 +91,11 @@
           <i class="bi bi-layout-text-window-reverse"></i><span>Master</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
+          {{-- <li>
             <a class="nav-link {{ Route::is('guru.*') ? 'active' : ''}}" href="{{route('guru.index')}}">
               <i class="bi bi-circle"></i><span>Guru</span>
             </a>
-          </li>
+          </li> --}}
           <li>
             <a class="nav-link {{ Route::is('alat-musik.*') ? 'active' : ''}}" href="{{route('alat-musik.index')}}">
               <i class="bi bi-circle"></i><span>Alat Musik</span>
