@@ -2,7 +2,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-          <h1>Data User</h1>
+          <h1>Data Akun</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -18,7 +18,7 @@
 
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Data Akun</h5>
+                  <h5 class="card-title">Datatables</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
                   <div class="col-12 text-end">
                     <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahUser"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Akun</a>
