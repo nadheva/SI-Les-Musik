@@ -18,10 +18,10 @@
 
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Datatables</h5>
+                  <h5 class="card-title">Data Akun</h5>
                   {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p> --}}
                   <div class="col-12 text-end">
-                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahUser"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah User</a>
+                    <a class="btn btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#tambahUser"><i class="bi bi-plus"></i>&nbsp;&nbsp;Tambah Akun</a>
                   </div>
                   <!-- Table with stripped rows -->
                   <table class="table datatable align-items-center mb-0" id="datatable-search">
@@ -79,7 +79,7 @@
                 <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title card-title" id="tambahPerangkatLabel">Tambah User</h5>
+                        <h5 class="modal-title card-title" id="tambahPerangkatLabel">Tambah Akun</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>

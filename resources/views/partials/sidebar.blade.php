@@ -80,7 +80,7 @@
           </li>
           <li>
             <a class="nav-link {{ Route::is('user.*') ? 'active' : ''}}" href="{{route('user.index')}}">
-              <i class="bi bi-circle"></i><span>User</span>
+              <i class="bi bi-circle"></i><span>Akun</span>
             </a>
           </li>
         </ul>
