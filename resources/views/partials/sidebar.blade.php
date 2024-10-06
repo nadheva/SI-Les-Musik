@@ -24,7 +24,7 @@
         <a class="nav-link collapsed" href="{{route('reservasi.index')}}">
         @endif
           <i class="bi bi-send"></i>
-          <span>Reservasi</span>
+          <span>Reservasi Calon Siswa</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
@@ -111,7 +111,7 @@
               <i class="bi bi-circle"></i><span>Periode</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="nav-link {{ Route::is('resepsionis.*') ? 'active' : ''}}" href="{{route('resepsionis.index')}}">
               <i class="bi bi-circle"></i><span>Resepsionis</span>
             </a>
@@ -120,7 +120,7 @@
             <a class="nav-link {{ Route::is('studio.*') ? 'active' : ''}}" href="{{route('studio.index')}}">
               <i class="bi bi-circle"></i><span>Studio</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li><!-- End Tables Nav -->
 

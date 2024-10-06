@@ -17,7 +17,7 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header d-flex pb-0 p-3">
-                            <h6 class="my-auto">Data Reservasi</h6>
+                            <h6 class="my-auto">Data Reservasi Calon Siswa</h6>
                             <div class="nav-wrapper position-relative ms-auto w-50">
                                 <ul class="nav nav-pills nav-fill p-1" role="tablist">
                                     <li class="nav-item">
